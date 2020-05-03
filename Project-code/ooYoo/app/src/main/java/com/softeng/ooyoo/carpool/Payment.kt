@@ -1,4 +1,3 @@
 package com.softeng.ooyoo.carpool
 
-class Payment {
-}
+class Payment(private val tripAmount: Int, private val typeOfPayment: String)

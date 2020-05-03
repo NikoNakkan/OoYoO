@@ -1,4 +1,3 @@
 package com.softeng.ooyoo.carpool
 
-class CarSpecs(val numberOfSeats: Int, val numberOfLuggage: Int) {
-}
+class CarSpecs(private val numSeats: Int, private val numLanguage: Int, private val foodDrinkAllowance: Boolean, private val allowPets: Boolean)
