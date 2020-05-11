@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    tools:context="com.softeng.ooyoo.user.SignupInterestsActivity">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/arrowleftorange"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/orange_curvy_boy"
+        android:text="Next"
+        android:textColor="@color/lightgray"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="Add Interests"
+        android:layout_marginTop="84dp"
+        android:layout_marginLeft="24dp"
+        android:id="@+id/signup_interests_add_interests_text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_interests_add_interests_text"
+        android:layout_marginTop="17dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray"
+                />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/gray_light_button_curvy_boy"
+                android:gravity="center"
+                android:text="Next"
+                android:textColor="@color/lightgray" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

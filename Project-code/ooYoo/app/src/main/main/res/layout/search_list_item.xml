@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="90dp">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/search_list_item_image_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/search_list_item_image_view"
+        android:text="Username"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/search_list_item_username_textview"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/search_list_item_image_view"
+        android:text="Action"
+        android:layout_below="@id/search_list_item_username_textview"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/search_list_item_action_textview"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From :   To :"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="84dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/from_to_search_list_item"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/from_to_search_list_item"
+        android:text="Date - Placeholder"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="64dp"/>
+</RelativeLayout>
