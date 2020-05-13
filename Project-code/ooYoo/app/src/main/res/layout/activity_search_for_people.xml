@@ -106,7 +106,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/when_are_u_going_button"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/orange_curvy_boy"
+        android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
         android:id="@+id/meet_new_friends_button"
         >

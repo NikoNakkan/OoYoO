@@ -1,5 +1,13 @@
 package com.softeng.ooyoo.carpool
 
+import android.os.Parcelable
 import com.softeng.ooyoo.place.Place
+import kotlinx.android.parcel.Parcelize
 
-class TripDetails(val dateTime: String, val start: Place, val destination: Place, val intermediateStops: ArrayList<Place>)
+@Parcelize
+class TripDetails(
+    val dateTime: String = "",
+    val start: Place = Place(),
+    val destination: Place = Place(),
+    val intermediateStops: ArrayList<Place> = arrayListOf()
+): Parcelable

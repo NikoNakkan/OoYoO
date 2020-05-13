@@ -1,3 +1,10 @@
 package com.softeng.ooyoo.carpool
 
-class DriverExperience(val yearOfLicense: Int, val kilometres: Int)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class DriverExperience(
+    val yearOfLicense: Int = 0,
+    val kilometres: Int = 0
+): Parcelable

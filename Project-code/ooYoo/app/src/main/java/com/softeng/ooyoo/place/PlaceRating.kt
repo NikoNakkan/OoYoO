@@ -1,5 +1,8 @@
 package com.softeng.ooyoo.place
 
 import android.media.Rating
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-class PlaceRating (val ratings: ArrayList<Rating>)
+@Parcelize
+class PlaceRating (val ratings: ArrayList<Rating> = arrayListOf()): Parcelable

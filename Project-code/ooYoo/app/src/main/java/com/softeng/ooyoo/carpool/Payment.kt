@@ -1,4 +1,7 @@
 package com.softeng.ooyoo.carpool
 
-class Payment {
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class Payment: Parcelable

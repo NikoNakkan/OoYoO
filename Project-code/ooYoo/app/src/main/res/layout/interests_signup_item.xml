@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/gray_light_button_curvy_boy"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="@color/lightgray"
+        android:id="@+id/signupInterestsTextView"/>
+
+</FrameLayout>

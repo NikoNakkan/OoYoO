@@ -129,17 +129,23 @@
         android:layout_below="@id/google_sign_in_button"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="Forgot password?"
         android:textColor="#90a4ae"
          />
 
+    <TextView
+        android:id="@+id/goToSignUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:layout_below="@id/forgot_password_textview"
+        android:gravity="center"
+        android:layout_marginBottom="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_centerHorizontal="true"/>
 
-  
 
-  
-
-
-
-    </RelativeLayout>
+</RelativeLayout>

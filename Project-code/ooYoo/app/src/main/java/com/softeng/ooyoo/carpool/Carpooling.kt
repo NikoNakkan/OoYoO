@@ -1,3 +1,11 @@
 package com.softeng.ooyoo.carpool
 
-class Carpooling(val car: Car, val driver: Driver, val trip: Trip)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class Carpooling(
+    val car: Car = Car(),
+    val driver: Driver = Driver(),
+    val trip: Trip = Trip()
+):Parcelable

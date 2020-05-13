@@ -7,34 +7,35 @@ import com.softeng.ooyoo.travel.Traveling
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PremiumUser(
-    uid: String,
-    username: String,
-    email: String,
-    fullName: String,
-    phoneNumber: String,
-    age: Date,
-    livingIn: String,
-    languages: ArrayList<String>,
-    gender: Gender,
-    interests: ArrayList<String>,
-    rating: UserRating,
-    tripHistory: ArrayList<Traveling>,
-    hostHistory: ArrayList<Hosting>,
-    carpoolingHistory: ArrayList<Carpooling>
-): User(
-    uid,
-    username,
-    email,
-    fullName,
-    phoneNumber,
-    age,
-    livingIn,
-    languages,
-    gender,
-    interests,
-    rating,
-    tripHistory,
-    hostHistory,
-    carpoolingHistory
-)
+//TODO fix this
+//class PremiumUser(
+//    uid: String,
+//    username: String,
+//    email: String,
+//    fullName: String,
+//    phoneNumber: String,
+//    age: Calendar,
+//    livingIn: String,
+//    languages: ArrayList<String>,
+//    gender: Gender,
+//    interests: ArrayList<String>,
+//    rating: UserRating,
+//    tripHistory: ArrayList<Traveling>,
+//    hostHistory: ArrayList<Hosting>,
+//    carpoolingHistory: ArrayList<Carpooling>
+//): User(
+//    uid,
+//    username,
+//    email,
+//    fullName,
+//    phoneNumber,
+//    age,
+//    livingIn,
+//    languages,
+//    gender,
+//    interests,
+//    rating,
+//    tripHistory,
+//    hostHistory,
+//    carpoolingHistory
+//)

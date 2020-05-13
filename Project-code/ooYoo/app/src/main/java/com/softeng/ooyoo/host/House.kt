@@ -1,6 +1,12 @@
 package com.softeng.ooyoo.host
 
+import android.os.Parcelable
 import com.softeng.ooyoo.place.Place
+import kotlinx.android.parcel.Parcelize
 
-class House(val ownerId: String, val place: Place, val photoLinks: ArrayList<String>) {
-}
+@Parcelize
+class House(
+    val ownerId: String = "",
+    val place: Place = Place(),
+    val photoLinks: ArrayList<String> = arrayListOf()
+): Parcelable

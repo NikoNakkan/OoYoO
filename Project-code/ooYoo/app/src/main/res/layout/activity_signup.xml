@@ -15,10 +15,11 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/orange_curvy_boy"
+        android:background="@drawable/orange_curvy_button"
         android:text="Next"
         android:textColor="@color/lightgray"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:id="@+id/signupNextTextView"/>
 
     <FrameLayout
         android:id="@+id/frame_of_logo_in_login"
@@ -54,7 +55,7 @@
 
     <EditText
         android:layout_below="@id/login_to_your_account_text"
-        android:id="@+id/signup_add_username"
+        android:id="@+id/signupAddUsername"
         android:layout_width="320dp"
         android:layout_marginTop="10dp"
         android:layout_height="36dp"
@@ -66,10 +67,10 @@
         />
 
     <EditText
-        android:id="@+id/signup_password_edit_text"
+        android:id="@+id/signupPasswordEditText"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@id/signup_add_username"
+        android:layout_below="@id/signupAddUsername"
         android:layout_marginTop="10dp"
         android:hint="Enter password"
         android:inputType="textPassword"
@@ -80,10 +81,10 @@
         />
 
     <EditText
-        android:id="@+id/re_enter_password_signup"
+        android:id="@+id/reEnterPasswordSignup"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@+id/signup_password_edit_text"
+        android:layout_below="@+id/signupPasswordEditText"
         android:layout_marginTop="10dp"
         android:hint="Re-enter password"
         android:inputType="textPassword"
@@ -94,10 +95,10 @@
         />
 
        <EditText
-        android:id="@+id/signup_name_and_Surname"
+        android:id="@+id/signupNameAndSurname"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@id/re_enter_password_signup"
+        android:layout_below="@id/reEnterPasswordSignup"
         android:layout_marginTop="10dp"
         android:hint="Enter name and surname"
         android:inputType="text"
@@ -108,10 +109,10 @@
         />
 
     <EditText
-        android:id="@+id/signup_enter_email_edittext"
+        android:id="@+id/signupEnterEmailEdittext"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@id/signup_name_and_Surname"
+        android:layout_below="@id/signupNameAndSurname"
         android:layout_marginTop="10dp"
         android:hint="Enter E-mail"
         android:inputType="textEmailAddress"
@@ -122,10 +123,10 @@
         />
 
     <EditText
-        android:id="@+id/signup_enter_phone_number"
+        android:id="@+id/signupEnterPhoneNumber"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@id/signup_enter_email_edittext"
+        android:layout_below="@id/signupEnterEmailEdittext"
         android:layout_marginTop="10dp"
         android:hint="Enter phone number"
         android:inputType="phone"
@@ -134,12 +135,6 @@
         android:textColorHint="#90a4ae"
         android:textSize="14sp"
         />
-
-
-
-
-
-
 
 </RelativeLayout>
 </ScrollView>
