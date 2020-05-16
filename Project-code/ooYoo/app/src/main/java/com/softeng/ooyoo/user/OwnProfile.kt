@@ -10,19 +10,18 @@ import com.softeng.ooyoo.R
 class OwnProfile : AppCompatActivity() {
 
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            var userProfileImageView: ImageView? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        var userProfileImageView: ImageView? = null
 
-            setContentView(R.layout.activity_own_profile)
+        setContentView(R.layout.activity_own_profile)
 
-            super.onCreate(savedInstanceState)
-            userProfileImageView = findViewById<ImageView>(R.id.activity_profile_image)
-            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.thic)
-            val roundedBitmapDrawable =
+        super.onCreate(savedInstanceState)
+        userProfileImageView = findViewById<ImageView>(R.id.activity_profile_image)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.thic)
+        val roundedBitmapDrawable =
                 RoundedBitmapDrawableFactory.create(resources, bitmap)
-            roundedBitmapDrawable.isCircular = true
-            userProfileImageView!!.setImageDrawable(roundedBitmapDrawable)
-        }
-
+        roundedBitmapDrawable.isCircular = true
+        userProfileImageView!!.setImageDrawable(roundedBitmapDrawable)
     }
 
+}

@@ -5,4 +5,5 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
-class Dates (val startDate: Date = Date(0), val endDate: Date = Date(0)): Parcelable
+class Dates (private val startDate: Date=1/1/2000,
+             private val endDate: Date=1/1/2000)

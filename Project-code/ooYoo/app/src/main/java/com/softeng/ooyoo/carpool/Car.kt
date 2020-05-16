@@ -2,6 +2,14 @@ package com.softeng.ooyoo.carpool
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.sql.Timestamp
 
 @Parcelize
-class Car(val specs: CarSpecs = CarSpecs(), val details: CarDetails = CarDetails()): Parcelable
+
+class Car(private val type: String="",
+          private val carUse: String="",
+          private val carState: Boolean= false,
+          private val carServiceDate: Long =0,
+          private val safety: String="",
+          private val carFeatures: CarFeatures,
+          private val carSpecs: CarSpecs)

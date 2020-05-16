@@ -4,4 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class CarSpecs(val numberOfSeats: Int = 0, val numberOfLuggage: Int = 0): Parcelable
+class CarSpecs(private val numSeats: Int=0,
+               private val numLanguage: Int=0,
+               private val foodDrinkAllowance: Boolean=false,
+               private val allowPets: Boolean=false)

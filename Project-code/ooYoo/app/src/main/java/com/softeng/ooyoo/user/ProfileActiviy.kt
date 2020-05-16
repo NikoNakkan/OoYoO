@@ -17,7 +17,7 @@ class ProfileActiviy : AppCompatActivity() {
         userProfileImageView = findViewById<ImageView>(R.id.activity_profile_image)
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.thic)
         val roundedBitmapDrawable =
-            RoundedBitmapDrawableFactory.create(resources, bitmap)
+                RoundedBitmapDrawableFactory.create(resources, bitmap)
         roundedBitmapDrawable.isCircular = true
         userProfileImageView!!.setImageDrawable(roundedBitmapDrawable)
     }

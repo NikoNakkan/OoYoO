@@ -4,4 +4,5 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Rating (val stars: Int = 0, val comment: String = ""): Parcelable
+class Rating (private val stars: Int=0,
+              private val comment: String="")
