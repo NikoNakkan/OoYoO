@@ -1,3 +1,14 @@
 package com.softeng.ooyoo.chat
 
-class Message(private val senderId: String, private val receiverId: String, private val message: String, private val timestamp: Long, private val read: Boolean, private val messageId: String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class Message(
+    private val senderId: String = "",
+    private val receiverId: String = "",
+    private val message: String = "",
+    private val timestamp: Long = 0,
+    private val read: Boolean = false,
+    private val messageId: String = ""
+): Parcelable

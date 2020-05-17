@@ -1,4 +1,4 @@
-papackage com.softeng.ooyoo.signUpLogIn
+package com.softeng.ooyoo.signUpLogIn
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

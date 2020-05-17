@@ -5,11 +5,12 @@ import kotlinx.android.parcel.Parcelize
 import java.sql.Timestamp
 
 @Parcelize
-
-class Car(private val type: String="",
-          private val carUse: String="",
-          private val carState: Boolean= false,
-          private val carServiceDate: Long =0,
-          private val safety: String="",
-          private val carFeatures: CarFeatures,
-          private val carSpecs: CarSpecs)
+class Car(
+    private val type: String="",
+    private val carUse: String="",
+    private val carState: Boolean= false,
+    private val carServiceDate: Long =0,
+    private val safety: String="",
+    private val carFeatures: CarFeatures = CarFeatures(),
+    private val carSpecs: CarSpecs = CarSpecs()
+): Parcelable

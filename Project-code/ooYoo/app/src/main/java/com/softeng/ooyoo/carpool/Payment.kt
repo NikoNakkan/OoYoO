@@ -4,6 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-
-class Payment(private val tripAmount: Int=0,
-              private val typeOfPayment: String="")
+class Payment(
+    private val tripAmount: Int=0,
+    private val typeOfPayment: String=""
+): Parcelable
