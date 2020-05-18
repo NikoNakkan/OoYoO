@@ -7,6 +7,7 @@
     android:background="@color/lightgray"
     tools:context="com.softeng.ooyoo.signUpLogIn.SignupInterestsActivity">
     <ImageView
+        android:id="@+id/interestsBackButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
@@ -21,10 +22,10 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/orange_curvy_button"
-        android:text="Next"
+        android:text="Finish"
         android:textColor="@color/lightgray"
         android:gravity="center"
-        android:id="@+id/interestsNextTextView"/>
+        android:id="@+id/interestsFinishTextView"/>
 
     <TextView
         android:layout_width="wrap_content"

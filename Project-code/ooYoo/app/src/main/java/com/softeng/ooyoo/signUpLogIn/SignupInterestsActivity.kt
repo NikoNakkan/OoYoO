@@ -3,7 +3,6 @@ package com.softeng.ooyoo.signUpLogIn
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
@@ -40,7 +39,7 @@ class SignupInterestsActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        interestsNextTextView.setOnClickListener {
+        interestsFinishTextView.setOnClickListener {
             if(user.interests.size == 0){
                 toast("Please select at least 1 interest")
             }
@@ -59,6 +58,10 @@ class SignupInterestsActivity : AppCompatActivity() {
                         finish()
                     }
             }
+        }
+
+        interestsBackButton.setOnClickListener {
+            onBackPressed()
         }
 
     }

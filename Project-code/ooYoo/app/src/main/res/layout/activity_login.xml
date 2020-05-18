@@ -36,8 +36,8 @@
         android:layout_below="@id/frame_of_logo_in_login"/>
 
     <EditText
-        android:layout_below="@id/login_to_your_account_text"
-        android:id="@+id/login_email_edit_text"
+        android:layout_below="@+id/login_to_your_account_text"
+        android:id="@+id/loginEmailEditText"
         android:layout_width="320dp"
         android:layout_marginTop="20dp"
         android:layout_height="36dp"
@@ -49,10 +49,10 @@
         />
 
     <EditText
-        android:id="@+id/login_password_edit_text"
+        android:id="@+id/loginPasswordEditText"
         android:layout_width="320dp"
         android:layout_height="36dp"
-        android:layout_below="@+id/login_email_edit_text"
+        android:layout_below="@+id/loginEmailEditText"
         android:layout_marginTop="20dp"
         android:hint="Password"
         android:inputType="textPassword"
@@ -85,19 +85,19 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="148dp"
         android:layout_marginTop="12dp"
-        android:layout_below="@id/login_login_textview_button"
+        android:layout_below="@id/loginTextView"
         android:layout_centerHorizontal="true"
         android:text="OR"
         android:textSize="18sp"
          />
 
     <TextView
-        android:id="@+id/google_sign_in_button"
+        android:id="@+id/googleSignInButton"
         android:layout_width="136dp"
         android:layout_height="40dp"
         android:layout_centerInParent="true"
         android:text="google login button"
-        android:layout_below="@id/login_login_textview_button"
+        android:layout_below="@id/loginTextView"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -107,12 +107,12 @@
         android:layout_marginBottom="8dp" />
 
     <TextView
-        android:id="@+id/login_login_textview_button"
+        android:id="@+id/loginTextView"
         android:layout_width="128dp"
         android:layout_height="36dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:layout_below="@id/login_password_edit_text"
+        android:layout_below="@id/loginPasswordEditText"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:background="@drawable/buttontemplate"
@@ -121,12 +121,12 @@
          />
 
     <TextView
-        android:id="@+id/forgot_password_textview"
+        android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_below="@id/google_sign_in_button"
+        android:layout_below="@id/googleSignInButton"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="32dp"
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:layout_below="@id/forgot_password_textview"
+        android:layout_below="@id/forgotPasswordTextView"
         android:gravity="center"
         android:layout_marginBottom="100dp"
         android:layout_marginStart="8dp"

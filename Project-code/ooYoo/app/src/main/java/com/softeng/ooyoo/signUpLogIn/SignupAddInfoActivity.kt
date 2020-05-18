@@ -46,11 +46,10 @@ class SignupAddInfoActivity : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _: DatePicker, year: Int, month: Int, day: Int ->
-                    val cal = Calendar.getInstance()
-                    cal[Calendar.YEAR] = year
-                    cal[Calendar.MONTH] = month
-                    cal[Calendar.DAY_OF_MONTH] = day
-                    user.age = cal
+                    user.age = mutableMapOf()
+                    user.age["Year"] = year
+                    user.age["Month"] = month
+                    user.age["Day"] = day
                     toast("Age set!")
                     age = true
                 },
@@ -95,6 +94,10 @@ class SignupAddInfoActivity : AppCompatActivity() {
             else{
                 longToast("Not all data are filled. Please fill the rest of the data.")
             }
+        }
+
+        infoBackButton.setOnClickListener {
+            onBackPressed()
         }
 
     }

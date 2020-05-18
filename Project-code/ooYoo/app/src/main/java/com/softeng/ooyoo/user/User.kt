@@ -18,7 +18,7 @@ open class User(
     var email: String="",
     var fullName: String="",
     var phoneNumber: String="",
-    var age: Calendar= Calendar.getInstance(),
+    var age: MutableMap<String, Int> = mutableMapOf(),
     var livingIn: String="",
     var languages: ArrayList<String> = arrayListOf(),
     var gender: String="",
