@@ -1,12 +1,11 @@
 package com.softeng.ooyoo.signUpLogIn
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.softeng.ooyoo.MainActivity
+import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.toast
 import kotlinx.android.synthetic.main.activity_login.*

@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".user.SearchListActivity"/>
-        <activity android:name=".user.SearchForPeopleActivity"/>
         <activity android:name=".signUpLogIn.SignupInterestsActivity"/>
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
         <activity android:name=".signUpLogIn.SignupActivity" />
@@ -19,7 +18,7 @@
         <activity android:name=".signUpLogIn.LoginActivity" />
         <activity android:name=".user.OwnProfile" />
         <activity android:name=".user.ProfileActiviy" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".mainScreens.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bot_nav_chat"
+        android:title="Chat" />
+    <item
+        android:id="@+id/bot_nav_travel"
+        android:title="Travel" />
+    <item
+        android:id="@+id/bot_nav_carpool"
+        android:title="Carpool" />
+
+</menu>
