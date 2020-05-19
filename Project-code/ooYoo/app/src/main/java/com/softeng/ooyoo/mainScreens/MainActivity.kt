@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.helpers.USERS
+import com.softeng.ooyoo.databases.USERS
 import com.softeng.ooyoo.signUpLogIn.*
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_main.*
 

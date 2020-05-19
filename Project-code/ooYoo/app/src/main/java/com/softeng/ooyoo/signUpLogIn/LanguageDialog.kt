@@ -15,21 +15,23 @@ class LanguageDialog: DialogFragment(){
             val selectedItems = arrayListOf<Int>()
             val builder = AlertDialog.Builder(it)
 
-            builder.setTitle("Language")
-                .setMultiChoiceItems(LANGUAGE_ARRAY, null,
-                    DialogInterface.OnMultiChoiceClickListener{ dialog: DialogInterface, which: Int, isChecked: Boolean ->
-                        if (isChecked) {
-                            selectedItems.add(which)
-                        } else if (selectedItems.contains(which)) {
-                            selectedItems.remove(Integer.valueOf(which))
-                        }
-                })
-                .setPositiveButton("OK", DialogInterface.OnClickListener{ _: DialogInterface, _: Int ->
+            val negativeButton = builder.setTitle("Language")
+                .setMultiChoiceItems(
+                    LANGUAGE_ARRAY,
+                    null
+                ) { _: DialogInterface, which: Int, isChecked: Boolean ->
+                    if (isChecked) {
+                        selectedItems.add(which)
+                    } else if (selectedItems.contains(which)) {
+                        selectedItems.remove(Integer.valueOf(which))
+                    }
+                }
+                .setPositiveButton("OK") { _: DialogInterface, _: Int ->
                     (activity as SignupAddInfoActivity).updateUserLanguages(selectedItems)
-                })
-                .setNegativeButton("Cancel", DialogInterface.OnClickListener { _: DialogInterface, _: Int ->
+                }
+                .setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
 
-                })
+                }
             builder.create()
 
 

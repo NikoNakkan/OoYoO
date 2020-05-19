@@ -11,15 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:text="Search for new friends "/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="42dp"
-        android:text="to meet on your trip!"
+        android:text="Search for new friends\nto meet on your trip!"
         android:id="@+id/and_meet_new_people_tv_becometrravleler"/>
 
     <ImageView
@@ -133,4 +127,14 @@
     </RelativeLayout>
 
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/temp_intent_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchTravelerButton"
+        android:layout_marginTop="19dp"
+        android:text="This is a temp TextView"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

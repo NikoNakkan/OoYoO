@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
-        android:id="@+id/where_are_u_going_relative"
+        android:id="@+id/becomeHostWhere"
         >
         <ImageView
             android:layout_width="20dp"
@@ -67,11 +67,11 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/where_are_u_going_relative"
+        android:layout_below="@id/becomeHostWhere"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
-        android:id="@+id/when_are_u_going_relative"
+        android:id="@+id/becomeTravellerWhen"
         >
         <ImageView
             android:layout_width="20dp"
@@ -103,11 +103,11 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/when_are_u_going_relative"
+        android:layout_below="@id/becomeTravellerWhen"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
-        android:id="@+id/meet_new_friends_traveler"
+        android:id="@+id/becomeHostButton"
         >
         <ImageView
             android:layout_width="20dp"

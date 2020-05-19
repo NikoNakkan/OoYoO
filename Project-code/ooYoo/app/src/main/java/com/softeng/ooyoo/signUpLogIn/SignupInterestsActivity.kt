@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.INTERESTS_ARRAY_LIST
-import com.softeng.ooyoo.helpers.USERS
+import com.softeng.ooyoo.databases.USERS
 import com.softeng.ooyoo.longToast
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User

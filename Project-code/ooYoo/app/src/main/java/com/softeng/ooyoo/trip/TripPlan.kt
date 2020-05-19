@@ -9,7 +9,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class TripPlan(
-    private val place: Place = Place(),
-           private val dates: Dates = Dates(),
-           private val buddies: ArrayList<User> = arrayListOf()
+    val uid: String = "",
+    val place: Place = Place(),
+    val dates: Dates = Dates(),
+    val buddies: ArrayList<User> = arrayListOf()
 ): TravelEvent(place, dates), Parcelable

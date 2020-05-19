@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         val activityContext = this
 
         loginTextView.setOnClickListener {
-            if (loginEmailEditText.text.toString() == "" || loginPasswordEditText.getText().toString() == "") {
+            if (loginEmailEditText.text.toString() == "" || loginPasswordEditText.text.toString() == "") {
                 toast("Please fill your account details")
             }
             else {
@@ -41,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
                     }
             }
         }
+
 
         googleSignInButton.setOnClickListener {
             toast("This feature is not ready yet.")

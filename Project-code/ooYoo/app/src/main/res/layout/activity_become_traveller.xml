@@ -37,7 +37,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
-        android:id="@+id/where_are_u_going_relative"
+        android:id="@+id/becomeTravellerWhere"
         >
     <ImageView
         android:layout_width="20dp"
@@ -51,14 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Where:"/>
+            android:text="Where:" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="Where you are going"
             android:textSize="16sp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:id="@+id/becomeTravellerWhereTextView"/>
 
 
 
@@ -68,11 +70,11 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/where_are_u_going_relative"
+        android:layout_below="@id/becomeTravellerWhere"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
-        android:id="@+id/when_are_u_going_relative"
+        android:id="@+id/becomeTravellerWhen"
         >
         <ImageView
             android:layout_width="20dp"
@@ -93,7 +95,8 @@
             android:layout_centerVertical="true"
             android:text="When you are going"
             android:textSize="16sp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:id="@+id/becomeTravellerWhenTextView"/>
 
 
 
@@ -104,11 +107,11 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/when_are_u_going_relative"
+        android:layout_below="@id/becomeTravellerWhen"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
-        android:id="@+id/meet_new_friends_traveler"
+        android:id="@+id/becomeTravellerButton"
         >
         <ImageView
             android:layout_width="20dp"

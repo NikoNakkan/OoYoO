@@ -6,6 +6,6 @@ import java.util.*
 
 @Parcelize
 class Dates (
-    private val startDate: Calendar = Calendar.getInstance(),
-    private val endDate: Calendar = Calendar.getInstance()
+    var startDate: MutableMap<String, Int> = mutableMapOf(),
+    var endDate: MutableMap<String, Int> = mutableMapOf()
 ): Parcelable
