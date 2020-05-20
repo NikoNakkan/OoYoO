@@ -21,15 +21,15 @@ class SearchForTravelersFragment : Fragment() {
             return view
         }
 
-        val tempIntentTextView = view.findViewById<TextView>(R.id.temp_intent_text_view)
+       //val tempIntentTextView = view.findViewById<TextView>(R.id.temp_intent_text_view)
 
 
-        tempIntentTextView.setOnClickListener {
+     /*   tempIntentTextView.setOnClickListener {
             val intent = Intent(context, BecomeTravellerActivity::class.java)
             startActivity(intent)
         }
-
+*/
         return view
-    }
 
+}
 }

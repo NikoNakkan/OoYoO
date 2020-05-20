@@ -61,22 +61,27 @@
 
 
     </RelativeLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="16dp"
+        android:id="@+id/searchTravelerWhenLinear"
+        android:layout_below="@id/searchTravelersWhere"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@id/searchTravelersWhere"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
-        android:layout_marginTop="16dp"
-        android:id="@+id/searchTravelerWhen"
+        android:id="@+id/searchTravelerWhenFrom"
         >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/buttonarrow"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"/>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,21 +92,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="When you are going"
+            android:text="From"
             android:textSize="16sp"
             android:layout_marginLeft="60dp"
-            android:id="@+id/searchTravelersWhenTextView"/>
-
-
+            android:id="@+id/searchTravelersWhenFromTV"/>
 
 
 
     </RelativeLayout>
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp"/>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_button_curvy_boy"
+            android:id="@+id/searchTravelerWhenTo"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="When:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="To"
+                android:textSize="16sp"
+                android:layout_marginLeft="60dp"
+                android:id="@+id/searchTravelersWhenToTextView"/>
+
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/searchTravelerWhen"
+        android:layout_below="@id/searchTravelerWhenLinear"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
@@ -127,14 +161,34 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/temp_intent_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchTravelerButton"
-        android:layout_marginTop="19dp"
-        android:text="This is a temp TextView"
-        android:textSize="24sp" />
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/searchTravelerButton"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/orange_curvy_button"
+        android:layout_marginTop="16dp"
+        android:id="@+id/search_car_pooler_button"
+        >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/buttonarrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Search for a ride"
+            android:textSize="16sp"
+            android:layout_marginLeft="60dp"/>
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

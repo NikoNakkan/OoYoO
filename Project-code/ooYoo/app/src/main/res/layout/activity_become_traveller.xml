@@ -67,42 +67,76 @@
 
 
     </RelativeLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/becomeTravellerWhere"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/white_button_curvy_boy"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
         android:layout_marginTop="16dp"
         android:id="@+id/becomeTravellerWhen"
+        android:layout_below="@id/becomeTravellerWhere"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/buttonarrow"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="When:"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="When you are going"
-            android:textSize="16sp"
-            android:layout_marginLeft="60dp"
-            android:id="@+id/becomeTravellerWhenTextView"/>
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/searchTravelersWhere"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/white_button_curvy_boy"
+            android:id="@+id/searchTravelerWhenFrom"
+            >
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="When:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="From"
+                android:textSize="16sp"
+                android:layout_marginLeft="60dp"
+                android:id="@+id/searchTravelersWhenFromTV"/>
 
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp"/>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_button_curvy_boy"
+            android:id="@+id/searchTravelerWhenTo"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="When:"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="To"
+                android:textSize="16sp"
+                android:layout_marginLeft="60dp"
+                android:id="@+id/searchTravelersWhenToTextView"/>
+
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="300dp"
