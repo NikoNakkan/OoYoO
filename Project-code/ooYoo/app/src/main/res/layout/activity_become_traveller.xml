@@ -82,10 +82,10 @@
             android:layout_weight="1"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_below="@id/searchTravelersWhere"
+            android:layout_below="@id/becomeTravellerWhere"
             android:layout_centerHorizontal="true"
             android:background="@drawable/white_button_curvy_boy"
-            android:id="@+id/searchTravelerWhenFrom"
+            android:id="@+id/becomeTravellerWhenFrom"
             >
 
 
@@ -101,7 +101,7 @@
                 android:text="From"
                 android:textSize="16sp"
                 android:layout_marginLeft="60dp"
-                android:id="@+id/searchTravelersWhenFromTV"/>
+                android:id="@+id/becomeTravellerWhenFromTextView"/>
 
 
 
@@ -114,8 +114,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/white_button_curvy_boy"
-            android:id="@+id/searchTravelerWhenTo"
-            >
+            android:id="@+id/becomeTravellerWhenTo">
 
 
             <TextView
@@ -130,7 +129,7 @@
                 android:text="To"
                 android:textSize="16sp"
                 android:layout_marginLeft="60dp"
-                android:id="@+id/searchTravelersWhenToTextView"/>
+                android:id="@+id/becomeTravellerWhenToTextView"/>
 
 
 

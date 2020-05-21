@@ -1,27 +1,22 @@
 package com.softeng.ooyoo.user
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.DatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.TravelEventDB
-import com.softeng.ooyoo.longToast
+import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
-import com.ybs.countrypicker.CountryPicker
 import kotlinx.android.synthetic.main.activity_become_traveller.*
 import kotlinx.android.synthetic.main.activity_become_traveller.becomeTravellerWhen
 
 class BecomeTravellerActivity : AppCompatActivity() {
 
-    private var country: String = ""
-    private val startTravelDate = mutableMapOf<String, Int>()
     private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
@@ -33,40 +28,26 @@ class BecomeTravellerActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid
 
         becomeTravellerWhere.setOnClickListener {
-            val countryPicker = CountryPicker.newInstance("Select Country")
-            countryPicker.setListener{ name: String, _: String, _: String, _: Int ->
-                becomeTravellerWhereTextView.text = name
-                country = name
-                countryPicker.dismiss()
+            pickCountry(supportFragmentManager) { country ->
+                becomeTravellerWhereTextView.text = country
                 place.name = country
             }
-            countryPicker.show(supportFragmentManager, "COUNTRY_PICKER")
         }
 
-      /*  becomeTravellerWhen.setOnClickListener {
-            val datePickerDialog = DatePickerDialog(
-                this,
-                { _: DatePicker, year: Int, month: Int, day: Int ->
-                    startTravelDate["Year"] = year
-                    startTravelDate["Month"] = month
-                    startTravelDate["Day"] = day
-                    becomeTravellerWhenTextView.text = dateMapToString(startTravelDate)
-                    dates.startDate = startTravelDate
-                },
-                2020,
-                1,
-                1
-            )
-            datePickerDialog.show()
+        becomeTravellerWhenFrom.setOnClickListener {
+            pickDate(this) { date ->
+                becomeTravellerWhenFromTextView.text = dateMapToString(date)
+                dates.startDate = date
+            }
         }
 
-       */
+        becomeTravellerWhenTo.setOnClickListener {
+            pickDate(this){ date ->
+                becomeTravellerWhenToTextView.text = dateMapToString(date)
+                dates.endDate = date
+            }
+        }
 
-        //TODO add another date picker, in it set the end date
-        endTravelDate["Year"] = 2000
-        endTravelDate["Month"] = 0
-        endTravelDate["Day"] = 1
-        dates.endDate = endTravelDate
 
 
         becomeTravellerButton.setOnClickListener {
@@ -75,6 +56,12 @@ class BecomeTravellerActivity : AppCompatActivity() {
             }
             else if(place.name == "" || dates.startDate.isEmpty() || dates.endDate.isEmpty()){
                 toast("Please add the place and the dates of your visit.")
+            }
+            else if (dateDistance(dates.startDate, dates.endDate) < 0){
+                toast("The starting date needs to be before the ending date.")
+            }
+            else if (!checkIfDateIsFuture(dates.startDate)){
+                toast("The date you selected has already passed. Please select a future date.")
             }
             else {
                 val trip = TripPlan(uid=uid, place = place, dates = dates)
@@ -99,5 +86,4 @@ class BecomeTravellerActivity : AppCompatActivity() {
 
     }
 
-    private fun dateMapToString(m: MutableMap<String, Int>) = m["Day"].toString() + "/" + m["Month"].toString() + "/" + m["Year"].toString()
 }

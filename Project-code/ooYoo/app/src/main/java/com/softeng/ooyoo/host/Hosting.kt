@@ -6,12 +6,12 @@ import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.helpers.Rating
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
+
+
 @Parcelize
-
-
 class Hosting (
-    private val place: Place,
-    private val dates: Dates,
+    val place: Place,
+    val dates: Dates,
     private val hostId: String="",
     private val hostRating: ArrayList<Rating> = arrayListOf(),
     private val housePhotosLinks: ArrayList<String> = arrayListOf()

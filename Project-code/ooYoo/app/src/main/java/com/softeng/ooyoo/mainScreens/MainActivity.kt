@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
@@ -33,13 +34,15 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.main_fragment_container, selectedFragment!!).commit()
 
 
+        bottomNavigationView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         bottomNavigationView.selectedItemId = R.id.bot_nav_travel
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId){
                 R.id.bot_nav_chat -> selectedFragment = ChatFragment()
                 R.id.bot_nav_travel -> selectedFragment = SearchForTravelersFragment()
-                R.id.bot_nav_carpool -> selectedFragment = SearchForCarpoolersFragment()
+                R.id.bot_nav_become -> selectedFragment = BecomeFragment()
+                R.id.bot_nav_profile -> selectedFragment = OwnProfileFragment()
             }
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment_container, selectedFragment!!).commit()
