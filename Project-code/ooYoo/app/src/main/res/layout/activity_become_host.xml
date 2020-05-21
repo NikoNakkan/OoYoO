@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.softeng.ooyoo.user.BecomeTravellerActivity">
+    tools:context="com.softeng.ooyoo.user.BecomeHostActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -27,12 +27,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:src="@drawable/house"
-        android:id="@+id/earth_image_become_a_traveler"/>
+        android:id="@+id/house_image_become_a_host"/>
 
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/earth_image_become_a_traveler"
+        android:layout_below="@id/house_image_become_a_host"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
@@ -57,9 +57,8 @@
             android:layout_centerVertical="true"
             android:text="Where you are hosting"
             android:textSize="16sp"
-            android:layout_marginLeft="60dp"/>
-
-
+            android:layout_marginLeft="60dp"
+            android:id="@+id/becomeHostWhereTextView"/>
 
 
 
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:layout_marginTop="16dp"
-        android:id="@+id/becomeTravellerWhen"
+        android:id="@+id/becomeHostWhen"
         android:layout_below="@id/becomeHostWhere"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
@@ -79,10 +78,10 @@
             android:layout_weight="1"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_below="@id/searchTravelersWhere"
+            android:layout_below="@id/becomeHostWhere"
             android:layout_centerHorizontal="true"
             android:background="@drawable/white_button_curvy_boy"
-            android:id="@+id/searchTravelerWhenFrom"
+            android:id="@+id/becomeHostWhenFrom"
             >
 
 
@@ -98,7 +97,7 @@
                 android:text="From"
                 android:textSize="16sp"
                 android:layout_marginLeft="60dp"
-                android:id="@+id/searchTravelersWhenFromTV"/>
+                android:id="@+id/becomeHostWhenFromTextView"/>
 
 
 
@@ -111,7 +110,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/white_button_curvy_boy"
-            android:id="@+id/searchTravelerWhenTo"
+            android:id="@+id/becomeHostWhenTo"
             >
 
 
@@ -127,7 +126,7 @@
                 android:text="To"
                 android:textSize="16sp"
                 android:layout_marginLeft="60dp"
-                android:id="@+id/searchTravelersWhenToTextView"/>
+                android:id="@+id/becomeHostWhenToTextView"/>
 
 
 
@@ -139,7 +138,7 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/becomeTravellerWhen"
+        android:layout_below="@id/becomeHostWhen"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"

@@ -54,7 +54,7 @@
             android:text="Where you are going"
             android:textSize="16sp"
             android:layout_marginLeft="60dp"
-            android:id="@+id/shearchTravelersWhereTextView"/>
+            android:id="@+id/searchTravelersWhereTextView"/>
 
 
 

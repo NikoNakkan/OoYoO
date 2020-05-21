@@ -8,8 +8,8 @@ import com.softeng.ooyoo.travel.Dates
 
 @Parcelize
 class Carpooling(
-    private val place: Place,
-    private val dates: Dates,
+    val place: Place,
+    val dates: Dates,
     private val driverId: String = "",
     private val registerDate: Long =0,
     private val car: Car = Car(),

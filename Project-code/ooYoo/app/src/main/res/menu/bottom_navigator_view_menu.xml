@@ -6,9 +6,12 @@
         android:title="Chat" />
     <item
         android:id="@+id/bot_nav_travel"
-        android:title="Travel" />
+        android:title="Meet Friends" />
     <item
-        android:id="@+id/bot_nav_carpool"
-        android:title="Carpool" />
+        android:id="@+id/bot_nav_become"
+        android:title="Travel"/>
+    <item
+        android:id="@+id/bot_nav_profile"
+        android:title="Profile" />
 
 </menu>

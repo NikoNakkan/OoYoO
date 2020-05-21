@@ -7,6 +7,8 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.LANGUAGE_ARRAY
+import com.softeng.ooyoo.helpers.pickCountry
+import com.softeng.ooyoo.helpers.pickDate
 import com.softeng.ooyoo.longToast
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User
@@ -41,35 +43,20 @@ class SignupAddInfoActivity : AppCompatActivity() {
             finish()
         }
 
-//        val dateListener = DatePicker.OnDateChangedListener()
-        ageRelativeAddInfoSignup.setOnClickListener{
-            val datePickerDialog = DatePickerDialog(
-                this,
-                { _: DatePicker, year: Int, month: Int, day: Int ->
-                    user.age = mutableMapOf()
-                    user.age["Year"] = year
-                    user.age["Month"] = month
-                    user.age["Day"] = day
-                    toast("Age set!")
-                    age = true
-                },
-                2000,
-                0,
-                1)
-
-            datePickerDialog.show()
+        ageRelativeAddInfoSignup.setOnClickListener {
+            pickDate(this, startYear=2000){ date ->
+                user.age = date
+                toast("Age set!")
+                age = true
+            }
         }
 
         livingInRelativeSignupInfoButton.setOnClickListener {
-            val countryPicker = CountryPicker.newInstance("Select Country")
-            countryPicker.setListener{ name: String, _: String, _: String, _: Int ->
-                user.livingIn = name
+            pickCountry(supportFragmentManager) { country ->
+                user.livingIn = country
                 toast("Country set!")
                 livingIn = true
-                countryPicker.dismiss()
             }
-
-            countryPicker.show(supportFragmentManager, "COUNTRY_PICKER")
         }
 
         languagesSpeakingSignupInfoButton.setOnClickListener {
