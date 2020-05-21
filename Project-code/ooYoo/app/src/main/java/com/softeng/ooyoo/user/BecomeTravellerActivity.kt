@@ -43,7 +43,7 @@ class BecomeTravellerActivity : AppCompatActivity() {
             countryPicker.show(supportFragmentManager, "COUNTRY_PICKER")
         }
 
-        becomeTravellerWhen.setOnClickListener {
+      /*  becomeTravellerWhen.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _: DatePicker, year: Int, month: Int, day: Int ->
@@ -59,6 +59,8 @@ class BecomeTravellerActivity : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
+       */
 
         //TODO add another date picker, in it set the end date
         endTravelDate["Year"] = 2000

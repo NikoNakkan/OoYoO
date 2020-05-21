@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="16dp"
         android:text="Search for new friends\nto meet on your trip!"
         android:id="@+id/and_meet_new_people_tv_becometrravleler"/>
 
     <ImageView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_below="@+id/and_meet_new_people_tv_becometrravleler"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
@@ -27,7 +27,7 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_below="@id/friends_phones_search_for_people"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
@@ -75,7 +75,7 @@
     <RelativeLayout
         android:layout_weight="1"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_below="@id/searchTravelersWhere"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
@@ -105,7 +105,7 @@
             android:layout_height="0dp"/>
         <RelativeLayout
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@drawable/white_button_curvy_boy"
             android:id="@+id/searchTravelerWhenTo"
@@ -134,7 +134,7 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_below="@id/searchTravelerWhenLinear"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
@@ -163,7 +163,7 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_below="@id/searchTravelerButton"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
