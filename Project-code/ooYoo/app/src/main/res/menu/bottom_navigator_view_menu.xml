@@ -3,15 +3,19 @@
 
     <item
         android:id="@+id/bot_nav_chat"
-        android:title="Chat" />
+        android:title="Chat"
+        android:icon="@drawable/chaticon"/>
     <item
         android:id="@+id/bot_nav_travel"
-        android:title="Meet Friends" />
+        android:title="Meet Friends"
+        android:icon="@drawable/search_icon"/>
     <item
         android:id="@+id/bot_nav_become"
-        android:title="Travel"/>
+        android:title="Travel"
+        android:icon="@drawable/plus_icon_bottom_bar"/>
     <item
         android:id="@+id/bot_nav_profile"
-        android:title="Profile" />
+        android:title="Profile"
+        android:icon="@drawable/profileicon"/>
 
 </menu>
