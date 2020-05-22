@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.USERS
 import com.softeng.ooyoo.signUpLogIn.*
+import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,7 +41,10 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId){
                 R.id.bot_nav_chat -> selectedFragment = ChatFragment()
-                R.id.bot_nav_travel -> selectedFragment = SearchForTravelersFragment()
+                R.id.bot_nav_travel -> {
+                    selectedFragment = SearchForTravelersFragment()
+                    (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
+                }
                 R.id.bot_nav_become -> selectedFragment = BecomeFragment()
                 R.id.bot_nav_profile -> selectedFragment = OwnProfileFragment()
             }
@@ -76,6 +80,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 user = document.toObject(User::class.java)
+                if(selectedFragment is SearchForTravelersFragment){
+                    (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
+                }
             }
     }
 }

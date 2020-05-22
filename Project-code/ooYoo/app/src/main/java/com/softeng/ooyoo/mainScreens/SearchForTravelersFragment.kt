@@ -1,5 +1,6 @@
 package com.softeng.ooyoo.mainScreens
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,12 +10,17 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
+import com.softeng.ooyoo.UsersListActivity
+import com.softeng.ooyoo.databases.TRAVELERS_EXTRA_NAME
+import com.softeng.ooyoo.databases.TRIPS_EXTRA_NAME
 import com.softeng.ooyoo.databases.TravelEventDB
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
+import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
+import com.softeng.ooyoo.user.User
 
 
 class SearchForTravelersFragment : Fragment() {
@@ -22,6 +28,7 @@ class SearchForTravelersFragment : Fragment() {
     private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
+    private var user = User()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_search_for_travelers, container, false)
@@ -76,7 +83,13 @@ class SearchForTravelersFragment : Fragment() {
                 val uid = FirebaseAuth.getInstance().uid
                 val tripPlan = TripPlan(uid, place, dates)
                 val travelEventDB = TravelEventDB()
-                travelEventDB.findRelevantTripPlans(context!!, tripPlan)
+                travelEventDB.findRelevantTripPlans(context!!, tripPlan){ tripPlans: ArrayList<TripPlan>, travelers: ArrayList<User> ->
+                    val intent = Intent(context, UsersListActivity::class.java)
+                    intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
+                    intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
+                    intent.putExtra(USER_EXTRA_NAME, user)
+                    startActivity(intent)
+                }
                 //get all relevant trips (based on place and date --> use whee queries)
                 //get all users from uid of trips
                     // (for this to happen we need to either get all users and then test their uid
@@ -87,13 +100,11 @@ class SearchForTravelersFragment : Fragment() {
 
         }
 
-
-//        tempIntentTextView.setOnClickListener {
-//            val intent = Intent(context, BecomeTravellerActivity::class.java)
-//            startActivity(intent)
-//        }
-
         return view
+    }
+
+    fun setUser(user: User){
+        this.user = user
     }
 
 }

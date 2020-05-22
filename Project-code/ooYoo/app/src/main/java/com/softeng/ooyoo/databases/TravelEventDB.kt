@@ -11,6 +11,7 @@ import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.trip.TripPlan
+import com.softeng.ooyoo.user.User
 
 const val TRAVELERS_EXTRA_NAME = "travelers"
 const val TRIPS_EXTRA_NAME = "trips"
@@ -42,7 +43,7 @@ class TravelEventDB: Database(TRAVEL_EVENTS){
 
     }
 
-    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan){
+    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<TripPlan>, ArrayList<User>) -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val tripPlans = arrayListOf<TripPlan>()
@@ -57,7 +58,6 @@ class TravelEventDB: Database(TRAVEL_EVENTS){
             .whereEqualTo(FieldPath.of("place", "name"), tripPlan.place.name)
             .whereLessThan("endDateInMillis", tripPlan.endDateInMillis + THREE_DAYS_IN_MILLIS)
             .whereGreaterThan("endDateInMillis", tripPlan.endDateInMillis - THREE_DAYS_IN_MILLIS)
-//            .whereIn("uid", tripPlanList)
 
 
         startDateQuery
@@ -84,10 +84,7 @@ class TravelEventDB: Database(TRAVEL_EVENTS){
 
                         val userDB = UserDB()
                         userDB.retrieveSearchedUsers(uids){ travelers ->
-                            val intent = Intent(context, UsersListActivity::class.java)
-                            intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
-                            intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
-                            context.startActivity(intent)
+                            onSuccess(tripPlans, travelers)
                         }
 
                         Log.d(TravelEventDB::class.java.simpleName, "Successful data retrieval.")
