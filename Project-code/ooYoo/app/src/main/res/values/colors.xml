@@ -5,6 +5,6 @@
     <color name="colorAccent">#0fa59b</color>
     <color name="darkGrayLetter">#424242</color>
     <color name="white">#FFFFFF</color>
-    <color name="apporange">#ff9900</color>
-    <color name="lightgray">#f4f4f4</color>
+    <color name="appOrange">#ff9900</color>
+    <color name="lightGray">#f4f4f4</color>
 </resources>

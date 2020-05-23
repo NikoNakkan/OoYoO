@@ -1,26 +1,22 @@
 package com.softeng.ooyoo.databases
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
-import com.softeng.ooyoo.UsersListActivity
-import com.softeng.ooyoo.carpool.Carpooling
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
-import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 
 const val TRAVELERS_EXTRA_NAME = "travelers"
 const val TRIPS_EXTRA_NAME = "trips"
+const val HOSTS_EXTRA_NAME = "hosts"
+const val HOSTINGS_EXTRA_NAME = "hostings"
 
-class TravelEventDB: Database(TRAVEL_EVENTS){
+class TripPlansDB: Database(TRIP_PLANS){
 
-    fun hostRegistration(uid: String, hosting: Hosting) {
 
-    }
 
     fun tripRegistration(context: Context, tripPlan: TripPlan, onSuccess: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
@@ -33,20 +29,16 @@ class TravelEventDB: Database(TRAVEL_EVENTS){
             .addOnCanceledListener {
                 context.toast("There was an error while registering your trip.")
                 Log.e(
-                    TravelEventDB::class.java.simpleName,
+                    TripPlansDB::class.java.simpleName,
                     "There was an error while registering your trip."
                 )
             }
     }
 
-    fun carpoolerRegistration(uid: String, carpooling: Carpooling) {
-
-    }
-
-    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<TripPlan>, ArrayList<User>) -> Unit){
+    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
-        val tripPlans = arrayListOf<TripPlan>()
+        val tripPlans = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
         val temp = arrayListOf<String>()
 
         val startDateQuery = db.collection(this.collection)
@@ -87,17 +79,16 @@ class TravelEventDB: Database(TRAVEL_EVENTS){
                             onSuccess(tripPlans, travelers)
                         }
 
-                        Log.d(TravelEventDB::class.java.simpleName, "Successful data retrieval.")
+                        Log.d(TripPlansDB::class.java.simpleName, "Successful data retrieval.")
                     }
                     .addOnFailureListener { e ->
-                        Log.e(TravelEventDB::class.java.simpleName, "There was an error.", e)
+                        Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
                     }
 
             }
             .addOnFailureListener { e ->
-                    Log.e(TravelEventDB::class.java.simpleName, "There was an error.", e)
+                    Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
             }
     }
-
 
 }

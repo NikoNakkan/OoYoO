@@ -4,9 +4,9 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
 import androidx.fragment.app.FragmentManager
-import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.trip.TripPlan
-import com.softeng.ooyoo.trip.UserAndTripPlan
+import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.user.User
 import com.ybs.countrypicker.CountryPicker
 import java.util.*
@@ -95,27 +95,34 @@ fun longDateMapToMillis(date: MutableMap<String, Long>): Long{
     return c.timeInMillis
 }
 
-fun mergeLists(users: ArrayList<User>, tripPlans: ArrayList<TripPlan>): ArrayList<UserAndTripPlan>{
-    val list = arrayListOf<UserAndTripPlan>()
+fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): ArrayList<UserAndTravelEvent>{
+    val list = arrayListOf<UserAndTravelEvent>()
 
     val userMap = mutableMapOf<String, User>()
-    val tripMap = mutableMapOf<String, TripPlan>()
+    val tripMap = mutableMapOf<String, T>()
 
     for (user in users){
         userMap[user.uid] = user
     }
 
-    for (trip in tripPlans){
-        tripMap[trip.uid ?: ""] = trip
+    for (trip in travelEventList){
+        tripMap[(trip as TravelEvent).uid ?: ""] = trip
     }
 
     val set = userMap.keys.intersect(tripMap.keys)
 
     for(item in set){
         if(userMap[item] != null && tripMap[item] != null) {
-            list.add(UserAndTripPlan(userMap[item]!!, tripMap[item]!!))
+            list.add(
+                UserAndTravelEvent(
+                    userMap[item]!!,
+                    (tripMap[item] as TravelEvent)
+                )
+            )
         }
     }
 
     return list
 }
+
+

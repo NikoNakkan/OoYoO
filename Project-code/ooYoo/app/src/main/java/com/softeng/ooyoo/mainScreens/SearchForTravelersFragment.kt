@@ -1,6 +1,7 @@
 package com.softeng.ooyoo.mainScreens
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,16 +12,16 @@ import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.UsersListActivity
-import com.softeng.ooyoo.databases.TRAVELERS_EXTRA_NAME
-import com.softeng.ooyoo.databases.TRIPS_EXTRA_NAME
-import com.softeng.ooyoo.databases.TravelEventDB
+import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.*
+import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
+import java.util.concurrent.Semaphore
 
 
 class SearchForTravelersFragment : Fragment() {
@@ -29,6 +30,8 @@ class SearchForTravelersFragment : Fragment() {
     private val dates = Dates()
     private val place = Place()
     private var user = User()
+    private val s = Semaphore(2, true)
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_search_for_travelers, container, false)
@@ -80,22 +83,18 @@ class SearchForTravelersFragment : Fragment() {
                 context?.toast("The date you selected has already passed. Please select a future date.")
             }
             else {
-                val uid = FirebaseAuth.getInstance().uid
-                val tripPlan = TripPlan(uid, place, dates)
-                val travelEventDB = TravelEventDB()
-                travelEventDB.findRelevantTripPlans(context!!, tripPlan){ tripPlans: ArrayList<TripPlan>, travelers: ArrayList<User> ->
-                    val intent = Intent(context, UsersListActivity::class.java)
-                    intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
-                    intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
-                    intent.putExtra(USER_EXTRA_NAME, user)
+                val intent = Intent(context, UsersListActivity::class.java)
+
+                s.drainPermits()
+
+                AsyncTask.execute(kotlinx.coroutines.Runnable {
+                    (activity as MainActivity).disableBottomNavigationView()
+                    findTravelersAndHosts(intent)
+
+                    s.acquire(2)
                     startActivity(intent)
-                }
-                //get all relevant trips (based on place and date --> use whee queries)
-                //get all users from uid of trips
-                    // (for this to happen we need to either get all users and then test their uid
-                    // or use a query with "in" if it exists on Firebase)
-                //use similarity function on users
-                //open a list activity which contains a recycler view with the users
+                    (activity as MainActivity).enableBottomNavigationView()
+                })
             }
 
         }
@@ -105,6 +104,31 @@ class SearchForTravelersFragment : Fragment() {
 
     fun setUser(user: User){
         this.user = user
+    }
+
+    private fun findTravelersAndHosts(intent: Intent){
+        val uid = FirebaseAuth.getInstance().uid
+
+        intent.putExtra(USER_EXTRA_NAME, user)
+
+        val tripPlan = TripPlan(uid, place, dates)
+        val travelEventDB = TripPlansDB()
+
+        travelEventDB.findRelevantTripPlans(context!!, tripPlan) { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
+            s.release()
+            s.release()
+            intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
+            intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
+        }
+
+        val hosting = Hosting(uid, place, dates)
+        val hostingDB = HostingDB()
+
+        hostingDB.findRelevantHostings(context!!, hosting){ hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
+            intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
+            intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
+        }
+
     }
 
 }

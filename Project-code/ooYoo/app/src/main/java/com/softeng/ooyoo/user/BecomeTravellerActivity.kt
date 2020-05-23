@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.databases.TravelEventDB
+import com.softeng.ooyoo.databases.TripPlansDB
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.synthetic.main.activity_become_traveller.*
-import kotlinx.android.synthetic.main.activity_become_traveller.becomeTravellerWhen
 
 class BecomeTravellerActivity : AppCompatActivity() {
 
@@ -69,7 +68,7 @@ class BecomeTravellerActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Are you sure you want to register this trip?")
                     .setPositiveButton("Yes!") { _: DialogInterface, _: Int ->
-                        val travelEventDB = TravelEventDB()
+                        val travelEventDB = TripPlansDB()
                         travelEventDB.tripRegistration(this, trip, ::finish)
                     }
                     .setNegativeButton("No") { _: DialogInterface, _: Int ->

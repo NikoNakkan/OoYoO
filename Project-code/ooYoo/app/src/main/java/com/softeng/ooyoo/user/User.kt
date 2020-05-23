@@ -8,7 +8,6 @@ import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.portfolio.PortfolioEntry
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.parcel.Parcelize
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Parcelize

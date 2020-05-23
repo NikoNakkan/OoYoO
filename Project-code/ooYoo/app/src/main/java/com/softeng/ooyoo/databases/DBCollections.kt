@@ -1,4 +1,5 @@
 package com.softeng.ooyoo.databases
 
 const val USERS = "users"
-const val TRAVEL_EVENTS = "travel_events"
+const val TRIP_PLANS = "trip_plans"
+const val HOSTINGS = "hostings"

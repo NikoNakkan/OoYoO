@@ -11,7 +11,7 @@
         android:background="@drawable/gray_light_button_curvy_boy"
         android:gravity="center"
         android:text="Next"
-        android:textColor="@color/lightgray"
+        android:textColor="@color/lightGray"
         android:id="@+id/signupInterestsTextView"/>
 
 </FrameLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightgray"
+    android:background="@color/lightGray"
     tools:context="com.softeng.ooyoo.signUpLogIn.SignupInterestsActivity">
     <ImageView
         android:id="@+id/interestsBackButton"
@@ -23,7 +23,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/orange_curvy_button"
         android:text="Finish"
-        android:textColor="@color/lightgray"
+        android:textColor="@color/lightGray"
         android:gravity="center"
         android:id="@+id/interestsFinishTextView"/>
 
