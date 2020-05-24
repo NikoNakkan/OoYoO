@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Chat(
-    private val uids: ArrayList<String> = arrayListOf(),
-    private val messages: ArrayList<Message> = arrayListOf(),
-    private val chatId: String=""
+    val uids: ArrayList<String> = arrayListOf(),
+    val messages: ArrayList<Message> = arrayListOf(),
+    val lastMessageSent: Long = 0
 ): Parcelable

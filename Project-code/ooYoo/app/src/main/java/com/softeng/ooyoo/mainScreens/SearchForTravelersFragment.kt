@@ -106,7 +106,7 @@ class SearchForTravelersFragment : Fragment() {
         }
 
         searchCarpoolerButton.setOnClickListener {
-            context?.toast("This feature is not ready yet.")
+            context?.toast("This feature is not implemented yet.")
         }
 
         return view

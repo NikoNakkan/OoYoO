@@ -5,10 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Message(
-    private val senderId: String = "",
-    private val receiverId: String = "",
-    private val message: String = "",
-    private val timestamp: Long = 0,
-    private val read: Boolean = false,
-    private val messageId: String = ""
+    val senderId: String = "",
+    val receiverId: String = "",
+    val text: String = "",
+    val timestamp: Long = 0,
+    val read: Boolean = false
 ): Parcelable

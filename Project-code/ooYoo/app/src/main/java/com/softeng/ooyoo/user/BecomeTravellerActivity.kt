@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.TripPlansDB
+import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.toast
@@ -68,8 +69,16 @@ class BecomeTravellerActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Are you sure you want to register this trip?")
                     .setPositiveButton("Yes!") { _: DialogInterface, _: Int ->
-                        val travelEventDB = TripPlansDB()
-                        travelEventDB.tripRegistration(this, trip, ::finish)
+
+                        val tripPlansDB = TripPlansDB()
+
+                        tripPlansDB.tripRegistration(this, trip) { id ->
+                            val userDB = UserDB()
+                            userDB.uploadTripOnDatabase(uid, id)
+
+                            finish()
+                        }
+
                     }
                     .setNegativeButton("No") { _: DialogInterface, _: Int ->
                         finish()

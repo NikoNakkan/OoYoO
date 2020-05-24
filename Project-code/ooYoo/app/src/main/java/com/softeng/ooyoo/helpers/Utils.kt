@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
 import androidx.fragment.app.FragmentManager
+import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.travel.UserAndTravelEvent
@@ -125,4 +126,13 @@ fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): Array
     return list
 }
 
+fun getUidsFromChats(uid: String, chats: ArrayList<Chat>) =
+    chats.map {
+        if (uid == it.uids[0]){
+            it.uids[1]
+        }
+        else{
+            it.uids[0]
+        }
+    }
 

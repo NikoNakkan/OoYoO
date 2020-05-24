@@ -48,11 +48,11 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = minOf(list.size, 20)
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val imageView: ImageView = itemView.findViewById(R.id.userProfileImageView)
-        val userNameTextView: TextView = itemView.findViewById(R.id.userName)
+        val imageView: ImageView = itemView.findViewById(R.id.chatProfileImageView)
+        val userNameTextView: TextView = itemView.findViewById(R.id.chatUserNameTextView)
         val userTypeTextView: TextView = itemView.findViewById(R.id.userType)
         val userFromTextView: TextView = itemView.findViewById(R.id.userFrom)
         val userFromValuesTextView: TextView = itemView.findViewById(R.id.userFromValues)

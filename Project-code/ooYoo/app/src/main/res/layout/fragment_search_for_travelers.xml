@@ -26,13 +26,16 @@
         android:id="@+id/friends_phones_search_for_people"/>
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/friends_phones_search_for_people"
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:layout_marginTop="16dp"
-        android:id="@+id/searchTravelersWhere">
+        android:id="@+id/searchTravelersWhere"
+        android:elevation="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -62,7 +65,7 @@
 
     </RelativeLayout>
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:layout_marginTop="16dp"
@@ -71,7 +74,10 @@
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         >
+
     <RelativeLayout
         android:layout_weight="1"
         android:layout_width="100dp"
@@ -80,6 +86,8 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/white_button_curvy_boy"
         android:id="@+id/searchTravelerWhenFrom"
+        android:elevation="4dp"
+        android:layout_margin="4dp"
         >
 
 
@@ -101,7 +109,7 @@
 
     </RelativeLayout>
         <Space
-            android:layout_width="16dp"
+            android:layout_width="8dp"
             android:layout_height="0dp"/>
         <RelativeLayout
             android:layout_width="100dp"
@@ -109,8 +117,9 @@
             android:layout_weight="1"
             android:background="@drawable/white_button_curvy_boy"
             android:id="@+id/searchTravelerWhenTo"
-            >
-
+            android:elevation="4dp"
+            android:layout_margin="8dp">
+16
 
             <TextView
                 android:layout_width="wrap_content"
@@ -140,6 +149,7 @@
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
         android:id="@+id/searchTravelerButton"
+        android:elevation="4dp"
         >
         <ImageView
             android:layout_width="20dp"
@@ -169,6 +179,7 @@
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="16dp"
         android:id="@+id/search_car_pooler_button"
+        android:elevation="4dp"
         >
         <ImageView
             android:layout_width="20dp"

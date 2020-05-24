@@ -3,12 +3,18 @@ package com.softeng.ooyoo.mainScreens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import com.softeng.ooyoo.R
+import com.softeng.ooyoo.chat.Chat
+import com.softeng.ooyoo.chat.Message
+import com.softeng.ooyoo.databases.CHATS
+import com.softeng.ooyoo.databases.ChatDB
 import com.softeng.ooyoo.databases.USERS
+import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.signUpLogIn.*
 import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User
@@ -30,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             uid = intent.getStringExtra(USER_EXTRA_NAME) ?: ""
         }
 
+
         selectedFragment = SearchForTravelersFragment()
 
         supportFragmentManager.beginTransaction()
@@ -46,7 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             when (item.itemId){
-                R.id.bot_nav_chat -> selectedFragment = ChatFragment()
+                R.id.bot_nav_chat -> {
+                    selectedFragment = ChatFragment()
+                    (selectedFragment as ChatFragment).setUser(user ?: User())
+                }
                 R.id.bot_nav_travel -> {
                     selectedFragment = SearchForTravelersFragment()
                     (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
@@ -75,21 +85,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUser(){
-        val db = FirebaseFirestore.getInstance()
+        val userDB = UserDB()
 
-        db.collection(USERS)
-            .document(uid)
-            .get()
-            .addOnSuccessListener {document ->
-                if(document == null){
-                    return@addOnSuccessListener
-                }
+        userDB.retrieveSearchedUser(
+            uid,
+            onSuccess = { users ->
+                user = users[0]
 
-                user = document.toObject(User::class.java)
                 if(selectedFragment is SearchForTravelersFragment){
                     (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
                 }
+
+            },
+            onFailure = {
+                toast("There was an error while retrieving your data.")
             }
+        )
+
+        userDB.userListener(uid){ newUser ->
+            if(newUser != null){
+                user = newUser
+            }
+        }
     }
 
     fun disableBottomNavigationView(){
