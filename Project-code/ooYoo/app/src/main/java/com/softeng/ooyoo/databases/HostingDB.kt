@@ -8,15 +8,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.user.User
 
 class HostingDB: Database(HOSTINGS) {
 
-    fun hostRegistration(context: Context, hosting: Hosting, onSuccess: () -> Unit) {
+    fun hostRegistration(hosting: Hosting) {
 
     }
 
-    fun findRelevantHostings(context: Context, hosting: Hosting, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit, onFailure: () -> Unit){
+    fun findRelevantHostings(hosting: Hosting, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val hostings = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
@@ -50,11 +51,6 @@ class HostingDB: Database(HOSTINGS) {
                             }
                         }
 
-                        if (uids.size == 0){
-                            context.toast("There are no users hosting at your destination.")
-                            return@addOnSuccessListener
-                        }
-
                         val userDB = UserDB()
                         userDB.retrieveSearchedUsers(
                             uids,
@@ -67,13 +63,13 @@ class HostingDB: Database(HOSTINGS) {
                         Log.d(TripPlansDB::class.java.simpleName, "Successful data retrieval.")
                     }
                     .addOnFailureListener { e ->
-                        onFailure()
+                        onFailure(false)
                         Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
                     }
 
             }
             .addOnFailureListener { e ->
-                onFailure()
+                onFailure(false)
                 Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
             }
     }

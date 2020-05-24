@@ -2,6 +2,7 @@ package com.softeng.ooyoo.user
 
 import android.os.Parcelable
 import com.softeng.ooyoo.carpool.Carpooling
+import com.softeng.ooyoo.carpool.DriverExperience
 import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.helpers.Rating
 import com.softeng.ooyoo.host.Hosting
@@ -27,5 +28,35 @@ open class User(
     val hostHistory: ArrayList<Hosting> = arrayListOf(),
     val carpoolingHistory: ArrayList<Carpooling> = arrayListOf(),
     val portfolio: ArrayList<PortfolioEntry> = arrayListOf(),
-    val chats: ArrayList<Chat> = arrayListOf()
-): Parcelable
+    val chats: ArrayList<Chat> = arrayListOf(),
+    val insurance: MutableMap<String, Int> = mutableMapOf(),
+    val driverRating: ArrayList<Rating> = arrayListOf(),
+    val driverExperience: DriverExperience = DriverExperience(),
+    val premium: Boolean = false
+): Parcelable{
+
+    public fun checkFileSize(): Boolean{
+        return true
+    }
+
+    public fun editInfo(user: User){
+
+    }
+
+    public fun checkUserRules(): Boolean{
+        return true
+    }
+
+    public fun makeTripPlanChanges(tripPlan: TripPlan){
+
+    }
+
+    public fun makeHostingChanges(hosting: Hosting){
+
+    }
+
+    public fun makeCarpoolingChanges(carpooling: Carpooling){
+
+    }
+
+}

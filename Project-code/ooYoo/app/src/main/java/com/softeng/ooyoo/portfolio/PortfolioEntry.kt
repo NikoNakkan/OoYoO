@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class PortfolioEntry(
-    private val travel: TripPlan,
+    private val tripPlan: TripPlan = TripPlan(),
     private val fileLinks: ArrayList<String> = arrayListOf(),
     private val articles: ArrayList<Article> = arrayListOf()
 ): Parcelable

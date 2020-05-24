@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
 import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 
@@ -35,7 +36,7 @@ class TripPlansDB: Database(TRIP_PLANS){
             }
     }
 
-    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit, onFailure: () -> Unit){
+    fun findRelevantTripPlans(tripPlan: TripPlan, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val tripPlans = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
@@ -69,11 +70,6 @@ class TripPlansDB: Database(TRIP_PLANS){
                             }
                         }
 
-                        if (uids.size == 0){
-                            context.toast("There are no users for your destination.")
-                            return@addOnSuccessListener
-                        }
-
                         val userDB = UserDB()
                         userDB.retrieveSearchedUsers(
                             uids,
@@ -86,13 +82,13 @@ class TripPlansDB: Database(TRIP_PLANS){
                         Log.d(TripPlansDB::class.java.simpleName, "Successful data retrieval.")
                     }
                     .addOnFailureListener { e ->
-                        onFailure()
+                        onFailure(false)
                         Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
                     }
 
             }
             .addOnFailureListener { e ->
-                onFailure()
+                onFailure(false)
                 Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
             }
     }

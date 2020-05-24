@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class TripSpecs(
-    private val start: String="",
+    private val start: String = "",
     private val intermediateStops: ArrayList<String> = arrayListOf(),
-    private val destination: String="",
-    private val numOfStops: Int=0,
-    private val time: String=""
+    private val destination: String = "",
+    private val numOfStops: Int = 0,
+    private val time: String = ""
 ): Parcelable

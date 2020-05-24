@@ -32,6 +32,7 @@ class SearchForTravelersFragment : Fragment() {
     private val place = Place()
     private var user = User()
     private val s = Semaphore(2, true)
+    private var queriesFailed = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -93,7 +94,10 @@ class SearchForTravelersFragment : Fragment() {
                     findTravelersAndHosts(intent)
 
                     s.acquire(2)
-                    startActivity(intent)
+                    if (!queriesFailed) {
+                        startActivity(intent)
+                        queriesFailed = false
+                    }
                     (activity as MainActivity).enableBottomNavigationView()
                 })
 
@@ -121,36 +125,40 @@ class SearchForTravelersFragment : Fragment() {
         val travelEventDB = TripPlansDB()
 
         travelEventDB.findRelevantTripPlans(
-            context!!,
             tripPlan,
             onSuccess = { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
                 intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
                 intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
                 s.release()
             },
-            onFailure = {
-                context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
-                s.release()
-            }
+            onFailure = ::onFailure
         )
 
         val hosting = Hosting(uid, place, dates)
         val hostingDB = HostingDB()
 
         hostingDB.findRelevantHostings(
-            context!!,
             hosting,
             onSuccess = { hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
                 intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
                 intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
                 s.release()
             },
-            onFailure = {
-                context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
-                s.release()
-            }
+            onFailure = ::onFailure
         )
 
     }
+
+    private fun onFailure(noUsers: Boolean){
+        queriesFailed = true
+        if (noUsers){
+            context?.longToast("Unfortunately there are no users for destination ")
+        }
+        else {
+            context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+        }
+        s.release()
+    }
+
 
 }
