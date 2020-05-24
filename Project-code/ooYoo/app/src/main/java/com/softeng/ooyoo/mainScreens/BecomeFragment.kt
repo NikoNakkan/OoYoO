@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.cardview.widget.CardView
 
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.toast
@@ -18,9 +19,9 @@ class BecomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?    ): View? {
         val view = inflater.inflate(R.layout.fragment_become, container, false)
 
-        val tripPlanButton = view.findViewById<Button>(R.id.trip_plan_button)
-        val carpoolingButton = view.findViewById<Button>(R.id.carpooling_button)
-        val hostButton = view.findViewById<Button>(R.id.hosting_button)
+        val tripPlanButton = view.findViewById<CardView>(R.id.trip_plan_button)
+        val carpoolingButton = view.findViewById<CardView>(R.id.carpooling_button)
+        val hostButton = view.findViewById<CardView>(R.id.hosting_button)
 
         tripPlanButton.setOnClickListener{
             val intent = Intent(context, BecomeTravellerActivity::class.java)
