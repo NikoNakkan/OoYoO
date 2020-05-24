@@ -40,7 +40,14 @@ class ChatListAdapter(
         holder.userNameTextView.text = userMap[receiverId]?.fullName?.split(" ")?.get(0) ?: "User"
 
         if(chats[position].messages.size > 0) {
-            holder.lastMessageTextView.text = chats[position].messages.last().text
+            val messageText = chats[position].messages.last().text
+
+            holder.lastMessageTextView.text = if(messageText.length <= 15) {
+                messageText
+            }
+            else{
+                messageText.subSequence(0, 14).toString() + "..."
+            }
         }
     }
 
