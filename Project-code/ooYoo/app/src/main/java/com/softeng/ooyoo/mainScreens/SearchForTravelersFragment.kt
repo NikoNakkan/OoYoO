@@ -95,6 +95,7 @@ class SearchForTravelersFragment : Fragment() {
                     startActivity(intent)
                     (activity as MainActivity).enableBottomNavigationView()
                 })
+
             }
 
         }
@@ -115,10 +116,9 @@ class SearchForTravelersFragment : Fragment() {
         val travelEventDB = TripPlansDB()
 
         travelEventDB.findRelevantTripPlans(context!!, tripPlan) { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
-            s.release()
-            s.release()
             intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
             intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
+            s.release()
         }
 
         val hosting = Hosting(uid, place, dates)
@@ -127,6 +127,7 @@ class SearchForTravelersFragment : Fragment() {
         hostingDB.findRelevantHostings(context!!, hosting){ hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
             intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
             intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
+            s.release()
         }
 
     }
