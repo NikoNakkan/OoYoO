@@ -6,7 +6,7 @@ import com.softeng.ooyoo.user.User
 
 class UserDB: Database(USERS) {
 
-    fun retrieveSearchedUsers(uids: ArrayList<String>, onSuccess: (ArrayList<User>) -> Unit){
+    fun retrieveSearchedUsers(uids: ArrayList<String>, onSuccess: (ArrayList<User>) -> Unit, onFailure: () -> Unit){
         val db = FirebaseFirestore.getInstance()
 
         db.collection(collection)
@@ -21,8 +21,8 @@ class UserDB: Database(USERS) {
                 onSuccess(users)
             }
             .addOnFailureListener { e ->
+                onFailure()
                 Log.e(UserDB::class.java.simpleName, "There was an error.", e)
-
             }
     }
 

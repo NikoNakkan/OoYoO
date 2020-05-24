@@ -35,7 +35,7 @@ class TripPlansDB: Database(TRIP_PLANS){
             }
     }
 
-    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit){
+    fun findRelevantTripPlans(context: Context, tripPlan: TripPlan, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit, onFailure: () -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val tripPlans = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
@@ -75,19 +75,25 @@ class TripPlansDB: Database(TRIP_PLANS){
                         }
 
                         val userDB = UserDB()
-                        userDB.retrieveSearchedUsers(uids){ travelers ->
-                            onSuccess(tripPlans, travelers)
-                        }
+                        userDB.retrieveSearchedUsers(
+                            uids,
+                            onSuccess = { travelers ->
+                                onSuccess(tripPlans, travelers)
+                            },
+                            onFailure = onFailure
+                        )
 
                         Log.d(TripPlansDB::class.java.simpleName, "Successful data retrieval.")
                     }
                     .addOnFailureListener { e ->
+                        onFailure()
                         Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
                     }
 
             }
             .addOnFailureListener { e ->
-                    Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
+                onFailure()
+                Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
             }
     }
 

@@ -2,6 +2,7 @@ package com.softeng.ooyoo.databases
 
 import android.content.Context
 import android.util.Log
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
@@ -15,7 +16,7 @@ class HostingDB: Database(HOSTINGS) {
 
     }
 
-    fun findRelevantHostings(context: Context, hosting: Hosting, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit){
+    fun findRelevantHostings(context: Context, hosting: Hosting, onSuccess: (ArrayList<com.softeng.ooyoo.travel.TravelEvent>, ArrayList<User>) -> Unit, onFailure: () -> Unit){
         val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val hostings = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
@@ -55,18 +56,24 @@ class HostingDB: Database(HOSTINGS) {
                         }
 
                         val userDB = UserDB()
-                        userDB.retrieveSearchedUsers(uids){ travelers ->
-                            onSuccess(hostings, travelers)
-                        }
+                        userDB.retrieveSearchedUsers(
+                            uids,
+                            onSuccess = { travelers ->
+                                onSuccess(hostings, travelers)
+                            },
+                            onFailure = onFailure
+                        )
 
                         Log.d(TripPlansDB::class.java.simpleName, "Successful data retrieval.")
                     }
                     .addOnFailureListener { e ->
+                        onFailure()
                         Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
                     }
 
             }
             .addOnFailureListener { e ->
+                onFailure()
                 Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
             }
     }

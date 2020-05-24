@@ -15,6 +15,7 @@ import com.softeng.ooyoo.UsersListActivity
 import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.host.Hosting
+import com.softeng.ooyoo.longToast
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.toast
@@ -100,6 +101,10 @@ class SearchForTravelersFragment : Fragment() {
 
         }
 
+        searchCarpoolerButton.setOnClickListener {
+            context?.toast("This feature is not ready yet.")
+        }
+
         return view
     }
 
@@ -115,20 +120,36 @@ class SearchForTravelersFragment : Fragment() {
         val tripPlan = TripPlan(uid, place, dates)
         val travelEventDB = TripPlansDB()
 
-        travelEventDB.findRelevantTripPlans(context!!, tripPlan) { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
-            intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
-            intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
-            s.release()
-        }
+        travelEventDB.findRelevantTripPlans(
+            context!!,
+            tripPlan,
+            onSuccess = { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
+                intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
+                intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
+                s.release()
+            },
+            onFailure = {
+                context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+                s.release()
+            }
+        )
 
         val hosting = Hosting(uid, place, dates)
         val hostingDB = HostingDB()
 
-        hostingDB.findRelevantHostings(context!!, hosting){ hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
-            intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
-            intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
-            s.release()
-        }
+        hostingDB.findRelevantHostings(
+            context!!,
+            hosting,
+            onSuccess = { hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
+                intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
+                intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
+                s.release()
+            },
+            onFailure = {
+                context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+                s.release()
+            }
+        )
 
     }
 
