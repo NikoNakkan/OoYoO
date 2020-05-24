@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
 
-        android:background="@color/apporange">
+        android:background="@color/appOrange">
 
         <ImageView
             android:layout_width="230dp"

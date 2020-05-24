@@ -10,13 +10,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class TripPlan(
-    val uid: String? = "",
-    val place: Place = Place(),
-    val dates: Dates = Dates(),
+    override val uid: String? = "",
+    override val place: Place = Place(),
+    override val dates: Dates = Dates(),
     val buddies: ArrayList<User> = arrayListOf(),
     var startDateInMillis: Long = 0,
     var endDateInMillis: Long = 0
-): TravelEvent(place, dates), Parcelable{
+): TravelEvent(uid, place, dates), Parcelable{
 
     init {
         startDateInMillis = dateMapToMillis(dates.startDate)

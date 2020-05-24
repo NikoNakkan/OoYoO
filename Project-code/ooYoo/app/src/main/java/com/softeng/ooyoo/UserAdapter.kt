@@ -9,13 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softeng.ooyoo.helpers.dateMapToString
+import com.softeng.ooyoo.host.Hosting
+import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
-import com.softeng.ooyoo.trip.UserAndTripPlan
-import com.softeng.ooyoo.user.User
-import kotlin.math.min
 
 
-class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTripPlan>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTravelEvent>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
@@ -28,13 +27,25 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
 
         holder.userNameTextView.text = list[position].user.fullName.split(" ")[0]
 
-        holder.userTypeTextView.text = "Traveling"
 
         holder.userFromTextView.text = "From:"
         holder.userToTextView.text = "To:"
 
-        holder.userFromValuesTextView.text = dateMapToString(list[position].tripPlan.dates.startDate)
-        holder.userToValuesTextView.text = dateMapToString(list[position].tripPlan.dates.endDate)
+        if(list[position].travelEvent is TripPlan) {
+            holder.userTypeTextView.text = "Traveling"
+            holder.userFromValuesTextView.text =
+                dateMapToString((list[position].travelEvent as TripPlan).dates.startDate)
+            holder.userToValuesTextView.text =
+                dateMapToString((list[position].travelEvent as TripPlan).dates.endDate)
+        }
+
+        if(list[position].travelEvent is Hosting){
+            holder.userTypeTextView.text = "Hosting"
+            holder.userFromValuesTextView.text =
+                dateMapToString((list[position].travelEvent as Hosting).dates.startDate)
+            holder.userToValuesTextView.text =
+                dateMapToString((list[position].travelEvent as Hosting).dates.endDate)
+        }
     }
 
     override fun getItemCount(): Int = list.size

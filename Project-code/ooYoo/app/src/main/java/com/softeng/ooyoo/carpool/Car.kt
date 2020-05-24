@@ -2,7 +2,6 @@ package com.softeng.ooyoo.carpool
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import java.sql.Timestamp
 
 @Parcelize
 class Car(

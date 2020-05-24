@@ -1,6 +1,7 @@
 package com.softeng.ooyoo.carpool
 
 import android.os.Parcelable
+import com.google.android.gms.common.util.PlatformVersion
 import kotlinx.android.parcel.Parcelize
 import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.place.Place
@@ -8,11 +9,12 @@ import com.softeng.ooyoo.travel.Dates
 
 @Parcelize
 class Carpooling(
-    val place: Place,
-    val dates: Dates,
+    override val uid: String?,
+    override val place: Place,
+    override val dates: Dates,
     private val driverId: String = "",
     private val registerDate: Long =0,
     private val car: Car = Car(),
     private val driver: Driver = Driver(),
     private val carTrip: CarTrip = CarTrip()
-): TravelEvent(place, dates), Parcelable
+): TravelEvent(uid, place, dates), Parcelable

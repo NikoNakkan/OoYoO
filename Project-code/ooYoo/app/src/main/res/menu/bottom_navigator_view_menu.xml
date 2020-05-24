@@ -16,6 +16,6 @@
     <item
         android:id="@+id/bot_nav_profile"
         android:title="Profile"
-        android:icon="@drawable/profileicon"/>
+        android:icon="@drawable/profileicon" />
 
 </menu>

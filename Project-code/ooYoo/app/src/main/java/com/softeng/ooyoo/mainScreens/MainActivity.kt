@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.USERS
 import com.softeng.ooyoo.signUpLogIn.*
+import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var user: User? = null
     private var uid: String = ""
     private var selectedFragment: Fragment? = null
+    private var bottomNavigationIsEnabled = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +36,21 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.main_fragment_container, selectedFragment!!).commit()
 
 
+
         bottomNavigationView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         bottomNavigationView.selectedItemId = R.id.bot_nav_travel
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            if(!bottomNavigationIsEnabled){
+                return@setOnNavigationItemSelectedListener false
+            }
+
             when (item.itemId){
                 R.id.bot_nav_chat -> selectedFragment = ChatFragment()
-                R.id.bot_nav_travel -> selectedFragment = SearchForTravelersFragment()
+                R.id.bot_nav_travel -> {
+                    selectedFragment = SearchForTravelersFragment()
+                    (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
+                }
                 R.id.bot_nav_become -> selectedFragment = BecomeFragment()
                 R.id.bot_nav_profile -> selectedFragment = OwnProfileFragment()
             }
@@ -76,6 +86,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 user = document.toObject(User::class.java)
+                if(selectedFragment is SearchForTravelersFragment){
+                    (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
+                }
             }
+    }
+
+    fun disableBottomNavigationView(){
+        bottomNavigationIsEnabled = false
+    }
+
+    fun enableBottomNavigationView(){
+        bottomNavigationIsEnabled = true
     }
 }
