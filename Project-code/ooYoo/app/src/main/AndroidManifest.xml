@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainScreens.AddHomeActivity"></activity>
+        <activity android:name=".chat.ChatActivity"></activity>
+        <activity android:name=".mainScreens.AddHomeActivity" />
         <activity android:name=".UsersListActivity" />
         <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />

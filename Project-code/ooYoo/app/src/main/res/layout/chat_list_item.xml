@@ -6,10 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:id="@+id/chatItemLayout">
 
     <ImageView
-        android:id="@+id/chatProfileImageView"
+        android:id="@+id/chatItemProfileImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"/>
 
