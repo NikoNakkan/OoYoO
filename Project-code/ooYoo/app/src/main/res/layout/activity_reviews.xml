@@ -1,0 +1,102 @@
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/lightGray"
+    android:id="@+id/profile_relative_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="16dp"
+            android:id="@+id/back_button_reviews_activity"
+            android:src="@drawable/arrowleftorange"
+            />
+
+
+    <ImageView
+
+        android:id="@+id/activity_other_user_reviews_user_image"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+
+        tools:srcCompat="@tools:sample/avatars" />
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/orange_curvy_button"
+        android:layout_marginTop="40dp"
+        android:id="@+id/leave_your_own_review_button"
+        >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/buttonarrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Leave your own review"
+            android:textSize="16sp"
+            android:layout_marginLeft="60dp"/>
+
+
+
+
+
+    </RelativeLayout>
+    <TextView
+            android:id="@+id/activity_other_user_reviews_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/activity_other_user_reviews_user_image"
+            android:paddingTop="10dp"
+            android:text="Username"
+            />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/stars_review_activity"
+        android:src="@drawable/fourhalfstars"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/other_user_reviews_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recent_reviews_text"
+        android:layout_margin="16dp"
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="Recent reviews"
+        android:layout_below="@id/leave_your_own_review_button"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/recent_reviews_text"
+/>
+    </RelativeLayout>
+
+

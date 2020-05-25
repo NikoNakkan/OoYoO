@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mainScreens.AddHomeActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add the information \n of the place yout hosting at."
+        android:textSize="22sp"
+        android:id="@+id/house_info_activity_text"
+        android:layout_margin="16dp"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/house_info_activity_text"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="16dp"
+        android:id="@+id/size_in_square_meters_button"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Sum in square meters"
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/sum_in_square_meters_textview"/>
+
+        <EditText
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginRight="16dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/size_in_square_meters_button"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/white_button_curvy_boy"
+            android:layout_marginTop="16dp"
+            android:id="@+id/i_luv_fat_cats"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Number of rooms"
+                android:textSize="16sp"
+                android:layout_marginLeft="32dp"
+                android:id="@+id/numberof_rooms_tv"/>
+        <EditText
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/i_luv_fat_cats"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="16dp"
+        android:id="@+id/floor_of_apartment"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Floor that apartment is at "
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/floor_of_apartment_textview"/>
+        <EditText
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

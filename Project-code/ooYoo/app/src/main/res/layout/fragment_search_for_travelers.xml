@@ -34,13 +34,7 @@
         android:layout_marginTop="16dp"
         android:id="@+id/searchTravelersWhere">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/buttonarrow"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"/>
+
 
         <TextView
             android:layout_width="wrap_content"
