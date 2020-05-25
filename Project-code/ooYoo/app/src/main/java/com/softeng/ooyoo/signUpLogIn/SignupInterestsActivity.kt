@@ -2,6 +2,7 @@ package com.softeng.ooyoo.signUpLogIn
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -54,6 +55,9 @@ class SignupInterestsActivity : AppCompatActivity() {
                             db.collection(USERS)
                                 .document(auth.uid!!)
                                 .set(user)
+                                .addOnFailureListener { e ->
+                                    Log.e(SignupInterestsActivity::class.java.simpleName, "Error on sign up", e)
+                                }
                         }
                         finish()
                     }
