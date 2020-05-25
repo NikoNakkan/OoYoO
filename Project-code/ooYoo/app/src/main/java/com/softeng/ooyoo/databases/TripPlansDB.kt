@@ -19,13 +19,13 @@ class TripPlansDB: Database(TRIP_PLANS){
 
 
 
-    fun tripRegistration(context: Context, tripPlan: TripPlan, onSuccess: () -> Unit) {
+    fun tripRegistration(context: Context, tripPlan: TripPlan, onSuccess: (String) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         db.collection(this.collection)
             .add(tripPlan)
             .addOnSuccessListener {
                 context.toast("Your registration was successful. Have a nice trip!")
-                onSuccess()
+                onSuccess(it.id)
             }
             .addOnCanceledListener {
                 context.toast("There was an error while registering your trip.")

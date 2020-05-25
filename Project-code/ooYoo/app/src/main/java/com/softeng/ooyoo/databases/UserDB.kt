@@ -1,16 +1,23 @@
 package com.softeng.ooyoo.databases
 
+import android.content.Context
 import android.media.Rating
 import android.util.Log
 import android.util.Rational
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import com.softeng.ooyoo.Article
 import com.softeng.ooyoo.carpool.Carpooling
+import com.softeng.ooyoo.chat.Message
 import com.softeng.ooyoo.host.Hosting
+import com.softeng.ooyoo.mainScreens.MainActivity
+import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 
 class UserDB: Database(USERS) {
+
+    private val db = FirebaseFirestore.getInstance()
+    private val dbCollection = db.collection(this.collection)
 
     public fun getTripPlanList(uid: String): ArrayList<TripPlan>{
 
@@ -35,15 +42,20 @@ class UserDB: Database(USERS) {
 
     }
 
-    public fun uploadTripOnDatabase(uid: String, tripPlan: TripPlan){
+    public fun uploadTripOnDatabase(uid: String, tripId: String){
+        dbCollection
+            .document(uid)
+            .update(
+                "tripPlanHistory",
+                FieldValue.arrayUnion(tripId)
+            )
+    }
+
+    public fun uploadHostingOnDatabase(uid: String, hostingId: String){
 
     }
 
-    public fun uploadHostingOnDatabase(uid: String, hosting: Hosting){
-
-    }
-
-    public fun uploadCarpoolingOnDatabase(uid: String, carpooling: Carpooling){
+    public fun uploadCarpoolingOnDatabase(uid: String, carpoolingId: String){
 
     }
 
@@ -62,14 +74,12 @@ class UserDB: Database(USERS) {
     }
 
     public fun retrieveSearchedUsers(uids: ArrayList<String>, onSuccess: (ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
-        val db = FirebaseFirestore.getInstance()
-
         if(uids.size == 0) {
             onFailure(true)
             return
         }
 
-        db.collection(collection)
+        dbCollection
             .whereIn("uid", uids)
             .get()
             .addOnSuccessListener { querySnapshot ->
@@ -86,9 +96,8 @@ class UserDB: Database(USERS) {
             }
     }
 
-    public fun retrieveSearchedUser(uid: String): User{
-
-        return User()
+    public fun retrieveSearchedUser(uid: String, onSuccess: (ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
+        retrieveSearchedUsers(arrayListOf(uid), onSuccess, onFailure)
     }
 
     public fun saveReport(uid: String, reportedUid: String, reasonForReport: String){
@@ -116,4 +125,25 @@ class UserDB: Database(USERS) {
         return arrayListOf()
     }
 
+    public fun userListener(uid: String, onSuccess: (User?) -> Unit){
+        dbCollection
+            .document(uid)
+            .addSnapshotListener { snapshot: DocumentSnapshot?, e: FirebaseFirestoreException? ->
+                if (e != null || snapshot == null) {
+                    Log.w(MainActivity::class.java.simpleName, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                val user = snapshot.toObject(User::class.java)
+                onSuccess(user)
+            }
+    }
+
+    public fun updateChat(uid: String, message: Message){
+//        dbCollection
+//            .document(uid)
+//            .update(
+//                FieldPath.of("chats", )
+//            )
+    }
 }

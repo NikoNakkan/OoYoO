@@ -9,7 +9,7 @@
     android:layout_margin="8dp">
 
     <ImageView
-        android:id="@+id/userProfileImageView"
+        android:id="@+id/chatProfileImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"/>
     <!--android:layout_marginEnd="8dp"/>-->
@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/userName"
+            android:id="@+id/chatUserNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
             android:layout_marginRight="8dp"
             app:layout_constraintEnd_toStartOf="@+id/userFromValues"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
+            app:layout_constraintTop_toBottomOf="@+id/chatUserNameTextView" />
 
         <TextView
             android:id="@+id/userFrom"
@@ -57,7 +57,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             app:layout_constraintEnd_toStartOf="@+id/userTo"
-            app:layout_constraintStart_toEndOf="@+id/userName"
+            app:layout_constraintStart_toEndOf="@+id/chatUserNameTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
