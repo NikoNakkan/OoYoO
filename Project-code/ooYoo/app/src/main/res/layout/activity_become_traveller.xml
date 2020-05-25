@@ -11,11 +11,13 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_margin="16dp"
+        android:textStyle="bold"
         android:text="Create a trip "/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="42dp"
         android:text="and meet new people!"
