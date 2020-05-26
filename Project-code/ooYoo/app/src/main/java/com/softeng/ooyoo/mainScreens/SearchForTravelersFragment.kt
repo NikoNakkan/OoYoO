@@ -54,21 +54,21 @@ class SearchForTravelersFragment : Fragment() {
         }
 
         searchWhere.setOnClickListener {
-            pickCountry(activity!!.supportFragmentManager){ country ->
+            addLocation(activity!!.supportFragmentManager){ country ->
                 searchWhereTextView.text = country
                 place.name = country
             }
         }
 
         searchWhenFrom.setOnClickListener {
-            pickDate(context!!) { date ->
+            addDate(context!!) { date ->
                 searchWhenFromTextView.text = dateMapToString(date)
                 dates.startDate = date
             }
         }
 
         searchWhenTo.setOnClickListener {
-            pickDate(context!!) { date ->
+            addDate(context!!) { date ->
                 searchWhenToTextView.text = dateMapToString(date)
                 dates.endDate = date
             }
