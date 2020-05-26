@@ -130,33 +130,30 @@
 
 
     <RelativeLayout
+        android:id="@+id/addHomeInfo"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/becomeHostWhen"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
-        android:id="@+id/becomeHostButton"
-        >
+        android:background="@drawable/orange_curvy_button">
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/buttonarrow"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:src="@drawable/buttonarrow" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Meet new friends"
-            android:textSize="16sp"
-            android:layout_marginLeft="60dp"/>
-
-
-
+            android:layout_marginLeft="60dp"
+            android:text="Add info about home"
+            android:textSize="16sp" />
 
 
     </RelativeLayout>

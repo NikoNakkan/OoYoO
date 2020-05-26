@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.cardview.widget.CardView
 
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.user.BecomeHostActivity
 import com.softeng.ooyoo.user.BecomeTravellerActivity
 
 
@@ -21,7 +21,7 @@ class BecomeFragment : Fragment() {
 
         val tripPlanButton = view.findViewById<CardView>(R.id.trip_plan_button)
         val carpoolingButton = view.findViewById<CardView>(R.id.carpooling_button)
-        val hostButton = view.findViewById<CardView>(R.id.hosting_button)
+        val hostButton = view.findViewById<CardView>(R.id.hostButton)
 
         tripPlanButton.setOnClickListener{
             val intent = Intent(context, BecomeTravellerActivity::class.java)
@@ -30,6 +30,12 @@ class BecomeFragment : Fragment() {
 
         carpoolingButton.setOnClickListener {
             context?.toast("This feature is not implemented yet.")
+        }
+
+
+        hostButton.setOnClickListener{
+            val intent = Intent(context, BecomeHostActivity::class.java)
+            startActivity(intent)
         }
 
         return view
