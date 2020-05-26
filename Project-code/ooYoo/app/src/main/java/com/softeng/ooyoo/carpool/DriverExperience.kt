@@ -6,9 +6,9 @@ import java.sql.Timestamp
 
 @Parcelize
 class DriverExperience(
-    private val experienceYears: Int=0,
-    private val licenceDate: MutableMap<String,Int> = mutableMapOf(),
-    private val numCarUse: String="",
-    private val drivingPlaceExperience: String="",
-    private val skills: String=""
+    val experienceYears: Int = 0,
+    val licenceDate: MutableMap<String,Int> = mutableMapOf(),
+    val numCarUse: String = "",
+    val drivingPlaceExperience: String = "",
+    val skills: String = ""
 ): Parcelable
