@@ -4,14 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"   >
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/some_text"
+        android:layout_width="369dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Pick an event \n you would like to create"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FFDAA4"
+        android:text="Pick an event \nyou would like to create"
         android:textSize="26sp"
-        android:textStyle="bold"
-        android:id="@+id/some_text"/>
+        android:textStyle="normal|bold"
+        android:visibility="visible" />
 
     <GridLayout
         android:layout_below="@id/some_text"
@@ -41,10 +49,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-<ImageView
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:src="@drawable/earth"/>
+
+                <ImageView
+                    android:id="@+id/travel"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/earth" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,31 +81,38 @@
             app:cardElevation="4dp">
 
             <LinearLayout
+                android:layout_width="86dp"
+                android:layout_height="128dp"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Coming soon"/>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/carpoolImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="83dp"
+                    android:src="@drawable/carpool"
+                    tools:srcCompat="@drawable/carpool" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Drive"
-                    android:textSize="18sp"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:textStyle="bold"/>
+                    android:gravity="center"
+                    android:text="Carpool"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Coming Soon" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/hosting_button"
+            android:id="@+id/hostButton"
             android:layout_row="2"
             android:layout_column="0"
             android:layout_gravity="fill"
@@ -111,10 +128,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
+
                 <ImageView
+                    android:id="@+id/host"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/house"/>
+                    android:src="@drawable/house" />
 
                 <TextView
                     android:layout_width="wrap_content"
