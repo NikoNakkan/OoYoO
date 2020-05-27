@@ -132,12 +132,12 @@
 
 
     <RelativeLayout
-        android:id="@+id/addHomeInfo"
+        android:id="@+id/finishHostForm"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/becomeHostWhen"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="66dp"
         android:background="@drawable/orange_curvy_button">
 
         <ImageView

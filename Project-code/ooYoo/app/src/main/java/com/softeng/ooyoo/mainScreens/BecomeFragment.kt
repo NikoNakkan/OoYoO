@@ -10,7 +10,7 @@ import android.widget.Button
 import androidx.cardview.widget.CardView
 
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.BecomeTravellerActivity
 
 
@@ -21,7 +21,7 @@ class BecomeFragment : Fragment() {
 
         val tripPlanButton = view.findViewById<CardView>(R.id.trip_plan_button)
         val carpoolingButton = view.findViewById<CardView>(R.id.carpooling_button)
-        val hostButton = view.findViewById<CardView>(R.id.hosting_button)
+        val hostButton = view.findViewById<CardView>(R.id.hostButton)
 
         tripPlanButton.setOnClickListener{
             val intent = Intent(context, BecomeTravellerActivity::class.java)
