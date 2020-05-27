@@ -9,22 +9,22 @@
         android:src="@drawable/earth"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
-        android:id="@+id/my_trips_list_item_image_view"/>
+        android:id="@+id/review_user_image_view"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/my_trips_list_item_image_view"
+        android:layout_toRightOf="@id/review_user_image_view"
         android:text="Username"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        android:id="@+id/username_of_reviewr"/>
+        android:id="@+id/username_of_reviewer"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/my_trips_list_item_image_view"
+        android:layout_toRightOf="@id/review_user_image_view"
         android:text="Review text"
-        android:layout_below="@id/username_of_reviewr"
+        android:layout_below="@id/username_of_reviewer"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:id="@+id/review_text"/>
@@ -34,9 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_toRightOf="@id/my_trips_list_item_image_view"
+        android:layout_toRightOf="@id/review_user_image_view"
         android:layout_below="@id/review_text"
-        android:text="Rating"/>
+        android:text="Rating"
+        android:id="@+id/rating_text_view"/>
 
 
 

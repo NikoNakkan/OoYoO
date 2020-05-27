@@ -39,9 +39,13 @@ class OwnProfileFragment : Fragment() {
         val deleteButton = view.findViewById<TextView>(R.id.own_profile_delete_account)
         val tripsHostsButton = view.findViewById<TextView>(R.id.own_profile_edit_trips_and_hosts_button)
         val editInfoButton = view.findViewById<TextView>(R.id.own_profile_edit_info_and_bio)
+        val reputationButton = view.findViewById<TextView>(R.id.own_profile_reputation_button)
 
         nameTextView.text = user.fullName
 
+        reputationButton.setOnClickListener {
+            checkReputation()
+        }
 
         tripsHostsButton.setOnClickListener {
             pickCategory { category ->
@@ -154,5 +158,10 @@ class OwnProfileFragment : Fragment() {
         context?.toast("This feature is not implemented yet.")
     }
 
+    private fun checkReputation(){
+        val intent = Intent(context, MyReputationActivity::class.java)
+        intent.putExtra(REPUTATION_USER_EXTRA_NAME, user)
+        context?.startActivity(intent)
+    }
 
 }
