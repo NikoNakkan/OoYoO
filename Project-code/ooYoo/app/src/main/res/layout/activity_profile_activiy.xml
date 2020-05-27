@@ -98,6 +98,7 @@ android:paddingTop="4dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/frame_send_message"
         android:paddingTop="4dp"
+        android:id="@+id/frame_bio"
         >
 
         <TextView
@@ -110,7 +111,24 @@ android:paddingTop="4dp"
             android:text="Info and Bio" />
     </FrameLayout>
 
-<FrameLayout
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frame_bio"
+        android:paddingTop="4dp"
+        >
+
+        <TextView
+            android:id="@+id/others_profile_send_request"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/buttontemplate"
+            android:gravity="center_vertical"
+            android:paddingLeft="51dp"
+            android:text="Send Request for clicked event" />
+    </FrameLayout>
+
+    <FrameLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_alignParentBottom="true"
