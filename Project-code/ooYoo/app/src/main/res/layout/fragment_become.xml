@@ -49,10 +49,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-<ImageView
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:src="@drawable/earth"/>
+
+                <ImageView
+                    android:id="@+id/travel"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/earth" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,15 +82,15 @@
 
             <LinearLayout
                 android:layout_width="86dp"
-                android:layout_height="124dp"
+                android:layout_height="128dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/carpoolImage"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:src="@drawable/earth"
+                    android:layout_height="83dp"
+                    android:src="@drawable/carpool"
                     tools:srcCompat="@drawable/carpool" />
 
                 <TextView
@@ -102,7 +104,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:text="Coming Soon" />
 
             </LinearLayout>
@@ -126,10 +128,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
+
                 <ImageView
+                    android:id="@+id/host"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/house"/>
+                    android:src="@drawable/house" />
 
                 <TextView
                     android:layout_width="wrap_content"
