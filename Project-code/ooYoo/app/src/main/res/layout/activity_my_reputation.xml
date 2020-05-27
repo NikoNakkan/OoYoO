@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyReputationActivity">
+    tools:context=".user.MyReputationActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:id="@+id/reputationBackButton"
+        android:src="@drawable/arrowleftorange"
+        />
+
+
+    <ImageView
+
+        android:id="@+id/reputationUserImage"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/reputationNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/reputationUserImage"
+        android:paddingTop="10dp"
+        android:text="Username"
+        />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/reputationNameTextView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/reputationStars"
+        android:src="@drawable/fourhalfstars"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="Recent reviews"
+        android:layout_below="@id/reputationStars"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/reputationRecentTextView"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reputationReviewRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/reputationRecentTextView"
+        android:layout_marginTop="16dp"
+        />
+
+
+
+
+</RelativeLayout>
