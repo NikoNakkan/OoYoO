@@ -51,7 +51,10 @@ class BecomeHostActivity : AppCompatActivity() {
             }
         }
 
-
+        addHomeInfo.setOnClickListener{
+            val intent = Intent(this, BecomeHostActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

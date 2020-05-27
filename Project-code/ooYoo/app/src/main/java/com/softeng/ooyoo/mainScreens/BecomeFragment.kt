@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.cardview.widget.CardView
-
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
+import com.softeng.ooyoo.user.BecomeHostActivity
 import com.softeng.ooyoo.user.BecomeTravellerActivity
 
 
@@ -30,6 +30,11 @@ class BecomeFragment : Fragment() {
 
         carpoolingButton.setOnClickListener {
             context?.toast("This feature is not implemented yet.")
+        }
+
+        hostButton.setOnClickListener{
+            val intent = Intent(context, BecomeHostActivity::class.java)
+            startActivity(intent)
         }
 
         return view

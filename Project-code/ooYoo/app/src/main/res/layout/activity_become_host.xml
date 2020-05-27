@@ -132,7 +132,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/finishHostForm"
+        android:id="@+id/addHomeInfo"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/becomeHostWhen"
