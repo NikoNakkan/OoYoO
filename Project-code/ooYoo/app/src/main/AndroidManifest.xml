@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".user.MyHostingsListActivity"></activity>
+        <activity android:name=".MyReputationActivity"></activity>
+        <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
         <activity android:name=".mainScreens.AddHomeActivity" />

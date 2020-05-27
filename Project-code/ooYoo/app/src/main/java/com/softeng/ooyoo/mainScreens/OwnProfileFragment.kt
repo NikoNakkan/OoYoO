@@ -38,7 +38,7 @@ class OwnProfileFragment : Fragment() {
         val nameTextView = view.findViewById<TextView>(R.id.activity_profile_name)
         val deleteButton = view.findViewById<TextView>(R.id.own_profile_delete_account)
         val tripsHostsButton = view.findViewById<TextView>(R.id.own_profile_edit_trips_and_hosts_button)
-
+        val editInfoButton = view.findViewById<TextView>(R.id.own_profile_edit_info_and_bio)
 
         nameTextView.text = user.fullName
 
@@ -59,6 +59,9 @@ class OwnProfileFragment : Fragment() {
             }
         }
 
+        editInfoButton.setOnClickListener {
+            editBioActivityClicked()
+        }
 
         deleteButton.setOnClickListener {
             deleteAccount()
@@ -146,5 +149,10 @@ class OwnProfileFragment : Fragment() {
     private fun editMyCarpoolingList(){
         context?.toast("This feature is not implemented yet.")
     }
+
+    private fun editBioActivityClicked(){
+        context?.toast("This feature is not implemented yet.")
+    }
+
 
 }

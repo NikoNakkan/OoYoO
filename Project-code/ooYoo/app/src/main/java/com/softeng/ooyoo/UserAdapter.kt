@@ -1,10 +1,12 @@
 package com.softeng.ooyoo
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,6 +14,8 @@ import com.softeng.ooyoo.helpers.dateMapToString
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
+import com.softeng.ooyoo.user.ProfileActiviy
+import com.softeng.ooyoo.user.USER_PROFILE_EXTRA_NAME
 
 
 class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTravelEvent>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
@@ -46,11 +50,18 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
             holder.userToValuesTextView.text =
                 dateMapToString((list[position].travelEvent as Hosting).dates.endDate)
         }
+
+        holder.userListLayout.setOnClickListener {
+            val intent = Intent(context, ProfileActiviy::class.java)
+            intent.putExtra(USER_PROFILE_EXTRA_NAME, list[position].user)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = minOf(list.size, 20)
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val userListLayout: LinearLayout = itemView.findViewById(R.id.user_list_layout)
         val imageView: ImageView = itemView.findViewById(R.id.userItemProfileImageView)
         val userNameTextView: TextView = itemView.findViewById(R.id.chatUserNameTextView)
         val userTypeTextView: TextView = itemView.findViewById(R.id.userType)
