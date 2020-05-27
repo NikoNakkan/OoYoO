@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.toast
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

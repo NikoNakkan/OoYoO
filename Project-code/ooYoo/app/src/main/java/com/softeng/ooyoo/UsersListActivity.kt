@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.matching
 import com.softeng.ooyoo.helpers.mergeLists
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.UserAndTravelEvent

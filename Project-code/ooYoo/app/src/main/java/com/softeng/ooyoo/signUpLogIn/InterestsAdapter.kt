@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.INTERESTS_ARRAY_LIST
-import com.softeng.ooyoo.toast
 
 class InterestsAdapter(private val context: Context?, private val interestsMap: ArrayList<String>) :
     RecyclerView.Adapter<InterestsAdapter.InterestsViewHolder>() {

@@ -10,7 +10,6 @@ import com.softeng.ooyoo.databases.TripPlansDB
 import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.synthetic.main.activity_become_traveller.*
@@ -28,21 +27,21 @@ class BecomeTravellerActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid
 
         becomeTravellerWhere.setOnClickListener {
-            pickCountry(supportFragmentManager) { country ->
+            addLocation(supportFragmentManager) { country ->
                 becomeTravellerWhereTextView.text = country
                 place.name = country
             }
         }
 
         becomeTravellerWhenFrom.setOnClickListener {
-            pickDate(this) { date ->
+            addDate(this) { date ->
                 becomeTravellerWhenFromTextView.text = dateMapToString(date)
                 dates.startDate = date
             }
         }
 
         becomeTravellerWhenTo.setOnClickListener {
-            pickDate(this){ date ->
+            addDate(this){ date ->
                 becomeTravellerWhenToTextView.text = dateMapToString(date)
                 dates.endDate = date
             }
@@ -75,13 +74,14 @@ class BecomeTravellerActivity : AppCompatActivity() {
                         tripPlansDB.tripRegistration(this, trip) { id ->
                             val userDB = UserDB()
                             userDB.uploadTripOnDatabase(uid, id)
-
                             finish()
+
+                            chatList()
                         }
 
                     }
                     .setNegativeButton("No") { _: DialogInterface, _: Int ->
-                        finish()
+                        declineRegistration()
                     }
                     .setNeutralButton("Alter"){ _: DialogInterface, _: Int ->
 
@@ -91,6 +91,14 @@ class BecomeTravellerActivity : AppCompatActivity() {
 
             }
         }
+
+    }
+
+    private fun declineRegistration(){
+        finish()
+    }
+
+    private fun chatList(){
 
     }
 

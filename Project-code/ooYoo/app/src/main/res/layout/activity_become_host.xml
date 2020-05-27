@@ -10,12 +10,14 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_margin="16dp"
-        android:text="Become a host "/>
+        android:text="Become a host "
+        android:textStyle="bold"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginLeft="16dp"
+        android:textStyle="bold"
         android:layout_marginTop="42dp"
         android:text="and meet new people!"
         android:id="@+id/and_meet_new_people_tv_becomehost"/>

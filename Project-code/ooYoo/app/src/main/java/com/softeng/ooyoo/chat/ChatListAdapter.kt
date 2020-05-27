@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.user.User
 
@@ -60,6 +61,8 @@ class ChatListAdapter(
     }
 
     override fun getItemCount(): Int = chats.size
+
+
 
     class ChatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val chatLayout: LinearLayout = itemView.findViewById(R.id.chatItemLayout)

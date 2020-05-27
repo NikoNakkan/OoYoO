@@ -3,6 +3,7 @@ package com.softeng.ooyoo.helpers
 import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.travel.TravelEvent
@@ -17,9 +18,14 @@ import kotlin.math.abs
 
 const val THREE_DAYS_IN_MILLIS = 259200000
 
+fun Context.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+fun Context.longToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+
+
 fun dateMapToString(m: MutableMap<String, Int>) = m["Day"].toString() + "/" + m["Month"]?.plus(1).toString() + "/" + m["Year"].toString()
 
-fun pickDate(
+fun addDate(
     context: Context,
     startYear: Int = Calendar.getInstance().get(Calendar.YEAR),
     startMonth: Int = Calendar.getInstance().get(Calendar.MONTH),
@@ -43,7 +49,7 @@ fun pickDate(
 
 }
 
-fun pickCountry(supportFragmentManager: FragmentManager, onPick: (country: String) -> Unit){
+fun addLocation(supportFragmentManager: FragmentManager, onPick: (country: String) -> Unit){
     val countryPicker = CountryPicker.newInstance("Select Country")
     countryPicker.setListener{ name: String, _: String, _: String, _: Int ->
         onPick(name)

@@ -1,20 +1,12 @@
 package com.softeng.ooyoo.signUpLogIn
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.helpers.LANGUAGE_ARRAY
-import com.softeng.ooyoo.helpers.pickCountry
-import com.softeng.ooyoo.helpers.pickDate
-import com.softeng.ooyoo.longToast
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.user.User
-import com.ybs.countrypicker.CountryPicker
 import kotlinx.android.synthetic.main.activity_signup_add_info.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class SignupAddInfoActivity : AppCompatActivity() {
@@ -44,7 +36,7 @@ class SignupAddInfoActivity : AppCompatActivity() {
         }
 
         ageRelativeAddInfoSignup.setOnClickListener {
-            pickDate(this, startYear=2000){ date ->
+            addDate(this, startYear=2000){ date ->
                 user.age = date
                 toast("Age set!")
                 age = true
@@ -52,7 +44,7 @@ class SignupAddInfoActivity : AppCompatActivity() {
         }
 
         livingInRelativeSignupInfoButton.setOnClickListener {
-            pickCountry(supportFragmentManager) { country ->
+            addLocation(supportFragmentManager) { country ->
                 user.livingIn = country
                 toast("Country set!")
                 livingIn = true

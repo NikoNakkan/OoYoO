@@ -5,17 +5,45 @@
     android:layout_height="match_parent"
     tools:context=".mainScreens.ChatFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/lightGray"
+        android:id="@+id/top_bar_relative_chat_list_activity"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Chat List"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:textSize="16sp"/>
+
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/orange_dots"/>
+
+    </RelativeLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:hint="Search"
+        android:layout_below="@id/top_bar_relative_chat_list_activity"
         android:id="@+id/search_users_edit_text"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/search_users_edit_text"
         android:id="@+id/recycler_of_friends_message_fragment"
         android:layout_width="match_parent"
+        android:layout_margin="8dp"
         android:layout_height="match_parent"/>
 
 </RelativeLayout>

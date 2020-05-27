@@ -7,7 +7,6 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
 import com.softeng.ooyoo.host.Hosting
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.user.User
 
