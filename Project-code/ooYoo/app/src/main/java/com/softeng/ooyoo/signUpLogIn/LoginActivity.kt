@@ -54,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
         goToSignUpButton.setOnClickListener {
             val intent = Intent(activityContext, SignupActivity::class.java)
             activityContext.startActivity(intent)
+            finish()
         }
     }
 

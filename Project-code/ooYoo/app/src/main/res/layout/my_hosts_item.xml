@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="90dp"
-    android:background="@drawable/even_grayer_curvy">
+    android:background="@drawable/even_grayer_curvy"
+    android:id="@+id/my_host_list_layout"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp">
 
     <ImageView
         android:layout_width="80dp"
@@ -15,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/my_host_list_item_image_view"
-        android:text="Where :"
+        android:text="Where: "
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:id="@+id/where_my_host_list_item_text_view"/>
@@ -23,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/my_host_list_item_image_view"
-        android:text="From :"
+        android:text="From: "
         android:layout_below="@id/where_my_host_list_item_text_view"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -36,7 +41,8 @@
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@id/my_host_list_item_image_view"
         android:layout_below="@id/host_list_item_from_textview"
-        android:text="To :"/>
+        android:text="To: "
+        android:id="@+id/host_list_item_to_textview"/>
 
     <ImageView
         android:layout_width="24dp"

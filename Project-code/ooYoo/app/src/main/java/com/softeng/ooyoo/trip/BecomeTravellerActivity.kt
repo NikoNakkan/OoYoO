@@ -1,4 +1,4 @@
-package com.softeng.ooyoo.user
+package com.softeng.ooyoo.trip
 
 import android.app.AlertDialog
 import android.content.DialogInterface

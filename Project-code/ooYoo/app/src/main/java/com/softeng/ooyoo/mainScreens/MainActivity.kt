@@ -62,7 +62,10 @@ class MainActivity : AppCompatActivity() {
                     (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
                 }
                 R.id.bot_nav_become -> selectedFragment = BecomeFragment()
-                R.id.bot_nav_profile -> selectedFragment = OwnProfileFragment()
+                R.id.bot_nav_profile -> {
+                    selectedFragment = OwnProfileFragment()
+                    (selectedFragment as OwnProfileFragment).setUser(user ?: User())
+                }
             }
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment_container, selectedFragment!!).commit()

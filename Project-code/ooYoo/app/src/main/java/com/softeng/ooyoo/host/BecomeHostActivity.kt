@@ -1,4 +1,4 @@
-package com.softeng.ooyoo.user
+package com.softeng.ooyoo.host
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

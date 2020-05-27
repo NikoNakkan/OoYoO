@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.cardview.widget.CardView
 
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
-import com.softeng.ooyoo.user.BecomeTravellerActivity
+import com.softeng.ooyoo.trip.BecomeTravellerActivity
 
 
 class BecomeFragment : Fragment() {

@@ -10,7 +10,6 @@ class GenderDialog: DialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
-            // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Gender")
                 .setItems(arrayOf("Male", "Female", "Other"), DialogInterface.OnClickListener{ _: DialogInterface, which: Int ->

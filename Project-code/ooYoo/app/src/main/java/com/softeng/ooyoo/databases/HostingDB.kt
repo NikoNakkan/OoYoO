@@ -1,8 +1,6 @@
 package com.softeng.ooyoo.databases
 
-import android.content.Context
 import android.util.Log
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.helpers.THREE_DAYS_IN_MILLIS
@@ -12,22 +10,23 @@ import com.softeng.ooyoo.user.User
 
 class HostingDB: Database(HOSTINGS) {
 
+    private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
+
     fun hostRegistration(hosting: Hosting) {
 
     }
 
     fun findRelevantHostings(hosting: Hosting, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
-        val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val hostings = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
         val temp = arrayListOf<String>()
 
-        val startDateQuery = db.collection(this.collection)
+        val startDateQuery = dbCollection
             .whereEqualTo(FieldPath.of("place", "name"), hosting.place.name)
             .whereLessThan("startDateInMillis", hosting.startDateInMillis + THREE_DAYS_IN_MILLIS)
             .whereGreaterThan("startDateInMillis", hosting.startDateInMillis - THREE_DAYS_IN_MILLIS)
 
-        val endDateQuery = db.collection(this.collection)
+        val endDateQuery = dbCollection
             .whereEqualTo(FieldPath.of("place", "name"), hosting.place.name)
             .whereLessThan("endDateInMillis", hosting.endDateInMillis + THREE_DAYS_IN_MILLIS)
             .whereGreaterThan("endDateInMillis", hosting.endDateInMillis - THREE_DAYS_IN_MILLIS)
@@ -70,6 +69,29 @@ class HostingDB: Database(HOSTINGS) {
             .addOnFailureListener { e ->
                 onFailure(false)
                 Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
+            }
+    }
+
+    fun getMyHostList(uid: String, onSuccess: (ArrayList<Hosting>) -> Unit, onFailure: () -> Unit){
+        dbCollection
+            .whereEqualTo("uid", uid)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val hostings = arrayListOf<Hosting>()
+
+                for (document in querySnapshot.documents){
+                    val hosting = document.toObject(Hosting::class.java)
+                    if(hosting != null) {
+                        hostings.add(hosting)
+                    }
+                }
+
+                onSuccess(hostings)
+
+            }
+            .addOnFailureListener { e ->
+                Log.e(TripPlansDB::class.java.simpleName, "Retrieving tripPlans failed.", e)
+                onFailure()
             }
     }
 

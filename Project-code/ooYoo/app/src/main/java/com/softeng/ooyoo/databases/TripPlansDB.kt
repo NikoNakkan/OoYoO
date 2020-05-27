@@ -17,11 +17,10 @@ const val HOSTINGS_EXTRA_NAME = "hostings"
 
 class TripPlansDB: Database(TRIP_PLANS){
 
-
+    private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
 
     fun tripRegistration(context: Context, tripPlan: TripPlan, onSuccess: (String) -> Unit) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection(this.collection)
+        dbCollection
             .add(tripPlan)
             .addOnSuccessListener {
                 context.toast("Your registration was successful. Have a nice trip!")
@@ -37,17 +36,16 @@ class TripPlansDB: Database(TRIP_PLANS){
     }
 
     fun findRelevantTripPlans(tripPlan: TripPlan, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
-        val db = FirebaseFirestore.getInstance()
         val uids = arrayListOf<String>()
         val tripPlans = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
         val temp = arrayListOf<String>()
 
-        val startDateQuery = db.collection(this.collection)
+        val startDateQuery = dbCollection
             .whereEqualTo(FieldPath.of("place", "name"), tripPlan.place.name)
             .whereLessThan("startDateInMillis", tripPlan.startDateInMillis + THREE_DAYS_IN_MILLIS)
             .whereGreaterThan("startDateInMillis", tripPlan.startDateInMillis - THREE_DAYS_IN_MILLIS)
 
-        val endDateQuery = db.collection(this.collection)
+        val endDateQuery = dbCollection
             .whereEqualTo(FieldPath.of("place", "name"), tripPlan.place.name)
             .whereLessThan("endDateInMillis", tripPlan.endDateInMillis + THREE_DAYS_IN_MILLIS)
             .whereGreaterThan("endDateInMillis", tripPlan.endDateInMillis - THREE_DAYS_IN_MILLIS)
@@ -90,6 +88,29 @@ class TripPlansDB: Database(TRIP_PLANS){
             .addOnFailureListener { e ->
                 onFailure(false)
                 Log.e(TripPlansDB::class.java.simpleName, "There was an error.", e)
+            }
+    }
+
+    fun getMyTripList(uid: String, onSuccess: (ArrayList<TripPlan>) -> Unit, onFailure: () -> Unit){
+        dbCollection
+            .whereEqualTo("uid", uid)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val tripList = arrayListOf<TripPlan>()
+
+                for (document in querySnapshot.documents){
+                    val tripPlan = document.toObject(TripPlan::class.java)
+                    if(tripPlan != null) {
+                        tripList.add(tripPlan)
+                    }
+                }
+
+                onSuccess(tripList)
+
+            }
+            .addOnFailureListener { e ->
+                Log.e(TripPlansDB::class.java.simpleName, "Retrieving tripPlans failed.", e)
+                onFailure()
             }
     }
 

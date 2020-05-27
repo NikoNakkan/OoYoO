@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.softeng.ooyoo">
-    
-    <permission android:name="android.permission.INTERNET"/>
+
+    <permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,17 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chat.ChatActivity"></activity>
+        <activity android:name=".user.MyHostingsListActivity"></activity>
+        <activity android:name=".user.MyTripPlansListActivity" />
+        <activity android:name=".chat.ChatActivity" />
         <activity android:name=".mainScreens.AddHomeActivity" />
         <activity android:name=".UsersListActivity" />
         <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
         <activity android:name=".signUpLogIn.SignupActivity" />
-        <activity android:name=".user.BecomeHostActivity" />
-        <activity android:name=".user.BecomeTravellerActivity" />
+        <activity android:name=".host.BecomeHostActivity" />
+        <activity android:name=".trip.BecomeTravellerActivity" />
         <activity android:name=".signUpLogIn.LoginActivity" />
-        <activity android:name=".user.OwnProfile" />
         <activity android:name=".user.ProfileActiviy" />
         <activity android:name=".mainScreens.MainActivity">
             <intent-filter>

@@ -34,7 +34,9 @@ class UserDB: Database(USERS) {
     }
 
     public fun deleteAccount(uid: String){
-
+        dbCollection
+            .document(uid)
+            .delete()
     }
 
     public fun saveChanges(uid: String, user: User){
