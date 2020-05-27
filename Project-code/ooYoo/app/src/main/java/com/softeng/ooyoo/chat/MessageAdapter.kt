@@ -32,7 +32,7 @@ class MessageAdapter(val context: Context, private val messages: ArrayList<Messa
         holder.messageTextView.text = messages[position].text
 
         if(holder.viewType == MESSAGE_LEFT && holder.userImage != null){
-            Glide.with(context).load("").placeholder(R.drawable.logo).circleCrop().centerCrop().into(holder.userImage)
+            Glide.with(context).load(R.drawable.logo).centerCrop().circleCrop().into(holder.userImage)
         }
 
     }
