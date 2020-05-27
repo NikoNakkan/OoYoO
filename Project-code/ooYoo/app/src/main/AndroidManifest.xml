@@ -15,7 +15,7 @@
         <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
-        <activity android:name=".mainScreens.AddHomeActivity" />
+        <activity android:name=".host.AddHomeActivity" />
         <activity android:name=".UsersListActivity" />
         <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />

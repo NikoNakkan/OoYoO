@@ -53,23 +53,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             when (item.itemId){
-                R.id.bot_nav_chat -> {
-                    selectedFragment = ChatFragment()
-                    (selectedFragment as ChatFragment).setUser(user ?: User())
-                }
-                R.id.bot_nav_travel -> {
-                    selectedFragment = SearchForTravelersFragment()
-                    (selectedFragment as SearchForTravelersFragment).setUser(user ?: User())
-                }
+                R.id.bot_nav_chat -> selectedFragment = ChatFragment()
+                R.id.bot_nav_travel -> selectedFragment = SearchForTravelersFragment()
                 R.id.bot_nav_become -> selectedFragment = BecomeFragment()
-                R.id.bot_nav_profile -> {
-                    selectedFragment = OwnProfileFragment()
-                    (selectedFragment as OwnProfileFragment).setUser(user ?: User())
-                }
+                R.id.bot_nav_profile -> selectedFragment = OwnProfileFragment()
+
             }
+
+            (selectedFragment as PassUser).setUser(user ?: User())
+
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment_container, selectedFragment!!).commit()
             true
+
         }
 
     }

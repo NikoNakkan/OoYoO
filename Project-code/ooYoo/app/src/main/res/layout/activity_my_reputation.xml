@@ -40,13 +40,14 @@
         android:text="Username"
         />
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/reputationNameTextView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/reputationStars"
-        android:src="@drawable/fourhalfstars"/>
+        android:id="@+id/reputationRating"
+        android:layout_margin="4dp"
+        android:text="No reviews for your profile yet."/>
 
 
     <TextView
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:text="Recent reviews"
-        android:layout_below="@id/reputationStars"
+        android:layout_below="@id/reputationRating"
         android:layout_marginLeft="16dp"
         android:id="@+id/reputationRecentTextView"
         />
