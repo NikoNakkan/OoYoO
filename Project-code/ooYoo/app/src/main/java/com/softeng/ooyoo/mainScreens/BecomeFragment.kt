@@ -10,7 +10,7 @@ import android.widget.Button
 import androidx.cardview.widget.CardView
 
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.BecomeTravellerActivity
 
 

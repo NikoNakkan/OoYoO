@@ -9,8 +9,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.INTERESTS_ARRAY_LIST
 import com.softeng.ooyoo.databases.USERS
-import com.softeng.ooyoo.longToast
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.longToast
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_signup_interests.*
 

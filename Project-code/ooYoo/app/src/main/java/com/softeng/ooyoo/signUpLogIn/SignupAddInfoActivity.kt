@@ -4,11 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.helpers.LANGUAGE_ARRAY
-import com.softeng.ooyoo.helpers.addLocation
-import com.softeng.ooyoo.helpers.addDate
-import com.softeng.ooyoo.longToast
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_signup_add_info.*
 import kotlin.collections.ArrayList

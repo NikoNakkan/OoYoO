@@ -17,8 +17,8 @@ import com.softeng.ooyoo.chat.ChatListAdapter
 import com.softeng.ooyoo.databases.ChatDB
 import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.getUidsFromChats
-import com.softeng.ooyoo.longToast
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.longToast
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 
 
@@ -72,12 +72,8 @@ class ChatFragment : Fragment() {
     }
 
     private fun listenForMessages(){
-        var i = 0
 
         chatDB.messageListener(user.uid){ newChat ->
-
-            Log.d(ChatFragment::class.java.simpleName, i.toString())
-            i++
 
             if(!chats.containsChat(newChat)){
                 chats.add(newChat)
@@ -94,7 +90,9 @@ class ChatFragment : Fragment() {
                             it.lastMessageSent
                         }
 
-                        recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                        if(context != null) {
+                            recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                        }
                     },
                     onFailure = {
                         context?.longToast("An error occurred while retrieving data for your chat. Please try again.")
@@ -112,7 +110,9 @@ class ChatFragment : Fragment() {
                         it.lastMessageSent
                     }
 
-                    recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                    if(context != null) {
+                        recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                    }
                 }
             }
         }

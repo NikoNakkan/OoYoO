@@ -11,7 +11,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.ChatDB
-import com.softeng.ooyoo.toast
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.coroutines.launch

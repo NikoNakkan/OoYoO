@@ -10,7 +10,6 @@ import com.softeng.ooyoo.carpool.Carpooling
 import com.softeng.ooyoo.chat.Message
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.mainScreens.MainActivity
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 

@@ -10,7 +10,6 @@ import com.softeng.ooyoo.databases.TripPlansDB
 import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.synthetic.main.activity_become_traveller.*

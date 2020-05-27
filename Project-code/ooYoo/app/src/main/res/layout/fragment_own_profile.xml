@@ -91,7 +91,7 @@
             android:background="@drawable/buttontemplate"
             android:gravity="center_vertical"
             android:paddingLeft="51dp"
-            android:text="Send Message" />
+            android:text="My trips and hostings" />
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"

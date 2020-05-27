@@ -3,6 +3,8 @@ package com.softeng.ooyoo.mainScreens
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +17,8 @@ import com.softeng.ooyoo.UsersListActivity
 import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.host.Hosting
-import com.softeng.ooyoo.longToast
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
-import com.softeng.ooyoo.toast
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
@@ -38,7 +38,6 @@ class SearchForTravelersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_search_for_travelers, container, false)
 
-//        val tempIntentTextView = view.findViewById<TextView>(R.id.temp_intent_text_view)
         val searchWhere = view.findViewById<RelativeLayout>(R.id.searchTravelersWhere)
         val searchWhereTextView = view.findViewById<TextView>(R.id.searchTravelersWhereTextView)
         val searchWhenFrom = view.findViewById<RelativeLayout>(R.id.searchTravelerWhenFrom)
@@ -96,6 +95,8 @@ class SearchForTravelersFragment : Fragment() {
                     s.acquire(2)
                     if (!queriesFailed) {
                         startActivity(intent)
+                    }
+                    else{
                         queriesFailed = false
                     }
                     (activity as MainActivity).enableBottomNavigationView()
@@ -151,12 +152,14 @@ class SearchForTravelersFragment : Fragment() {
 
     private fun onFailure(noUsers: Boolean){
         queriesFailed = true
+
         if (noUsers){
-            context?.longToast("Unfortunately there are no users for destination ")
+            activity?.longToast("Unfortunately there are no users for destination ")
         }
         else {
-            context?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+            activity?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
         }
+
         s.release()
     }
 

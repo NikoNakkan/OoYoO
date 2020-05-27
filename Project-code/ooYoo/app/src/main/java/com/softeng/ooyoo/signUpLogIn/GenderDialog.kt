@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.softeng.ooyoo.toast
 
 class GenderDialog: DialogFragment(){
 
