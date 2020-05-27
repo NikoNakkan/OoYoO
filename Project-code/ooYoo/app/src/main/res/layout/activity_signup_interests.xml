@@ -41,14 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/signup_interests_add_interests_text"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true">
+        android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/signupInterestsRecylcerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/signupInterestsRecylcerView"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </RelativeLayout>
