@@ -22,7 +22,7 @@ import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 
 
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), PassUser {
 
     private var user = User()
     private var chats = arrayListOf<Chat>()
@@ -67,7 +67,7 @@ class ChatFragment : Fragment() {
         chatDB.detachListener()
     }
 
-    fun setUser(user: User){
+    override fun setUser(user: User){
         this.user = user
     }
 

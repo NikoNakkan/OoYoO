@@ -25,7 +25,7 @@ import com.softeng.ooyoo.user.User
 import java.util.concurrent.Semaphore
 
 
-class SearchForTravelersFragment : Fragment() {
+class SearchForTravelersFragment : Fragment(), PassUser {
 
     private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
@@ -113,7 +113,7 @@ class SearchForTravelersFragment : Fragment() {
         return view
     }
 
-    fun setUser(user: User){
+    override fun setUser(user: User){
         this.user = user
     }
 
@@ -123,9 +123,9 @@ class SearchForTravelersFragment : Fragment() {
         intent.putExtra(USER_EXTRA_NAME, user)
 
         val tripPlan = TripPlan(uid, place, dates)
-        val travelEventDB = TripPlansDB()
+        val tripPlanDB = TripPlansDB()
 
-        travelEventDB.findRelevantTripPlans(
+        tripPlanDB.findRelevantTripPlans(
             tripPlan,
             onSuccess = { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
                 intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
