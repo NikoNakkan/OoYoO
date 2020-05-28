@@ -2,29 +2,42 @@ package com.softeng.ooyoo.trip
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.databases.TripPlansDB
-import com.softeng.ooyoo.databases.UserDB
+import com.softeng.ooyoo.UsersListActivity
+import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.*
+import com.softeng.ooyoo.host.Hosting
+import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.place.Place
+import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.trip.TripPlan
+import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_become_traveller.*
+import java.util.concurrent.Semaphore
+
+const val BECOME_USER_EXTRA_NAME = "become user extra name"
 
 class BecomeTravellerActivity : AppCompatActivity() {
 
     private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
+    private val s = Semaphore(2, true)
+    private var queriesFailed = false
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_become_traveller)
 
         val uid = FirebaseAuth.getInstance().uid
+        user = intent.getParcelableExtra(BECOME_USER_EXTRA_NAME) ?: User(uid = "_")
 
         becomeTravellerWhere.setOnClickListener {
             addLocation(supportFragmentManager) { country ->
@@ -74,9 +87,13 @@ class BecomeTravellerActivity : AppCompatActivity() {
                         tripPlansDB.tripRegistration(this, trip) { id ->
                             val userDB = UserDB()
                             userDB.uploadTripOnDatabase(uid, id)
-                            finish()
 
-                            chatList()
+                            if(user.uid != "_") {
+                                chatList()
+                            }
+                            else{
+                                finish()
+                            }
                         }
 
                     }
@@ -99,7 +116,68 @@ class BecomeTravellerActivity : AppCompatActivity() {
     }
 
     private fun chatList(){
+        val intent = Intent(this, UsersListActivity::class.java)
 
+        s.drainPermits()
+
+        AsyncTask.execute(kotlinx.coroutines.Runnable {
+            findTravelersAndHosts(intent)
+
+            s.acquire(2)
+            if (!queriesFailed) {
+                startActivity(intent)
+            }
+            else{
+                queriesFailed = false
+            }
+            finish()
+        })
+    }
+
+    private fun findTravelersAndHosts(intent: Intent){
+        val uid = FirebaseAuth.getInstance().uid
+
+        intent.putExtra(USER_EXTRA_NAME, user)
+
+        val tripPlan = TripPlan(uid, place, dates)
+        val tripPlanDB = TripPlansDB()
+
+        tripPlanDB.findRelevantTripPlans(
+            tripPlan,
+            onSuccess = { tripPlans: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, travelers: ArrayList<User> ->
+                intent.putParcelableArrayListExtra(TRIPS_EXTRA_NAME, tripPlans)
+                intent.putParcelableArrayListExtra(TRAVELERS_EXTRA_NAME, travelers)
+                s.release()
+            },
+            onFailure = ::onFailure
+        )
+
+        val hosting = Hosting(uid, place, dates)
+        val hostingDB = HostingDB()
+
+        hostingDB.findRelevantHostings(
+            hosting,
+            onSuccess = { hostings: ArrayList<com.softeng.ooyoo.travel.TravelEvent>, hosts: ArrayList<User> ->
+                intent.putParcelableArrayListExtra(HOSTINGS_EXTRA_NAME, hostings)
+                intent.putParcelableArrayListExtra(HOSTS_EXTRA_NAME, hosts)
+                s.release()
+            },
+            onFailure = ::onFailure
+        )
+
+    }
+
+    private fun onFailure(noUsers: Boolean){
+        queriesFailed = true
+
+        if (noUsers){
+            longToast("Unfortunately there are no users for destination ")
+        }
+        else {
+            longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+        }
+
+        s.release()
     }
 
 }

@@ -11,10 +11,14 @@ import androidx.cardview.widget.CardView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.BecomeHostActivity
+import com.softeng.ooyoo.trip.BECOME_USER_EXTRA_NAME
 import com.softeng.ooyoo.trip.BecomeTravellerActivity
+import com.softeng.ooyoo.user.User
 
 
-class BecomeFragment : Fragment() {
+class BecomeFragment : Fragment(), PassUser {
+
+    private lateinit var user: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?    ): View? {
         val view = inflater.inflate(R.layout.fragment_become, container, false)
@@ -25,6 +29,7 @@ class BecomeFragment : Fragment() {
 
         tripPlanButton.setOnClickListener{
             val intent = Intent(context, BecomeTravellerActivity::class.java)
+            intent.putExtra(BECOME_USER_EXTRA_NAME, user)
             startActivity(intent)
         }
 
@@ -38,6 +43,10 @@ class BecomeFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun setUser(user: User){
+        this.user = user
     }
 
 }

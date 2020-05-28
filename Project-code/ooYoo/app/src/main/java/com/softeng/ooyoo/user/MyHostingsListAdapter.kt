@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.dateMapToString
@@ -26,6 +27,10 @@ class MyHostingsListAdapter(val context: Context, val hostings: ArrayList<Hostin
         holder.whereHostListTV.append(hostings[position].place.name)
         holder.whenFromHostListTV.append(dateMapToString(hostings[position].dates.startDate))
         holder.whenToHostListTV.append(dateMapToString(hostings[position].dates.endDate))
+
+        if(System.currentTimeMillis() > hostings[position].endDateInMillis) {
+            holder.myHostListLayout.background = ContextCompat.getDrawable(context, R.drawable.even_grayer_curvy)
+        }
 
         holder.myHostListLayout.setOnClickListener {
             context.toast("This feature is not implemented yet.")

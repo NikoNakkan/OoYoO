@@ -3,6 +3,7 @@ package com.softeng.ooyoo.mainScreens
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 
 import com.softeng.ooyoo.R
@@ -28,7 +31,7 @@ const val HOSTINGS = 1
 const val CARPOOLINGS = 2
 
 
-class OwnProfileFragment : Fragment() {
+class OwnProfileFragment : Fragment(), PassUser {
 
     private lateinit var user: User
 
@@ -40,8 +43,15 @@ class OwnProfileFragment : Fragment() {
         val tripsHostsButton = view.findViewById<TextView>(R.id.own_profile_edit_trips_and_hosts_button)
         val editInfoButton = view.findViewById<TextView>(R.id.own_profile_edit_info_and_bio)
         val reputationButton = view.findViewById<TextView>(R.id.own_profile_reputation_button)
+        val activityProfileImage = view.findViewById<ImageView>(R.id.activity_profile_image)
 
         nameTextView.text = user.fullName
+
+        Glide.with(this).load("").placeholder(R.drawable.logo).circleCrop().into(activityProfileImage)
+
+        activityProfileImage.setOnClickListener {
+            context?.toast("This feature is not implemented yet.")
+        }
 
         reputationButton.setOnClickListener {
             checkReputation()
@@ -74,7 +84,7 @@ class OwnProfileFragment : Fragment() {
         return view
     }
 
-    fun setUser(user: User){
+    override fun setUser(user: User){
         this.user = user
     }
 
