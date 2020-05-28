@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".user.MyReputationActivity"></activity>
+        <activity android:name=".user.AddHomeInfoActivity" />
+        <activity android:name=".user.MyReputationActivity" />
         <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
@@ -21,7 +22,7 @@
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
         <activity android:name=".signUpLogIn.SignupActivity" />
-        <activity android:name=".host.BecomeHostActivity" />
+        <activity android:name=".user.BecomeHostActivity" />
         <activity android:name=".trip.BecomeTravellerActivity" />
         <activity android:name=".signUpLogIn.LoginActivity" />
         <activity android:name=".user.ProfileActiviy" />

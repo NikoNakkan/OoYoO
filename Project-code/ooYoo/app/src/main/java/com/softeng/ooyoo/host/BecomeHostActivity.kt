@@ -1,4 +1,4 @@
-package com.softeng.ooyoo.host
+package com.softeng.ooyoo.user
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -39,25 +39,23 @@ class BecomeHostActivity : AppCompatActivity() {
         // add place
         becomeHostWhenFrom.setOnClickListener {
             addDate(this) { date ->
-                becomeTravellerWhenFromTextView.text = dateMapToString(date)
+                becomeHostWhenFromTextView.text = dateMapToString(date)
                 dates.startDate = date
             }
         }
 
         becomeHostWhenTo.setOnClickListener {
             addDate(this){ date ->
-                becomeTravellerWhenToTextView.text = dateMapToString(date)
+                becomeHostWhenToTextView.text = dateMapToString(date)
                 dates.endDate = date
             }
         }
 
         addHomeInfo.setOnClickListener{
-            val intent = Intent(this, BecomeHostActivity::class.java)
+            val intent = Intent(this, AddHomeInfoActivity::class.java)
             startActivity(intent)
         }
 
 
     }
 }
-
-

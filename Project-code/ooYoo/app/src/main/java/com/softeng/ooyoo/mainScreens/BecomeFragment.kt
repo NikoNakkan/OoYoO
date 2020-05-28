@@ -10,8 +10,8 @@ import android.widget.Button
 import androidx.cardview.widget.CardView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
-import com.softeng.ooyoo.host.BecomeHostActivity
 import com.softeng.ooyoo.trip.BecomeTravellerActivity
+import com.softeng.ooyoo.user.BecomeHostActivity
 
 
 class BecomeFragment : Fragment() {
@@ -29,7 +29,7 @@ class BecomeFragment : Fragment() {
         }
 
         carpoolingButton.setOnClickListener {
-            context?.toast("This feature is not implemented yet.")
+            context?.toast("This feature is under construction.")
         }
 
         hostButton.setOnClickListener{
