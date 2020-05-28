@@ -4,120 +4,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainScreens.AddHomeInfoActivity">
-
-    <RelativeLayout
-        android:id="@+id/finishHostForm"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/btn_choose_image"
-        android:layout_alignEnd="@+id/btn_upload_image"
-        android:layout_alignRight="@+id/btn_upload_image"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="153dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        android:background="@drawable/orange_curvy_button">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/buttonarrow" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="60dp"
-            android:text="Register Host Form"
-            android:textSize="16sp" />
-
-
-    </RelativeLayout>
+    tools:context=".mainScreens.AddHomeActivity">
 
     <TextView
         android:id="@+id/house_info_activity_text"
-        android:layout_width="390dp"
+        android:layout_width="376dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"
-        android:text="Add the information \n of the place yout hosting at."
+        android:gravity="center"
+        android:text="Add the information\nof the place yout hosting at."
         android:textSize="22sp"
         android:textStyle="bold" />
 
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/house_info_activity_text"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="16dp"
+        android:id="@+id/size_in_square_meters_button"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Sum in square meters"
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/sum_in_square_meters_textview"/>
+
+        <EditText
+            android:id="@+id/sqMeters"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/size_in_square_meters_button"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="16dp"
+        android:id="@+id/i_luv_fat_cats"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Number of rooms"
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/numberof_rooms_tv"/>
+
+        <EditText
+            android:id="@+id/numRooms"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/i_luv_fat_cats"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="16dp"
+        android:id="@+id/floor_of_apartment"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Floor that apartment is at "
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/floor_of_apartment_textview"/>
+
+        <EditText
+            android:id="@+id/floor"
+            android:layout_width="64dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp" />
+
+
+
+    </RelativeLayout>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/floor_of_apartment"
+        android:layout_marginTop="16dp"
+        android:id="@+id/home_requir_text_plain"
+        android:textStyle="bold"
+        android:text="Staying requirements"/>
     <EditText
-        android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/house_info_activity_text"
-        android:layout_marginTop="43dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Add specification about hosting" />
+        android:hint="Add your requirements"
+        android:layout_height="240dp"
+        android:layout_below="@id/home_requir_text_plain"
+        android:id="@+id/edit_text_home_specifications"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
+        android:gravity="start"
+        />
 
-    <Button
-        android:id="@+id/btn_choose_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/edit_text_home_specifications"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_button_curvy_boy"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="215dp"
-        android:text="Choose" />
+        android:id="@+id/add_apartment_photos"
+        >
 
-    <Button
-        android:id="@+id/btn_upload_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_marginStart="133dp"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="217dp"
-        android:layout_toEndOf="@+id/btn_choose_image"
-        android:layout_toRightOf="@+id/btn_choose_image"
-        android:text="Upload" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Add images"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_marginLeft="32dp"
+            android:id="@+id/add_images_of_home"/>
+
+    </RelativeLayout>
 
     <TextView
-        android:gravity="center"
-        android:id="@+id/addimage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="140dp"
-        android:background="#FF9800"
-        android:text="Add image of your house"
-        android:textAllCaps="false"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/submitText"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/finishHostForm"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/edit_text_home_specifications"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="147dp"
-        android:layout_marginRight="147dp"
-        android:text="Submit Text" />
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/orange_curvy_button"
+        android:gravity="center"
+        android:text="Finish Host Form"
+        android:textSize="16sp" />
 </RelativeLayout>

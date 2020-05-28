@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class House(
-    val place: Place = Place(),
-    val size: Int = 0,
-    val numOfRooms: Int = 0,
-    val floor: Int = 0,
-    val housePhotoLinks: ArrayList<String> = arrayListOf()
+    var place: Place = Place(),
+    var size: Int = 0,
+    var numOfRooms: Int = 0,
+    var floor: Int = 0,
+    var housePhotoLinks: ArrayList<String> = arrayListOf()
 ): Parcelable

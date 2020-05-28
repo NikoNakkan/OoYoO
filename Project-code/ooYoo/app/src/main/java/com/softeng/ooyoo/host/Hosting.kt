@@ -16,9 +16,10 @@ class Hosting (
     override val dates: Dates = Dates(),
     private val hostId: String="",
     private val hostRating: ArrayList<Rating> = arrayListOf(),
-    private val house: House = House(),
+    val house: House = House(),
     var startDateInMillis: Long = 0,
-    var endDateInMillis: Long = 0
+    var endDateInMillis: Long = 0,
+    val addHomeReq: String = ""
 ): TravelEvent(uid, place, dates), Parcelable{
 
     init {

@@ -11,13 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".user.AddHomeInfoActivity" />
+        <activity android:name=".host.AddHomeInfoActivity" />
         <activity android:name=".user.MyReputationActivity" />
         <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
-        <activity android:name=".host.AddHomeActivity" />
-        <activity android:name=".UsersListActivity" />
+                <activity android:name=".UsersListActivity" />
         <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
