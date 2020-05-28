@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.softeng.ooyoo">
 
-
     <permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,11 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name="othersProfile.OthersReputationActivity"
-            android:label="@string/title_activity_others_reputation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".user.MyReputationActivity" />
+        <activity android:name=".user.MyReputationActivity"></activity>
         <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
@@ -31,14 +26,12 @@
         <activity android:name=".signUpLogIn.LoginActivity" />
         <activity android:name=".user.ProfileActiviy" />
         <activity android:name=".mainScreens.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="othersProfile.MakeAReviewActivity" />
     </application>
 
 </manifest>
