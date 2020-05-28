@@ -15,13 +15,11 @@
         <activity android:name=".user.MyHostingsListActivity" />
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
-        <activity android:name=".host.AddHomeActivity" />
         <activity android:name=".UsersListActivity" />
         <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
         <activity android:name=".signUpLogIn.SignupActivity" />
-        <activity android:name=".host.BecomeHostActivity" />
         <activity android:name=".trip.BecomeTravellerActivity" />
         <activity android:name=".signUpLogIn.LoginActivity" />
         <activity android:name=".user.ProfileActiviy" />
@@ -32,6 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".host.BecomeHostActivity" />
+        <activity android:name=".host.AddHomeInfoActivity" />
+        <activity android:name=".user.othersProfile.OthersReputationActivity" />
     </application>
 
 </manifest>

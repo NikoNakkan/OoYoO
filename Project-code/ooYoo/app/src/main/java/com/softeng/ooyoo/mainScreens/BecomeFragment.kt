@@ -12,7 +12,7 @@ import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
 
 import com.softeng.ooyoo.trip.BecomeTravellerActivity
-import com.softeng.ooyoo.user.BecomeHostActivity
+import com.softeng.ooyoo.host.BecomeHostActivity
 import com.softeng.ooyoo.user.User
 
 

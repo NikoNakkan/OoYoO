@@ -15,8 +15,8 @@ import com.softeng.ooyoo.chat.USER_CHAT_EXTRA_NAME
 import com.softeng.ooyoo.chat.ChatListAdapter
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.mainScreens.MainActivity
+import com.softeng.ooyoo.user.othersProfile.OthersReputationActivity
 import kotlinx.android.synthetic.main.activity_profile_activiy.*
-import othersProfile.OthersReputationActivity
 
 const val USER_PROFILE_EXTRA_NAME ="user profile name extra"
 class ProfileActiviy : AppCompatActivity() {
@@ -42,7 +42,7 @@ class ProfileActiviy : AppCompatActivity() {
             activity_profile_name.setText(user.username)
 
             others_profile_reputation_button.setOnClickListener {
-                val intent = Intent(this,OthersReputationActivity::class.java)
+                val intent = Intent(this, OthersReputationActivity::class.java)
                 startActivity(intent)
 
             }

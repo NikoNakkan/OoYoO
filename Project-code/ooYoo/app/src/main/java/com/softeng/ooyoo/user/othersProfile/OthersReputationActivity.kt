@@ -1,4 +1,4 @@
-package othersProfile
+package com.softeng.ooyoo.user.othersProfile
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.softeng.ooyoo.R
 import kotlinx.android.synthetic.main.activity_others_reputation.*
 import kotlinx.android.synthetic.main.activity_profile_activiy.*
 import kotlinx.android.synthetic.main.activity_reviews.*
+import othersProfile.MakeAReviewActivity
 
 class OthersReputationActivity : AppCompatActivity() {
     var userProfileImageView: ImageView? = null
@@ -20,7 +21,7 @@ class OthersReputationActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         leave_your_own_review_button.setOnClickListener {
-            val intent_leave_review = Intent(this,MakeAReviewActivity::class.java)
+            val intent_leave_review = Intent(this, MakeAReviewActivity::class.java)
             startActivity(intent_leave_review)
 
         }

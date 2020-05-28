@@ -1,4 +1,4 @@
-package com.softeng.ooyoo.user
+package com.softeng.ooyoo.host
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.*
-import com.softeng.ooyoo.host.AddHomeInfoActivity
-import com.softeng.ooyoo.host.dateExtraName
-import com.softeng.ooyoo.host.placeExtraName
 
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
@@ -49,25 +46,27 @@ class BecomeHostActivity : AppCompatActivity() {
             }
         }
 
-        addHomeInfo.setOnClickListener{ if (uid == null){
-            toast("There was an error while authenticating you.")
-        }
-        else if(place.name == "" || dates.startDate.isEmpty() || dates.endDate.isEmpty()){
-            toast("Please add the place and the dates of your visit.")
-        }
-        else if (dateDistance(dates.startDate, dates.endDate) < 0){
-            toast("The starting date needs to be before the ending date.")
-        }
-        else if (!checkIfDateIsFuture(dates.startDate)){
-            toast("The date you selected has already passed. Please select a future date.")
-        }
-        else {
-
-            val intent = Intent(this, AddHomeInfoActivity::class.java)
-            intent.putExtra(placeExtraName, place)
-            intent.putExtra(dateExtraName, dates)
-            startActivity(intent)
-        }
+        addHomeInfo.setOnClickListener{
+            if (uid == null){
+                toast("There was an error while authenticating you.")
+            }
+            else if(place.name == "" || dates.startDate.isEmpty() || dates.endDate.isEmpty()){
+                toast("Please add the place and the dates of your visit.")
+            }
+            else if (dateDistance(dates.startDate, dates.endDate) < 0){
+                toast("The starting date needs to be before the ending date.")
+            }
+            else if (!checkIfDateIsFuture(dates.startDate)){
+                toast("The date you selected has already passed. Please select a future date.")
+            }
+            else {
+                val intent = Intent(this, AddHomeInfoActivity::class.java)
+                intent.putExtra(HOST_PLACE_EXTRA_NAME, place)
+                intent.putExtra(HOST_DATES_EXTRA_NAME, dates)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+                finish()
+            }
         }
 
 

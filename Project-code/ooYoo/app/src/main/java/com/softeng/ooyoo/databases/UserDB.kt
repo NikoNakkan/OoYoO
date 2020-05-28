@@ -53,7 +53,12 @@ class UserDB: Database(USERS) {
     }
 
     public fun uploadHostingOnDatabase(uid: String, hostingId: String){
-
+        dbCollection
+            .document(uid)
+            .update(
+                "hostHistory",
+                FieldValue.arrayUnion(hostingId)
+            )
     }
 
     public fun uploadCarpoolingOnDatabase(uid: String, carpoolingId: String){

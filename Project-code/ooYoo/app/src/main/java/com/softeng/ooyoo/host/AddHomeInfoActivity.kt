@@ -2,28 +2,25 @@ package com.softeng.ooyoo.host
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.HostingDB
-import com.softeng.ooyoo.helpers.checkIfDateIsFuture
-import com.softeng.ooyoo.helpers.dateDistance
+import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
 import kotlinx.android.synthetic.main.activity_add_home_info.*
+import java.lang.NumberFormatException
 
 
-
-
-const val placeExtraName = "Athens"
-const val dateExtraName ="30"
+const val HOST_PLACE_EXTRA_NAME = "host place extra name"
+const val HOST_DATES_EXTRA_NAME ="host dates extra name"
 
 class AddHomeInfoActivity : AppCompatActivity() {
     private val house = House()
-    private var dates = Dates()
-    private var place = Place()
     private var addHomeReq = ""
 
 
@@ -34,44 +31,49 @@ class AddHomeInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_home_info)
 
-        place = intent.getParcelableExtra(placeExtraName)
-        dates = intent.getParcelableExtra(dateExtraName)
+        val place = intent.getParcelableExtra<Place>(HOST_PLACE_EXTRA_NAME)
+        val dates = intent.getParcelableExtra<Dates>(HOST_DATES_EXTRA_NAME)
 
-
+        if(place == null || dates == null){
+            toast("An error occurred.")
+            finish()
+        }
 
 
         finishHostForm.setOnClickListener {
             if (uid == null){
                 toast("There was an error while authenticating you.")
             }
-            else if(place.name == "" || dates.startDate.isEmpty() || dates.endDate.isEmpty()){
-                toast("Please add the place and the dates of your visit.")
+            else if(sqMeters.text.isEmpty() || numRooms.text.isEmpty() || floor.text.isEmpty() || homeSpecificationEditText.text.isEmpty()){
+                toast("Please fill all the fields.")
             }
-            else if (dateDistance(dates.startDate, dates.endDate) < 0){
-                toast("The starting date needs to be before the ending date.")
-            }
-            else if (!checkIfDateIsFuture(dates.startDate)){
-                toast("The date you selected has already passed. Please select a future date.")
-            }
-
             else {
 
-                val uid = FirebaseAuth.getInstance().uid
+                val squareMeters: Int
+                val rooms: Int
+                val numFloors: Int
 
-                val squareMeters = sqMeters.text.toString().toInt()
-                val rooms = numRooms.text.toString().toInt()
-                val numFlours = floor.text.toString().toInt()
-                val homeSpec = edit_text_home_specifications.text.toString()
+                try {
+                    squareMeters = sqMeters.text.toString().toInt()
+                    rooms = numRooms.text.toString().toInt()
+                    numFloors = floor.text.toString().toInt()
+                }
+                catch (e: NumberFormatException){
+                    toast("Please make sure that the numbers you entered are correct.")
+                    return@setOnClickListener
+                }
+
+                val homeSpec = homeSpecificationEditText.text.toString()
 
                 house.size = squareMeters
-                house.floor = numFlours
+                house.floor = numFloors
                 house.numOfRooms = rooms
 
 
                 val host = Hosting(
                     uid = uid,
-                    place = place,
-                    dates = dates,
+                    place = place!!,
+                    dates = dates!!,
                     house = house,
                     addHomeReq = homeSpec
                 )
@@ -84,6 +86,8 @@ class AddHomeInfoActivity : AppCompatActivity() {
                         val hostingDB = HostingDB()
 
                         hostingDB.hostRegistration(this, host) { id ->
+                            val userDB = UserDB()
+                            userDB.uploadHostingOnDatabase(uid, id)
 
                             finish()
                         }
@@ -93,7 +97,10 @@ class AddHomeInfoActivity : AppCompatActivity() {
                         finish()
                     }
                     .setNeutralButton("Alter") { _: DialogInterface, _: Int ->
-
+                        val intent = Intent(this, BecomeHostActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(intent)
+                        finish()
                     }
                 val dialog = builder.create()
                 dialog.show()
@@ -106,28 +113,8 @@ class AddHomeInfoActivity : AppCompatActivity() {
 
 
         add_apartment_photos.setOnClickListener{
-            toast("Under Construction")
+            toast("This feature is not implemented yet.")
         }
-
-
-
-        /*
-        finishHostForm.setOnClickListener {
-            if (uid == null) {
-                toast("There was an error while authenticating you.")
-            } else if (place.name == "" || dates.startDate.isEmpty() || dates.endDate.isEmpty()) {
-                toast("Please add the place and the dates of your visit.")
-            } else if (dateDistance(dates.startDate, dates.endDate) < 0) {
-                toast("The starting date needs to be before the ending date.")
-            } else if (!checkIfDateIsFuture(dates.startDate)) {
-                toast("The date you selected has already passed. Please select a future date.")
-            } else {
-                val intent = Intent(this, AddHomeInfo::class.java)
-                startActivity(intent)
-            }
-        }
-
-         */
 
     }
 }
