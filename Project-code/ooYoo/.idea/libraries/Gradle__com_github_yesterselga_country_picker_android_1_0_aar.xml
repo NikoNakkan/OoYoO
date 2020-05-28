@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.yesterselga:country-picker-android:1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b80695cb1d771b43fc397b6603de186b/jetified-country-picker-android-1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b80695cb1d771b43fc397b6603de186b/jetified-country-picker-android-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b6b2460a6d5d71c3dc9670d517d29c97/jetified-country-picker-android-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b6b2460a6d5d71c3dc9670d517d29c97/jetified-country-picker-android-1.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

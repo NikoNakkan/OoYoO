@@ -19,9 +19,8 @@ import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.signUpLogIn.*
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_main.*
-
 class MainActivity : AppCompatActivity() {
-
+    var myUserId : String = ""
     private var user: User? = null
     private var uid: String = ""
     private var selectedFragment: Fragment? = null
@@ -34,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         if(intent != null){
             uid = intent.getStringExtra(USER_EXTRA_NAME) ?: ""
+            myUserId = intent.getStringExtra(USER_EXTRA_NAME) ?: ""
         }
 
 

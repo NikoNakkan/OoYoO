@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softeng.ooyoo.helpers.dateMapToString
+import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
@@ -54,6 +55,7 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
         holder.userListLayout.setOnClickListener {
             val intent = Intent(context, ProfileActiviy::class.java)
             intent.putExtra(USER_PROFILE_EXTRA_NAME, list[position].user)
+            context.toast("LOOOK HERE BITCH")
             context.startActivity(intent)
         }
     }

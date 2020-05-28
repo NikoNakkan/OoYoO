@@ -84,8 +84,6 @@ class ChatActivity : AppCompatActivity() {
         chatSendButton.setOnClickListener {
             if(chatMessageEditText.text.toString() != "") {
                 val text = chatMessageEditText.text.toString()
-
-
                 AsyncTask.execute(kotlinx.coroutines.Runnable {
 //                    Log.d(ChatActivity::class.java.simpleName, getTime().toString())
                     val date = Date(getTime())
