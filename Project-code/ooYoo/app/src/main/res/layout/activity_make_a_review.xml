@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGray"
-    tools:context=".user.MakeAReviewActivity">
+    tools:context=".user.othersProfile.MakeAReviewActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,16 +17,18 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/score_tv_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score (number between 0 and 5)"
         android:layout_below="@id/review_add_review_text"
-        android:layout_marginLeft="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="48dp"
-        android:id="@+id/score_tv_review"
+        android:text="Score (number between 0 and 5)"
         android:textSize="16sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,14 +43,15 @@
         />
 
     <EditText
+        android:inputType="numberDecimal"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_below="@id/review_add_review_text"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="200dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="64dp"
-/>
+        android:layout_below="@+id/review_add_review_text"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_toEndOf="@+id/score_tv_review"
+        android:layout_toRightOf="@+id/score_tv_review" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="300dp"

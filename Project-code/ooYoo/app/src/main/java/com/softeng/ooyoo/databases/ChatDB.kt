@@ -102,6 +102,37 @@ class ChatDB: Database(CHATS) {
             }
     }
 
+    public fun startChat(uid0: String, uid1: String, onCreateChat: (Chat) -> Unit, onAlreadyExists: (Chat) -> Unit, onFailure: () -> Unit){
+        dbCollection
+            .whereArrayContains("uids", uid0)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                for(document in querySnapshot.documents) {
+                    val chat = document.toObject(Chat::class.java)
+                    if(chat != null && uid1 in chat.uids) {
+                        chat.setChatId(document.id)
+                        onAlreadyExists(chat)
+                        return@addOnSuccessListener
+                    }
+                }
+
+                val chat = Chat(uids = arrayListOf(uid0, uid1))
+                dbCollection.add(chat)
+                    .addOnSuccessListener { document ->
+                        chat.setChatId(document.id)
+                        onCreateChat(chat)
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e(ChatDB::class.java.simpleName, "Error while retrieving chat.", e)
+                        onFailure()
+                    }
+            }
+            .addOnFailureListener { e ->
+                Log.e(ChatDB::class.java.simpleName, "Error while creating chat.", e)
+                onFailure()
+            }
+    }
+
     public fun detachListener(){
         chatListener.remove()
     }

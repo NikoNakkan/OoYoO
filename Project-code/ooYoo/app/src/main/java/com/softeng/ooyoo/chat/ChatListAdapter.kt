@@ -16,7 +16,7 @@ import com.softeng.ooyoo.user.User
 
 class ChatListAdapter(
     private val context: Context,
-    private val uid: String,
+    private val currentUser: User,
     private val chats: ArrayList<Chat>,
     private val userMap: MutableMap<String, User>)
     : RecyclerView.Adapter<ChatListAdapter.ChatViewHolder>(){
@@ -30,7 +30,7 @@ class ChatListAdapter(
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val receiverId =
-            if(uid == chats[position].uids[0]){
+            if(currentUser.uid == chats[position].uids[0]){
                 chats[position].uids[1]
             }
             else{
@@ -54,6 +54,7 @@ class ChatListAdapter(
 
         holder.chatLayout.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra(CHAT_SENDER_EXTRA_NAME, currentUser)
             intent.putExtra(USER_CHAT_EXTRA_NAME, userMap[receiverId])
             intent.putExtra(CHAT_EXTRA_NAME, chats[position])
             context.startActivity(intent)

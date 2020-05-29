@@ -1,5 +1,6 @@
 package com.softeng.ooyoo.chat
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,9 @@ import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.ChatDB
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
+import com.softeng.ooyoo.user.othersProfile.ProfileActivity
+import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
+import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
@@ -22,6 +26,7 @@ import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
+const val CHAT_SENDER_EXTRA_NAME = "chat sender extra name"
 const val USER_CHAT_EXTRA_NAME = "user chat extra name"
 const val CHAT_EXTRA_NAME = "chat extra name"
 
@@ -39,7 +44,8 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat)
 
         val uid = FirebaseAuth.getInstance().uid
-        val receiver = intent.getParcelableExtra(USER_CHAT_EXTRA_NAME) ?: User(uid="_")
+        val sender = intent.getParcelableExtra(CHAT_SENDER_EXTRA_NAME) ?: User(uid = "_")
+        val receiver = intent.getParcelableExtra(USER_CHAT_EXTRA_NAME) ?: User(uid = "_")
         val chat = intent.getParcelableExtra<Chat>(CHAT_EXTRA_NAME)
         val imageUrl = ""
 
@@ -95,6 +101,13 @@ class ChatActivity : AppCompatActivity() {
                 chatMessageEditText.setText("")
                 chatActivityRecyclerView.scrollToPosition(messageAdapter.itemCount)
             }
+        }
+
+        chatInfoLinearLayout.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra(USER_PROFILE_CURRENT_EXTRA_NAME, sender)
+            intent.putExtra(USER_PROFILE_OTHER_EXTRA_NAME, receiver)
+            startActivity(intent)
         }
 
     }

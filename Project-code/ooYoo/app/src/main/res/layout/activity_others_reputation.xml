@@ -1,33 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="othersProfile.OthersReputationActivity">
+    tools:context=".user.othersProfile.OthersReputationActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:id="@+id/back_button_reviews_activity"
+        android:src="@drawable/arrowleftorange"
+        />
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_others_reputation" />
+    <ImageView
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/activity_other_user_reviews_user_image"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+
+        tools:srcCompat="@tools:sample/avatars" />
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/orange_curvy_button"
+        android:layout_marginTop="40dp"
+        android:id="@+id/leaveYourOwnReviewButton"
+        >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/buttonarrow"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Leave your own review"
+            android:textSize="16sp"
+            android:layout_marginLeft="60dp"/>
+
+
+
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/activity_other_user_reviews_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/activity_other_user_reviews_user_image"
+        android:paddingTop="10dp"
+        android:text="Username"
+        />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/stars_review_activity"
+        android:layout_margin="4dp"
+        android:text="No reviews for your profile yet."/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/other_user_reviews_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recent_reviews_text"
+        android:layout_margin="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="Recent reviews"
+        android:layout_below="@id/leaveYourOwnReviewButton"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/recent_reviews_text"
+        />
+
+
+
+</RelativeLayout>

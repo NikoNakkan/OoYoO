@@ -8,15 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.UsersListActivity
+import com.softeng.ooyoo.user.UsersListActivity
 import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.host.Hosting
-import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.Dates
-import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_become_traveller.*
 import java.util.concurrent.Semaphore

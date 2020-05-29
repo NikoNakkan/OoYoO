@@ -7,7 +7,7 @@
     tools:context=".chat.ChatActivity">
 
     <LinearLayout
-        android:id="@+id/info_linear_layout"
+        android:id="@+id/chatInfoLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_relayive_layout_of_chat_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_linear_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/chatInfoLinearLayout" />
 
     <RelativeLayout
         android:id="@+id/bottom_relayive_layout_of_chat_activity"

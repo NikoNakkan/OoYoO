@@ -1,4 +1,4 @@
-package com.softeng.ooyoo
+package com.softeng.ooyoo.user
 
 import android.content.Context
 import android.content.Intent
@@ -10,16 +10,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.dateMapToString
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
-import com.softeng.ooyoo.user.ProfileActiviy
-import com.softeng.ooyoo.user.USER_PROFILE_EXTRA_NAME
+import com.softeng.ooyoo.user.othersProfile.ProfileActivity
+import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
+import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
 
 
-class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTravelEvent>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTravelEvent>, private val user: User) :
+    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.user_item, parent, false)
@@ -53,9 +56,9 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
         }
 
         holder.userListLayout.setOnClickListener {
-            val intent = Intent(context, ProfileActiviy::class.java)
-            intent.putExtra(USER_PROFILE_EXTRA_NAME, list[position].user)
-            context.toast("LOOOK HERE BITCH")
+            val intent = Intent(context, ProfileActivity::class.java)
+            intent.putExtra(USER_PROFILE_CURRENT_EXTRA_NAME, user)
+            intent.putExtra(USER_PROFILE_OTHER_EXTRA_NAME, list[position].user)
             context.startActivity(intent)
         }
     }

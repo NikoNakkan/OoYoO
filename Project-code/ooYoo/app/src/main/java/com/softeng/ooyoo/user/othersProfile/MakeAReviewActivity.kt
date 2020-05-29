@@ -1,4 +1,4 @@
-package othersProfile
+package com.softeng.ooyoo.user.othersProfile
 
 import android.graphics.BitmapFactory
 import android.os.Bundle

@@ -1,8 +1,9 @@
-package com.softeng.ooyoo
+package com.softeng.ooyoo.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.*
 import com.softeng.ooyoo.helpers.matching
 import com.softeng.ooyoo.helpers.mergeLists
@@ -11,7 +12,6 @@ import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
-import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_users_list.*
 
 class UsersListActivity : AppCompatActivity() {
@@ -45,7 +45,8 @@ class UsersListActivity : AppCompatActivity() {
 
 
         usersRecyclerView.layoutManager = LinearLayoutManager(this)
-        usersRecyclerView.adapter = UserAdapter(this, list)
+        usersRecyclerView.adapter =
+            UserAdapter(this, list, user)
 
     }
 }

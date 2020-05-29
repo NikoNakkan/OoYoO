@@ -16,7 +16,7 @@
 
         <ImageView
 
-            android:id="@+id/activity_profile_image"
+            android:id="@+id/otherUserProfileImageView"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_centerHorizontal="true"
@@ -35,7 +35,7 @@
 
             android:layout_marginEnd="8dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/activity_profile_image"
+            android:layout_below="@id/otherUserProfileImageView"
             android:paddingTop="10dp"
             android:text="Username"
             />

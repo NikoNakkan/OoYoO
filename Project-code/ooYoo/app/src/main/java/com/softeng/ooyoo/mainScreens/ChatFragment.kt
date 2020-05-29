@@ -40,7 +40,7 @@ class ChatFragment : Fragment(), PassUser {
         val searchEditText = view.findViewById<EditText>(R.id.search_users_edit_text)
 
 
-        val adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+        val adapter = ChatListAdapter(context!!, user, chats, userMap)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
@@ -91,7 +91,7 @@ class ChatFragment : Fragment(), PassUser {
                         }
 
                         if(context != null) {
-                            recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                            recyclerView.adapter = ChatListAdapter(context!!, user, chats, userMap)
                         }
                     },
                     onFailure = {
@@ -111,7 +111,7 @@ class ChatFragment : Fragment(), PassUser {
                     }
 
                     if(context != null) {
-                        recyclerView.adapter = ChatListAdapter(context!!, user.uid, chats, userMap)
+                        recyclerView.adapter = ChatListAdapter(context!!, user, chats, userMap)
                     }
                 }
             }
