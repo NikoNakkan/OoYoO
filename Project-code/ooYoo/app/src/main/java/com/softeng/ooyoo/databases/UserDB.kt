@@ -1,13 +1,13 @@
 package com.softeng.ooyoo.databases
 
 import android.content.Context
-import android.media.Rating
 import android.util.Log
 import android.util.Rational
 import com.google.firebase.firestore.*
 import com.softeng.ooyoo.Article
 import com.softeng.ooyoo.carpool.Carpooling
 import com.softeng.ooyoo.chat.Message
+import com.softeng.ooyoo.helpers.Rating
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.trip.TripPlan
@@ -76,7 +76,12 @@ class UserDB: Database(USERS) {
     }
 
     public fun uploadReviewOnDatabase(uid: String, rating: Rating){
-
+        dbCollection
+            .document(uid)
+            .update(
+                "userRating",
+                FieldValue.arrayUnion(rating)
+            )
     }
 
     public fun retrieveSearchedUsers(uids: ArrayList<String>, onSuccess: (ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){

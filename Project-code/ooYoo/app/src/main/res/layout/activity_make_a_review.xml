@@ -43,7 +43,7 @@
         />
 
     <EditText
-        android:inputType="numberDecimal"
+        android:id="@+id/score_text_veiw"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@+id/review_add_review_text"
@@ -51,7 +51,8 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="40dp"
         android:layout_toEndOf="@+id/score_tv_review"
-        android:layout_toRightOf="@+id/score_tv_review" />
+        android:layout_toRightOf="@+id/score_tv_review"
+        android:inputType="numberDecimal" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -62,12 +63,13 @@
         />
 
     <TextView
+        android:id="@+id/make_a_review_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_below="@id/edit_text_review"
-        android:layout_marginTop="48dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
         android:background="@drawable/orange_curvy_button"
-        android:text="Make review"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="Make review" />
 </RelativeLayout>

@@ -6,10 +6,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Message(
-    val senderId: String = "",
-    val receiverId: String = "",
-    val text: String = "",
-    val timestamp: Timestamp = Timestamp.now(),
+    var senderId: String = "",
+    var receiverId: String = "",
+    var text: String = "",
+    var timestamp: Timestamp = Timestamp.now(),
     val read: Boolean = false
 ): Parcelable{
 

@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Rating (
-    val uid: String = "",
-    val name: String = "",
+    var uid: String = "",
+    var name: String = "",
     val imageUrl: String = "",
-    val stars: Double = 0.0,
-    val comment: String = ""
+    var stars: Double = 0.0,
+    var comment: String = ""
 ): Parcelable

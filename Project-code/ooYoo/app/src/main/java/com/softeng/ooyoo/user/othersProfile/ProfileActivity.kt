@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.chat.*
@@ -12,6 +13,11 @@ import com.softeng.ooyoo.helpers.longToast
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_profile.*
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import java.net.URL
+import java.util.*
 
 const val USER_PROFILE_CURRENT_EXTRA_NAME = "user profile current extra name"
 const val USER_PROFILE_OTHER_EXTRA_NAME = "user profile other extra name"
@@ -20,6 +26,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private var myUid :String = ""
     private val chatDB = ChatDB()
+    private  var message = Message()
     private lateinit var currentUser: User
     private lateinit var otherUser: User
 
@@ -64,7 +71,21 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         others_profile_send_request.setOnClickListener{
-            //TODO(not implemented yet)
+            val date = Date(getTime())
+            message.senderId = currentUser.uid
+            message.receiverId = otherUser.uid
+            message.timestamp = Timestamp(date)
+            message.text ="You wanna hang out together?"
+            chatDB.startChat(currentUser.uid , otherUser.uid,
+            onAlreadyExists = {chat ->
+                chatDB.sendMessage(chat.getChatId() , message)
+            },
+            onCreateChat = {chat ->
+                chatDB.sendMessage(chat.getChatId() , message)
+            },
+            onFailure = {
+                toast("There is a problem connecting to chat room")
+            })
         }
 
         others_profile_block_button.setOnClickListener {
@@ -93,3 +114,18 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 }
+@Throws(Exception::class)
+private fun getTime(): Long {
+    val url = "https://time.is/Unix_time_now"
+    val doc: Document = Jsoup.parse(URL(url).openStream(), "UTF-8", url)
+    val tags = arrayOf(
+        "div[id=time_section]",
+        "div[id=clock0_bg]"
+    )
+    var elements: Elements = doc.select(tags[0])
+    for (i in tags.indices) {
+        elements = elements.select(tags[i])
+    }
+    return (elements.text().toString() + "000").toLong()
+}
+
