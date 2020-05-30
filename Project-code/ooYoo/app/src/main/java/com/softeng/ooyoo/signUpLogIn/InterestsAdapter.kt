@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.INTERESTS_ARRAY_LIST
 
+/**
+ * This adapter is used to better manage the list of interests and user's selection.
+ */
 class InterestsAdapter(private val context: Context?, private val interestsMap: ArrayList<String>) :
     RecyclerView.Adapter<InterestsAdapter.InterestsViewHolder>() {
 
@@ -24,18 +27,6 @@ class InterestsAdapter(private val context: Context?, private val interestsMap: 
     }
 
     override fun getItemCount(): Int = interestsMap.size
-
-    //    fun onBindViewHolder(
-//        holder: com.syroniko.casseteapp.LogInSignUp.GenrePickSignupAdapter.GenreViewHolder,
-//        position: Int
-//    ) {
-//        val genre: GenreNameImageForSignupAdapter = genreList[position]
-//        holder.textView.setText(genre.getGenre())
-//        holder.imageView.setImageResource(genre.getGenreImageDefault())
-//    }
-//
-//    val itemCount: Int
-//        get() = genreList.size
 
 
     inner class InterestsViewHolder(view: View) :

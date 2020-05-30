@@ -5,9 +5,7 @@ import android.content.Context
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
-import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.travel.TravelEvent
-import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.user.User
 import com.ybs.countrypicker.CountryPicker
@@ -16,15 +14,28 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 
+/**
+ * This file contains functions used in many places of the project.
+ * This is done for convenience and re-usability.
+ */
+
 const val THREE_DAYS_IN_MILLIS = 259200000
 
+/**
+ * Those function are used to easier show toasts.
+ */
 fun Context.toast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 fun Context.longToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 
-
+/**
+ * This function is used to convert a map representing a date to a string.
+ */
 fun dateMapToString(m: MutableMap<String, Int>) = m["Day"].toString() + "/" + m["Month"]?.plus(1).toString() + "/" + m["Year"].toString()
 
+/**
+ * This function is used to pick a date using a dialog.
+ */
 fun addDate(
     context: Context,
     startYear: Int = Calendar.getInstance().get(Calendar.YEAR),
@@ -49,6 +60,9 @@ fun addDate(
 
 }
 
+/**
+ * This function is used to pick a place, specifically a country.
+ */
 fun addLocation(supportFragmentManager: FragmentManager, onPick: (country: String) -> Unit){
     val countryPicker = CountryPicker.newInstance("Select Country")
     countryPicker.setListener{ name: String, _: String, _: String, _: Int ->
@@ -58,15 +72,10 @@ fun addLocation(supportFragmentManager: FragmentManager, onPick: (country: Strin
     countryPicker.show(supportFragmentManager, "COUNTRY_PICKER")
 }
 
+/**
+ * This function returns the difference between 2 dates in millis.
+ */
 fun dateDistance(date1: MutableMap<String, Int>, date2: MutableMap<String, Int>, absolute: Boolean = false): Long{
-//    val c1 = Calendar.getInstance()
-//    val c2 = Calendar.getInstance()
-//
-//    c1.set(date1["Year"] ?: 2020, date1["Month"] ?: 0, date1["Day"] ?: 1)
-//    c2.set(date2["Year"] ?: 2020, date2["Month"] ?: 0, date2["Day"] ?: 1)
-
-//    val diff = c2.timeInMillis - c1.timeInMillis
-
     val diff = dateMapToMillis(date2) - dateMapToMillis(date1)
 
     val dayDiff = TimeUnit.MILLISECONDS.toDays(abs(diff))
@@ -84,24 +93,28 @@ fun dateDistance(date1: MutableMap<String, Int>, date2: MutableMap<String, Int>,
     }
 }
 
+/**
+ * This function check if one date is in the future.
+ */
 fun checkIfDateIsFuture(date: MutableMap<String, Int>): Boolean{
     val c = Calendar.getInstance()
     c.set(date["Year"] ?: 1900, date["Month"] ?: 0, date["Day"] ?: 1)
     return (System.currentTimeMillis() - c.timeInMillis) < 0
 }
 
+/**
+ * This function converts a map representing a date to millis.
+ */
 fun dateMapToMillis(date: MutableMap<String, Int>): Long{
     val c = Calendar.getInstance()
     c.set(date["Year"] ?: 2020, date["Month"] ?: 0, date["Day"] ?: 1)
     return c.timeInMillis
 }
 
-fun longDateMapToMillis(date: MutableMap<String, Long>): Long{
-    val c = Calendar.getInstance()
-    c.set(date["Year"]?.toInt() ?: 2020, date["Month"]?.toInt() ?: 0, date["Day"]?.toInt() ?: 1)
-    return c.timeInMillis
-}
-
+/**
+ * This gets 2 array lists, 1 of users and 1 of travelEvents,
+ * and returns 1 array list of UserAndTravelEvent (merging the objects of the other 2)
+ */
 fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): ArrayList<UserAndTravelEvent>{
     val list = arrayListOf<UserAndTravelEvent>()
 
@@ -131,14 +144,3 @@ fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): Array
 
     return list
 }
-
-fun getUidsFromChats(uid: String, chats: ArrayList<Chat>) =
-    chats.map {
-        if (uid == it.uids[0]){
-            it.uids[1]
-        }
-        else{
-            it.uids[0]
-        }
-    }
-

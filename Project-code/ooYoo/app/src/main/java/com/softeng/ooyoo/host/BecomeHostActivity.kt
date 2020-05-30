@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.*
-
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
 import kotlinx.android.synthetic.main.activity_become_host.*
 
+/**
+ * This activity represents the GUI from which the user adds details (place, dates) about a hosting.
+ */
 class BecomeHostActivity : AppCompatActivity() {
-    //comment
-    private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
 
@@ -23,7 +23,6 @@ class BecomeHostActivity : AppCompatActivity() {
 
         val uid = FirebaseAuth.getInstance().uid
 
-        // add date
         becomeHostWhere.setOnClickListener {
             addLocation(supportFragmentManager) { country ->
                 becomeHostWhereTextView.text = country
@@ -31,7 +30,6 @@ class BecomeHostActivity : AppCompatActivity() {
             }
         }
 
-        // add place
         becomeHostWhenFrom.setOnClickListener {
             addDate(this) { date ->
                 becomeHostWhenFromTextView.text = dateMapToString(date)
@@ -68,7 +66,5 @@ class BecomeHostActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-
     }
 }

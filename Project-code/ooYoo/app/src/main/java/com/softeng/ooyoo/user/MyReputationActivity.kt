@@ -10,6 +10,9 @@ import kotlinx.android.synthetic.main.activity_my_reputation.*
 
 const val REPUTATION_USER_EXTRA_NAME = "reputation user extra name"
 
+/**
+ * This activity represents the GUI from which the user can see his reviews and rating.
+ */
 class MyReputationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

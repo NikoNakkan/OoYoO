@@ -15,10 +15,16 @@ const val TRIPS_EXTRA_NAME = "trips"
 const val HOSTS_EXTRA_NAME = "hosts"
 const val HOSTINGS_EXTRA_NAME = "hostings"
 
+/**
+ * This class provides communication with the database for anything related with the trip plans.
+ */
 class TripPlansDB: Database(TRIP_PLANS){
 
     private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
 
+    /**
+     * This method registers a trip plan at the database
+     */
     fun tripRegistration(context: Context, tripPlan: TripPlan, onSuccess: (String) -> Unit) {
         dbCollection
             .add(tripPlan)
@@ -35,9 +41,12 @@ class TripPlansDB: Database(TRIP_PLANS){
             }
     }
 
+    /**
+     * This method finds all the trip plans with dates near to the given hosting.
+     */
     fun findRelevantTripPlans(tripPlan: TripPlan, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         val uids = arrayListOf<String>()
-        val tripPlans = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
+        val tripPlans = arrayListOf<TravelEvent>()
         val temp = arrayListOf<String>()
 
         val startDateQuery = dbCollection
@@ -91,6 +100,9 @@ class TripPlansDB: Database(TRIP_PLANS){
             }
     }
 
+    /**
+     * This method returns all the trip plans of a specific user.
+     */
     fun getMyTripList(uid: String, onSuccess: (ArrayList<TripPlan>) -> Unit, onFailure: () -> Unit){
         dbCollection
             .whereEqualTo("uid", uid)

@@ -14,6 +14,9 @@ import com.softeng.ooyoo.helpers.Rating
 import com.softeng.ooyoo.helpers.dateMapToString
 import com.softeng.ooyoo.helpers.toast
 
+/**
+ * An adapter used to better manage the list of user's trip plans.
+ */
 class ReviewAdapter(val context: Context, val ratings: ArrayList<Rating>) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
@@ -37,6 +40,9 @@ class ReviewAdapter(val context: Context, val ratings: ArrayList<Rating>) : Recy
     override fun getItemCount() = ratings.size
 
 
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class ReviewViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val reviewUserImageView: ImageView = itemView.findViewById(R.id.review_user_image_view)
         val reviewUserName: TextView = itemView.findViewById(R.id.username_of_reviewer)

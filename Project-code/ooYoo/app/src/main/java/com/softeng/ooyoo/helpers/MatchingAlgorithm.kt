@@ -2,7 +2,10 @@ package com.softeng.ooyoo.helpers
 
 import kotlin.*
 
-fun matching ( firstList : ArrayList<String> = arrayListOf<String>(), secondList : ArrayList<String> = arrayListOf<String>() ) :Int{
+/**
+ * This algorithm is used to match users with similar interests.
+ */
+fun matching ( firstList : ArrayList<String> = arrayListOf(), secondList : ArrayList<String> = arrayListOf() ) :Int{
     val prototypeListOfHobbies = INTERESTS_ARRAY_LIST
 
     val list1 = arrayListOf<Int>()

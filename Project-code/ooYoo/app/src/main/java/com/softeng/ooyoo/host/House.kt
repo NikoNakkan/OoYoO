@@ -4,6 +4,9 @@ import android.os.Parcelable
 import com.softeng.ooyoo.place.Place
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * This class represents a house.
+ */
 @Parcelize
 class House(
     var place: Place = Place(),

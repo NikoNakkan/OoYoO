@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.activity_my_hostings_list.*
 
 const val HOSTS_LIST_EXTRA_NAME = "hosts list extra name"
 
+/**
+ * This activity represents the GUI from which the user can see a list of his hosting.
+ */
 class MyHostingsListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

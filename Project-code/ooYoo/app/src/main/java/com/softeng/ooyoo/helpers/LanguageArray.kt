@@ -1,5 +1,8 @@
 package com.softeng.ooyoo.helpers
 
+/**
+ * This is a list of all the languages that a user can select.
+ */
 val LANGUAGE_ARRAY = arrayOf(
     "Acholi"	,
     "Afrikaans"	,

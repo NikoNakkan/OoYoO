@@ -7,15 +7,17 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.softeng.ooyoo.helpers.LANGUAGE_ARRAY
 
+/**
+ * This dialog is used to select the languages that the user speaks.
+ */
 class LanguageDialog: DialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
-            // Use the Builder class for convenient dialog construction
             val selectedItems = arrayListOf<Int>()
             val builder = AlertDialog.Builder(it)
 
-            val negativeButton = builder.setTitle("Language")
+            builder.setTitle("Language")
                 .setMultiChoiceItems(
                     LANGUAGE_ARRAY,
                     null

@@ -42,7 +42,7 @@ class ProfileActivity : AppCompatActivity() {
         Glide.with(this).load("").placeholder(R.drawable.logo).circleCrop().into(otherUserProfileImageView)
 
         if(otherUser.uid == "_" || currentUser.uid == "_") {
-            longToast("There was an error while opening this profile. Please try again.")
+            toast("There was an error while opening this profile. Please try again.")
             finish()
         }
 
@@ -51,13 +51,13 @@ class ProfileActivity : AppCompatActivity() {
 
         others_profile_reputation_button.setOnClickListener {
             val intent = Intent(this, OthersReputationActivity::class.java)
-            intent.putExtra(USER_REPUTATION_OTHER_EXTRA_NAME, currentUser)
+            intent.putExtra(USER_REPUTATION_CURRENT_EXTRA_NAME, currentUser)
             intent.putExtra(USER_REPUTATION_OTHER_EXTRA_NAME, otherUser)
             startActivity(intent)
         }
 
         others_profile_send_message_button.setOnClickListener {
-            chatDB.startChat(currentUser.uid, otherUser.uid,
+            chatDB.startOrAccessChat(currentUser.uid, otherUser.uid,
                 onCreateChat = ::openChat,
                 onAlreadyExists = ::openChat,
                 onFailure = {
@@ -76,7 +76,7 @@ class ProfileActivity : AppCompatActivity() {
             message.receiverId = otherUser.uid
             message.timestamp = Timestamp(date)
             message.text ="You wanna hang out together?"
-            chatDB.startChat(currentUser.uid , otherUser.uid,
+            chatDB.startOrAccessChat(currentUser.uid , otherUser.uid,
             onAlreadyExists = {chat ->
                 chatDB.sendMessage(chat.getChatId() , message)
             },

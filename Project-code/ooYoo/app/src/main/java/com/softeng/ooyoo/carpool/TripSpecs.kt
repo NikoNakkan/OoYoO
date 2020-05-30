@@ -4,6 +4,9 @@ import android.os.Parcelable
 import com.softeng.ooyoo.place.Place
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * A class containing information about the carpooling trip.
+ */
 @Parcelize
 class TripSpecs(
     private val start: String = "",

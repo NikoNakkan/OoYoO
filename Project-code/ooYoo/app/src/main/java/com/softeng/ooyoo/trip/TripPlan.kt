@@ -8,6 +8,9 @@ import com.softeng.ooyoo.user.User
 import com.softeng.ooyoo.travel.Dates
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * This class represents a trip plan.
+ */
 @Parcelize
 class TripPlan(
     override val uid: String? = "",

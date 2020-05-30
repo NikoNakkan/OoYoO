@@ -9,8 +9,11 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.chat.Message
 
+/**
+ * This class provides communication with the database for anything related with the chat.
+ */
 class ChatDB: Database(CHATS) {
-    val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
+    private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
     private lateinit var chatListener: ListenerRegistration
 
     public fun sendTravelMessage(senderId: String, receiverId: String){
@@ -25,7 +28,9 @@ class ChatDB: Database(CHATS) {
 
     }
 
-
+    /**
+     * A method to send a specific message.
+     */
     public fun sendMessage(chatId: String, message: Message){
         dbCollection.document(chatId)
             .update(
@@ -38,33 +43,14 @@ class ChatDB: Database(CHATS) {
 
     }
 
-
-
-    public fun retrieveChatData(chatIds: ArrayList<String>, onSuccess: (ArrayList<Chat>) -> Unit){
-        dbCollection
-            .whereIn(FieldPath.documentId(), chatIds)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                val chats = arrayListOf<Chat>()
-                val ids = arrayListOf<String>()
-
-                for (document in querySnapshot){
-                    val chat = document.toObject(Chat::class.java)
-                    chat.setChatId(document.id)
-                    chats.add(chat)
-                }
-
-                onSuccess(chats)
-            }
-    }
-
     public fun retrieveContact(uid0: String, uid1: String): ArrayList<Message>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
+    /**
+     * A listener for new messages in the database.
+     */
     public fun messageListener(uid: String, onSuccess: (Chat) -> Unit){
-
         chatListener = dbCollection
             .whereArrayContains("uids", uid)
             .addSnapshotListener { querySnapshot, e ->
@@ -102,7 +88,11 @@ class ChatDB: Database(CHATS) {
             }
     }
 
-    public fun startChat(uid0: String, uid1: String, onCreateChat: (Chat) -> Unit, onAlreadyExists: (Chat) -> Unit, onFailure: () -> Unit){
+    /**
+     * A method to start a new chat between 2 users if it doesn't exist
+     * or to access it if it already exists.
+     */
+    public fun startOrAccessChat(uid0: String, uid1: String, onCreateChat: (Chat) -> Unit, onAlreadyExists: (Chat) -> Unit, onFailure: () -> Unit){
         dbCollection
             .whereArrayContains("uids", uid0)
             .get()
@@ -133,6 +123,9 @@ class ChatDB: Database(CHATS) {
             }
     }
 
+    /**
+     * A method to detach the listener created from messageListener.
+     */
     public fun detachListener(){
         chatListener.remove()
     }

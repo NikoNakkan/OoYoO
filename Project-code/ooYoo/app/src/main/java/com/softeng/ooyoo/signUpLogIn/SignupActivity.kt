@@ -13,6 +13,11 @@ import java.util.*
 const val USER_EXTRA_NAME = "User"
 const val PASSWORD_EXTRA_NAME = "Password"
 
+/**
+ * This activity represents the GUI through which the user signs up.
+ * This is the first of the 3 screens used for sign up,
+ * in which the user adds his registration information.
+ */
 class SignupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

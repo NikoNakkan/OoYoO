@@ -9,6 +9,11 @@ import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_signup_add_info.*
 import kotlin.collections.ArrayList
 
+/**
+ * This activity represents the GUI through which the user signs up.
+ * This is the second of the 3 screens used for sign up,
+ * in which the user adds his basic information.
+ */
 class SignupAddInfoActivity : AppCompatActivity() {
 
     private lateinit var user: User

@@ -15,14 +15,14 @@ import com.softeng.ooyoo.travel.Dates
 import kotlinx.android.synthetic.main.activity_add_home_info.*
 import java.lang.NumberFormatException
 
-
 const val HOST_PLACE_EXTRA_NAME = "host place extra name"
 const val HOST_DATES_EXTRA_NAME ="host dates extra name"
 
+/**
+ * This activity represents the GUI from which the user adds information about his home.
+ */
 class AddHomeInfoActivity : AppCompatActivity() {
     private val house = House()
-    private var addHomeReq = ""
-
 
     val uid = FirebaseAuth.getInstance().uid
 
@@ -108,11 +108,7 @@ class AddHomeInfoActivity : AppCompatActivity() {
             }
         }
 
-
-
-
-
-        add_apartment_photos.setOnClickListener{
+        addApartmentPhotos.setOnClickListener{
             toast("This feature is not implemented yet.")
         }
 

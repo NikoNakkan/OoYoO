@@ -20,7 +20,9 @@ import com.softeng.ooyoo.user.othersProfile.ProfileActivity
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
 
-
+/**
+ * An adapter used to better manage the list of users.
+ */
 class UserAdapter(private val context: Context, private val list: ArrayList<UserAndTravelEvent>, private val user: User) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     
@@ -65,6 +67,9 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
 
     override fun getItemCount(): Int = minOf(list.size, 20)
 
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val userListLayout: LinearLayout = itemView.findViewById(R.id.user_list_layout)
         val imageView: ImageView = itemView.findViewById(R.id.userItemProfileImageView)

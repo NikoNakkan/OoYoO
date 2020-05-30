@@ -8,7 +8,9 @@ import com.softeng.ooyoo.helpers.dateMapToMillis
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
 
-
+/**
+ * This class represents a hosting.
+ */
 @Parcelize
 class Hosting (
     override val uid: String? = "",

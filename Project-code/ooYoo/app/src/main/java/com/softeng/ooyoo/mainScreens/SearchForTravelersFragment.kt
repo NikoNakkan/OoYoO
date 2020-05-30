@@ -22,10 +22,11 @@ import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 import java.util.concurrent.Semaphore
 
-
+/**
+ * This fragment represents the GUI from which a user can search for other users.
+ */
 class SearchForTravelersFragment : Fragment(), PassUser {
 
-    private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
     private var user = User()
@@ -51,21 +52,21 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         }
 
         searchWhere.setOnClickListener {
-            addLocation(activity!!.supportFragmentManager){ country ->
+            addLocation(requireActivity().supportFragmentManager){ country ->
                 searchWhereTextView.text = country
                 place.name = country
             }
         }
 
         searchWhenFrom.setOnClickListener {
-            addDate(context!!) { date ->
+            addDate(requireContext()) { date ->
                 searchWhenFromTextView.text = dateMapToString(date)
                 dates.startDate = date
             }
         }
 
         searchWhenTo.setOnClickListener {
-            addDate(context!!) { date ->
+            addDate(requireContext()) { date ->
                 searchWhenToTextView.text = dateMapToString(date)
                 dates.endDate = date
             }
@@ -111,10 +112,17 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         return view
     }
 
+    /**
+     * Set the current user.
+     */
     override fun setUser(user: User){
         this.user = user
     }
 
+    /**
+     * This method is used to find for other users who travel or host in similar dates
+     * as the current user's trip.
+     */
     private fun findTravelersAndHosts(intent: Intent){
         val uid = FirebaseAuth.getInstance().uid
 
@@ -148,6 +156,9 @@ class SearchForTravelersFragment : Fragment(), PassUser {
 
     }
 
+    /**
+     * This method show an error message if searching for other users fail.
+     */
     private fun onFailure(noUsers: Boolean){
         queriesFailed = true
 

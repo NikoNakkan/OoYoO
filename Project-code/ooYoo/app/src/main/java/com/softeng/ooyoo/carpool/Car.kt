@@ -3,6 +3,9 @@ package com.softeng.ooyoo.carpool
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * A car used for a carpooling.
+ */
 @Parcelize
 class Car(
     private val type: String="",

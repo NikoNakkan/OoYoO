@@ -13,12 +13,15 @@ import com.softeng.ooyoo.helpers.dateMapToString
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.Hosting
 
-class MyHostingsListAdapter(val context: Context, val hostings: ArrayList<Hosting>): RecyclerView.Adapter<MyHostingsListAdapter.HostListViewHolder>() {
-
-
+/**
+ * An adapter used to better manage the list of user's hostings.
+ */
+class MyHostingsListAdapter(private val context: Context, private var hostings: ArrayList<Hosting>): RecyclerView.Adapter<MyHostingsListAdapter.HostListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HostListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.my_hosts_item, parent, false)
+
+        hostings = sortHostings(hostings)
 
         return HostListViewHolder(view)
     }
@@ -39,7 +42,41 @@ class MyHostingsListAdapter(val context: Context, val hostings: ArrayList<Hostin
 
     override fun getItemCount() = hostings.size
 
+    /**
+     * A method to sort the hostings.
+     * First we set the future hostings in chronological order
+     * and then the past hostings in chronological order.
+     */
+    private fun sortHostings(hostings: ArrayList<Hosting>): ArrayList<Hosting>{
+        val list1 = arrayListOf<Hosting>()
+        val list2 = arrayListOf<Hosting>()
 
+        for (hosting in hostings){
+            if(System.currentTimeMillis() > hosting.endDateInMillis){
+                list2.add(hosting)
+            }
+            else{
+                list1.add(hosting)
+            }
+        }
+
+
+        list1.sortBy {
+            it.startDateInMillis
+        }
+
+        list2.sortBy {
+            it.startDateInMillis
+        }
+
+        list1.addAll(list2)
+
+        return list1
+    }
+
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class HostListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val myHostListLayout: RelativeLayout = itemView.findViewById(R.id.my_host_list_layout)
         val whereHostListTV: TextView = itemView.findViewById(R.id.where_my_host_list_item_text_view)

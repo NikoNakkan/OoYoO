@@ -3,9 +3,7 @@ package com.softeng.ooyoo.chat
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
@@ -18,7 +16,6 @@ import com.softeng.ooyoo.user.othersProfile.ProfileActivity
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -30,14 +27,12 @@ const val CHAT_SENDER_EXTRA_NAME = "chat sender extra name"
 const val USER_CHAT_EXTRA_NAME = "user chat extra name"
 const val CHAT_EXTRA_NAME = "chat extra name"
 
+/**
+ * This activity represents the GUI for a chat between 2 users (it included their messages).
+ */
 class ChatActivity : AppCompatActivity() {
 
     private val chatDB = ChatDB()
-
-//    @ServerTimestamp
-//    val time
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +63,7 @@ class ChatActivity : AppCompatActivity() {
 
         chatActivityRecyclerView.layoutManager = linearLayoutManager
         chatActivityRecyclerView.setHasFixedSize(true)
-        val messageAdapter = MessageAdapter(this, chat.messages, uid!!, receiver)
+        val messageAdapter = MessageAdapter(this, chat!!.messages, uid!!, receiver)
         chatActivityRecyclerView.adapter = messageAdapter
         chatActivityRecyclerView.scrollToPosition(messageAdapter.itemCount-1)
 
@@ -91,9 +86,8 @@ class ChatActivity : AppCompatActivity() {
             if(chatMessageEditText.text.toString() != "") {
                 val text = chatMessageEditText.text.toString()
                 AsyncTask.execute(kotlinx.coroutines.Runnable {
-//                    Log.d(ChatActivity::class.java.simpleName, getTime().toString())
                     val date = Date(getTime())
-                    val message = Message(uid!!, receiver.uid, text, Timestamp(date))
+                    val message = Message(uid, receiver.uid, text, Timestamp(date))
                     chatDB.sendMessage(chat.getChatId(), message)
                 })
 
@@ -117,6 +111,9 @@ class ChatActivity : AppCompatActivity() {
         chatDB.detachListener()
     }
 
+    /**
+     * Checks if an arraylist of messages contains a specific message.
+     */
     private fun ArrayList<Message>.containsMessage(newMessage: Message): Boolean{
         for(message in this){
             if(message.timestamp == newMessage.timestamp){
@@ -126,6 +123,10 @@ class ChatActivity : AppCompatActivity() {
         return false
     }
 
+    /**
+     * Gets the time from a server to ensure that the messages' order will not be impacted by the
+     * time differences in the devices.
+     */
     @Throws(Exception::class)
     private fun getTime(): Long {
         val url = "https://time.is/Unix_time_now"

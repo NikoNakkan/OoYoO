@@ -3,6 +3,9 @@ package com.softeng.ooyoo.carpool
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * The trip that will be followed in the carpooling.
+ */
 @Parcelize
 class CarTrip(
     private val route: String="",

@@ -1,5 +1,8 @@
 package com.softeng.ooyoo.helpers
 
+/**
+ * This is a list of all the interests that a user might select.
+ */
 val INTERESTS_ARRAY_LIST = arrayListOf(
     "Chess",
     "Hiking",

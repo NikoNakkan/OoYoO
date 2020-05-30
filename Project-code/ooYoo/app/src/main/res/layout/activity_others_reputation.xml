@@ -19,7 +19,7 @@
 
     <ImageView
 
-        android:id="@+id/activity_other_user_reviews_user_image"
+        android:id="@+id/activityOtherUserReviewsUserImage"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_centerHorizontal="true"
@@ -31,7 +31,7 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_below="@id/activityOtherUserReviewsUserName"
         android:layout_centerHorizontal="true"
         android:background="@drawable/orange_curvy_button"
         android:layout_marginTop="40dp"
@@ -60,13 +60,13 @@
 
     </RelativeLayout>
     <TextView
-        android:id="@+id/activity_other_user_reviews_user_name"
+        android:id="@+id/activityOtherUserReviewsUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/activity_other_user_reviews_user_image"
+        android:layout_below="@id/activityOtherUserReviewsUserImage"
         android:paddingTop="10dp"
         android:text="Username"
         />
@@ -74,15 +74,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/activity_other_user_reviews_user_name"
+        android:layout_below="@id/activityOtherUserReviewsUserName"
         android:layout_centerHorizontal="true"
-        android:id="@+id/stars_review_activity"
+        android:id="@+id/starsReviewActivity"
         android:layout_margin="4dp"
         android:text="No reviews for your profile yet."/>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/other_user_reviews_recycler"
+        android:id="@+id/otherUserReviewsRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/recent_reviews_text"

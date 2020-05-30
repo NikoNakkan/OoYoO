@@ -10,10 +10,16 @@ import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.user.User
 
+/**
+ * This class provides communication with the database for anything related with the hostings.
+ */
 class HostingDB: Database(HOSTINGS) {
 
     private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
 
+    /**
+     * This method registers a hosting in the database.
+     */
     fun hostRegistration(context: Context, hosting: Hosting, onSuccess: (String) -> Unit) {
         dbCollection
         .add(hosting)
@@ -30,6 +36,9 @@ class HostingDB: Database(HOSTINGS) {
         }
     }
 
+    /**
+     * This method finds all the hostings with dates near to the given hosting.
+     */
     fun findRelevantHostings(hosting: Hosting, onSuccess: (ArrayList<TravelEvent>, ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         val uids = arrayListOf<String>()
         val hostings = arrayListOf<com.softeng.ooyoo.travel.TravelEvent>()
@@ -86,6 +95,9 @@ class HostingDB: Database(HOSTINGS) {
             }
     }
 
+    /**
+     * This method returns all the hostings of a specific user.
+     */
     fun getMyHostList(uid: String, onSuccess: (ArrayList<Hosting>) -> Unit, onFailure: () -> Unit){
         dbCollection
             .whereEqualTo("uid", uid)

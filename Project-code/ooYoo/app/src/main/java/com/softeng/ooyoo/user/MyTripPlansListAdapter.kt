@@ -13,11 +13,13 @@ import com.softeng.ooyoo.helpers.dateMapToString
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.trip.TripPlan
 
+/**
+ * An adapter used to better manage the list of user's trip plans.
+ */
 class MyTripPlansListAdapter(private val context: Context, private var tripPlans: ArrayList<TripPlan>): RecyclerView.Adapter<MyTripPlansListAdapter.TripListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.my_trips_item, parent, false)
-
 
         tripPlans = sortTripPlanList(tripPlans)
 
@@ -41,6 +43,11 @@ class MyTripPlansListAdapter(private val context: Context, private var tripPlans
 
     override fun getItemCount() = tripPlans.size
 
+    /**
+     * A method to sort the trip plans.
+     * First we set the future trip plans in chronological order
+     * and then the past trip plans in chronological order.
+     */
     private fun sortTripPlanList(tripPlans: ArrayList<TripPlan>): ArrayList<TripPlan>{
         val list1 = arrayListOf<TripPlan>()
         val list2 = arrayListOf<TripPlan>()
@@ -68,6 +75,9 @@ class MyTripPlansListAdapter(private val context: Context, private var tripPlans
         return list1
     }
 
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class TripListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val myTripListLayout: RelativeLayout = itemView.findViewById(R.id.my_trip_list_layout)
         val whereTripListTV: TextView = itemView.findViewById(R.id.where_my_trips_list_item_text_view)

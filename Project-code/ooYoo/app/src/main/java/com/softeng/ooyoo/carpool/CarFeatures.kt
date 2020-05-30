@@ -3,6 +3,9 @@ package com.softeng.ooyoo.carpool
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * The features of the car
+ */
 @Parcelize
 class CarFeatures(
     private val brandName: String="",

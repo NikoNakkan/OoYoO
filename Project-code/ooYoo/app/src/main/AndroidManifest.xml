@@ -16,7 +16,6 @@
         <activity android:name=".user.MyTripPlansListActivity" />
         <activity android:name=".chat.ChatActivity" />
         <activity android:name=".user.UsersListActivity" />
-        <activity android:name=".user.SearchListActivity" />
         <activity android:name=".signUpLogIn.SignupInterestsActivity" />
         <activity android:name=".signUpLogIn.SignupAddInfoActivity" />
         <activity android:name=".signUpLogIn.SignupActivity" />

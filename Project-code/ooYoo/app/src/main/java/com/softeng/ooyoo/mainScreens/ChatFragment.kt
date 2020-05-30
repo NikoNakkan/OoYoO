@@ -9,19 +9,19 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.Timestamp
-
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.chat.Chat
 import com.softeng.ooyoo.chat.ChatListAdapter
 import com.softeng.ooyoo.databases.ChatDB
 import com.softeng.ooyoo.databases.UserDB
-import com.softeng.ooyoo.helpers.getUidsFromChats
 import com.softeng.ooyoo.helpers.longToast
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 
 
+/**
+ * This fragment represents the GUI from which a user can open a chat.
+ */
 class ChatFragment : Fragment(), PassUser {
 
     private var user = User()
@@ -35,12 +35,11 @@ class ChatFragment : Fragment(), PassUser {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_of_friends_message_fragment)
+        recyclerView = view.findViewById(R.id.recycler_of_friends_message_fragment)
 
         val searchEditText = view.findViewById<EditText>(R.id.search_users_edit_text)
 
-
-        val adapter = ChatListAdapter(context!!, user, chats, userMap)
+        val adapter = ChatListAdapter(requireContext(), user, chats, userMap)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
@@ -67,10 +66,16 @@ class ChatFragment : Fragment(), PassUser {
         chatDB.detachListener()
     }
 
+    /**
+     * Set the current user.
+     */
     override fun setUser(user: User){
         this.user = user
     }
 
+    /**
+     * This method creates a listener that listens for new messages.
+     */
     private fun listenForMessages(){
 
         chatDB.messageListener(user.uid){ newChat ->
@@ -91,7 +96,7 @@ class ChatFragment : Fragment(), PassUser {
                         }
 
                         if(context != null) {
-                            recyclerView.adapter = ChatListAdapter(context!!, user, chats, userMap)
+                            recyclerView.adapter = ChatListAdapter(requireContext(), user, chats, userMap)
                         }
                     },
                     onFailure = {
@@ -111,13 +116,16 @@ class ChatFragment : Fragment(), PassUser {
                     }
 
                     if(context != null) {
-                        recyclerView.adapter = ChatListAdapter(context!!, user, chats, userMap)
+                        recyclerView.adapter = ChatListAdapter(requireContext(), user, chats, userMap)
                     }
                 }
             }
         }
     }
 
+    /**
+     * This method checks if an array list of chats contains a specific chat.
+     */
     private fun ArrayList<Chat>.containsChat(chat: Chat): Boolean{
         for (item in this){
             if (item.getChatId() == chat.getChatId()){

@@ -14,6 +14,11 @@ import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_signup_interests.*
 
+/**
+ * This activity represents the GUI through which the user signs up.
+ * This is the third of the 3 screens used for sign up,
+ * in which the user adds his interests.
+ */
 class SignupInterestsActivity : AppCompatActivity() {
 
     private lateinit var user: User
@@ -73,7 +78,6 @@ class SignupInterestsActivity : AppCompatActivity() {
     fun getHasInterest(interest: String): Boolean = user.interests.contains(interest)
 
     fun setHasInterest(interest: String, value: Boolean){
-
         if(value){
             user.interests.add(interest)
         }

@@ -11,6 +11,9 @@ import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.parcel.Parcelize
 import kotlin.collections.ArrayList
 
+/**
+ * A class representing a user.
+ */
 @Parcelize
 open class User(
     var uid: String="",
@@ -36,27 +39,15 @@ open class User(
 ): Parcelable{
 
     public fun checkFileSize(): Boolean{
-        return true
+        TODO("Not implemented yet.")
     }
 
     public fun editInfo(user: User){
-
+        TODO("Not implemented yet.")
     }
 
     public fun checkUserRules(): Boolean{
-        return true
-    }
-
-    public fun makeTripPlanChanges(tripPlan: TripPlan){
-
-    }
-
-    public fun makeHostingChanges(hosting: Hosting){
-
-    }
-
-    public fun makeCarpoolingChanges(carpooling: Carpooling){
-
+        TODO("Not implemented yet.")
     }
 
 }

@@ -1,38 +1,38 @@
 package com.softeng.ooyoo.databases
 
-import android.content.Context
 import android.util.Log
-import android.util.Rational
 import com.google.firebase.firestore.*
-import com.softeng.ooyoo.Article
+import com.softeng.ooyoo.portfolio.Article
 import com.softeng.ooyoo.carpool.Carpooling
-import com.softeng.ooyoo.chat.Message
 import com.softeng.ooyoo.helpers.Rating
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.mainScreens.MainActivity
 import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.User
 
+/**
+ * This class provides communication with the database for anything related with the users.
+ */
 class UserDB: Database(USERS) {
 
-    private val db = FirebaseFirestore.getInstance()
-    private val dbCollection = db.collection(this.collection)
+    private val dbCollection = FirebaseFirestore.getInstance().collection(this.collection)
+    private lateinit var userListener: ListenerRegistration
 
     public fun getTripPlanList(uid: String): ArrayList<TripPlan>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
     public fun getCarpoolingList(uid: String): ArrayList<Carpooling>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
     public fun getHostingList(uid: String): ArrayList<Hosting>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
+    /**
+     * This method deletes a user account.
+     */
     public fun deleteAccount(uid: String){
         dbCollection
             .document(uid)
@@ -40,9 +40,12 @@ class UserDB: Database(USERS) {
     }
 
     public fun saveChanges(uid: String, user: User){
-
+        TODO("Not implemented yet.")
     }
 
+    /**
+     * This method uploads a trip plan of a specific user.
+     */
     public fun uploadTripOnDatabase(uid: String, tripId: String){
         dbCollection
             .document(uid)
@@ -52,6 +55,9 @@ class UserDB: Database(USERS) {
             )
     }
 
+    /**
+     * This method uploads a hosting of a specific user.
+     */
     public fun uploadHostingOnDatabase(uid: String, hostingId: String){
         dbCollection
             .document(uid)
@@ -62,28 +68,39 @@ class UserDB: Database(USERS) {
     }
 
     public fun uploadCarpoolingOnDatabase(uid: String, carpoolingId: String){
-
+        TODO("Not implemented yet.")
     }
 
     public fun retrieveUsers(): ArrayList<User>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
     public fun retrieveDrivers(): ArrayList<User>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
-    public fun uploadReviewOnDatabase(uid: String, rating: Rating){
+    /**
+     * This method uploads a user's review on the database.
+     */
+    public fun uploadReviewOnDatabase(uid: String, rating: Rating, onSuccess: () -> Unit, onFailure: () -> Unit){
         dbCollection
             .document(uid)
             .update(
                 "userRating",
                 FieldValue.arrayUnion(rating)
             )
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e(UserDB::class.java.simpleName, "Error while uploading review", e)
+                onFailure()
+            }
     }
 
+    /**
+     * This method retrieves a list of users' data from a list of user ids.
+     */
     public fun retrieveSearchedUsers(uids: ArrayList<String>, onSuccess: (ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         if(uids.size == 0) {
             onFailure(true)
@@ -107,37 +124,42 @@ class UserDB: Database(USERS) {
             }
     }
 
+    /**
+     * This method retrieves a user's data from a user id.
+     */
     public fun retrieveSearchedUser(uid: String, onSuccess: (ArrayList<User>) -> Unit, onFailure: (Boolean) -> Unit){
         retrieveSearchedUsers(arrayListOf(uid), onSuccess, onFailure)
     }
 
     public fun saveReport(uid: String, reportedUid: String, reasonForReport: String){
-
+        TODO("Not implemented yet.")
     }
 
     public fun saveBlock(uid: String,blockedUid: String, reasonForBlock: String){
-
+        TODO("Not implemented yet.")
     }
 
     public fun storeTripPlan(uid: String, tripPlan: TripPlan){
-
+        TODO("Not implemented yet.")
     }
 
     public fun storeFile(uid: String, fileId: String){
-
+        TODO("Not implemented yet.")
     }
 
     public fun storeArticle(uid: String, article: Article){
-
+        TODO("Not implemented yet.")
     }
 
     public fun retrieveInfo(uid: String): ArrayList<String>{
-
-        return arrayListOf()
+        TODO("Not implemented yet.")
     }
 
+    /**
+     * This method listens for changes in a specific user and
+     */
     public fun userListener(uid: String, onSuccess: (User?) -> Unit){
-        dbCollection
+        userListener = dbCollection
             .document(uid)
             .addSnapshotListener { snapshot: DocumentSnapshot?, e: FirebaseFirestoreException? ->
                 if (e != null || snapshot == null) {
@@ -150,11 +172,10 @@ class UserDB: Database(USERS) {
             }
     }
 
-    public fun updateChat(uid: String, message: Message){
-//        dbCollection
-//            .document(uid)
-//            .update(
-//                FieldPath.of("chats", )
-//            )
+    /**
+     * A method to detach the listener created from userListener.
+     */
+    public fun detachListener(uid: String){
+        userListener.remove()
     }
 }

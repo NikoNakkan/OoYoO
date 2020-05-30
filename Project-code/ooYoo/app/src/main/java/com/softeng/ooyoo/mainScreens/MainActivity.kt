@@ -19,6 +19,16 @@ import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.signUpLogIn.*
 import com.softeng.ooyoo.user.User
 import kotlinx.android.synthetic.main.activity_main.*
+
+
+/**
+ * This is the main activity of the app.
+ * On it we are attaching the following fragments as main screens of the activity:
+ * SearchForTravelerFragment
+ * BecomeFragment
+ * ChatFragment
+ * OwnProfileFragment
+ */
 class MainActivity : AppCompatActivity() {
     var myUserId : String = ""
     private var user: User? = null
@@ -83,6 +93,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * This method gets the user detail from the database.
+     */
     private fun getUser(){
         val userDB = UserDB()
 

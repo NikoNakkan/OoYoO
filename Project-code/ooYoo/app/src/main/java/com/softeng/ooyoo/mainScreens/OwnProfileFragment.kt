@@ -28,6 +28,9 @@ const val HOSTINGS = 1
 const val CARPOOLINGS = 2
 
 
+/**
+ * This fragment represents the GUI from which a user can see his profile.
+ */
 class OwnProfileFragment : Fragment(), PassUser {
 
     private lateinit var user: User
@@ -81,10 +84,16 @@ class OwnProfileFragment : Fragment(), PassUser {
         return view
     }
 
+    /**
+     * Set the current user.
+     */
     override fun setUser(user: User){
         this.user = user
     }
 
+    /**
+     * This method deletes the current user's account.
+     */
     private fun deleteAccount(){
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         val uid = user.uid
@@ -119,6 +128,9 @@ class OwnProfileFragment : Fragment(), PassUser {
         builder.create().show()
     }
 
+    /**
+     * This method creates a dialog to pick a travel event.
+     */
     private fun pickCategory(onPick: (Int) -> Unit){
         val builder = AlertDialog.Builder(context)
 
@@ -129,6 +141,9 @@ class OwnProfileFragment : Fragment(), PassUser {
         builder.create().show()
     }
 
+    /**
+     * This method opens a list of the current user's trip plans.
+     */
     private fun editMyTripList(){
         val tripPlansDB = TripPlansDB()
         tripPlansDB.getMyTripList(
@@ -143,6 +158,9 @@ class OwnProfileFragment : Fragment(), PassUser {
             })
     }
 
+    /**
+     * This method opens a list of the current user's hostings.
+     */
     private fun editMyHostingList(){
         val hostingDB = HostingDB()
         hostingDB.getMyHostList(
@@ -157,14 +175,24 @@ class OwnProfileFragment : Fragment(), PassUser {
             })
     }
 
+    /**
+     * This method opens a list of the current user's hostings.
+     * (It is not implemented yet.)
+     */
     private fun editMyCarpoolingList(){
         context?.toast("This feature is not implemented yet.")
+        TODO("Not implemented yet.")
     }
+
 
     private fun editBioActivityClicked(){
         context?.toast("This feature is not implemented yet.")
+        TODO("Not implemented yet.")
     }
 
+    /**
+     * This method opens an activity to see the user's reviews.
+     */
     private fun checkReputation(){
         val intent = Intent(context, MyReputationActivity::class.java)
         intent.putExtra(REPUTATION_USER_EXTRA_NAME, user)

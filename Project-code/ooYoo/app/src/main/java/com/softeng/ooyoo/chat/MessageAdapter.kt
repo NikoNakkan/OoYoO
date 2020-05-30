@@ -16,6 +16,9 @@ import com.softeng.ooyoo.user.User
 const val MESSAGE_RIGHT = 0
 const val MESSAGE_LEFT = 1
 
+/**
+ * An adapter used to better manage the list of messages sent between 2 users.
+ */
 class MessageAdapter(val context: Context, private val messages: ArrayList<Message>, private val uid: String, private val receiver: User) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -50,7 +53,9 @@ class MessageAdapter(val context: Context, private val messages: ArrayList<Messa
     }
 
 
-
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class MessageViewHolder(itemView: View, val viewType: Int) : RecyclerView.ViewHolder(itemView) {
 
         val messageTextView: TextView = itemView.findViewById(R.id.chat_item_textView_bubble)

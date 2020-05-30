@@ -6,6 +6,9 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
+/**
+ * This dialog is used to select the user's gender.
+ */
 class GenderDialog: DialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -21,9 +21,11 @@ import java.util.concurrent.Semaphore
 
 const val BECOME_USER_EXTRA_NAME = "become user extra name"
 
+/**
+ * This activity represents the GUI from which the user adds details (place, dates) about a trip plan.
+ */
 class BecomeTravellerActivity : AppCompatActivity() {
 
-    private val endTravelDate = mutableMapOf<String, Int>()
     private val dates = Dates()
     private val place = Place()
     private val s = Semaphore(2, true)
@@ -87,7 +89,7 @@ class BecomeTravellerActivity : AppCompatActivity() {
                             userDB.uploadTripOnDatabase(uid, id)
 
                             if(user.uid != "_") {
-                                chatList()
+                                openUserList()
                             }
                             else{
                                 finish()
@@ -113,7 +115,10 @@ class BecomeTravellerActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun chatList(){
+    /**
+     * This method opens a list of users with similar trips when the user finishes setting up his.
+     */
+    private fun openUserList(){
         val intent = Intent(this, UsersListActivity::class.java)
 
         s.drainPermits()
@@ -132,6 +137,10 @@ class BecomeTravellerActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * This method is used to find for other users who travel or host in similar dates
+     * as the current user's trip.
+     */
     private fun findTravelersAndHosts(intent: Intent){
         val uid = FirebaseAuth.getInstance().uid
 
@@ -165,6 +174,9 @@ class BecomeTravellerActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * This method show an error message if searching for other users fail.
+     */
     private fun onFailure(noUsers: Boolean){
         queriesFailed = true
 

@@ -1,8 +1,11 @@
-package com.softeng.ooyoo
+package com.softeng.ooyoo.portfolio
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * This class represents an article.
+ */
 @Parcelize
 class Article (
         private val id: String = "",

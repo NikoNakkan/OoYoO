@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.activity_my_trip_plans_list.*
 
 const val TRIPS_LIST_EXTRA_NAME = "trips list extra name"
 
+/**
+ * This activity represents the GUI from which the user can see a list of his trip plans.
+ */
 class MyTripPlansListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

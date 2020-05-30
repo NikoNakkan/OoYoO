@@ -14,6 +14,9 @@ import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.synthetic.main.activity_users_list.*
 
+/**
+ * This activity represents the GUI from which the user can see a list of other users..
+ */
 class UsersListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +45,6 @@ class UsersListActivity : AppCompatActivity() {
         list.sortByDescending {
             matching(it.user.interests, user.interests)
         }
-
 
         usersRecyclerView.layoutManager = LinearLayoutManager(this)
         usersRecyclerView.adapter =

@@ -10,10 +10,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.user.User
 
+/**
+ * An adapter used to better manage the list of the users that the current user has started
+ * chatting with.
+ */
 class ChatListAdapter(
     private val context: Context,
     private val currentUser: User,
@@ -64,7 +67,9 @@ class ChatListAdapter(
     override fun getItemCount(): Int = chats.size
 
 
-
+    /**
+     * A view holder to increase adapter's performance.
+     */
     class ChatViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val chatLayout: LinearLayout = itemView.findViewById(R.id.chatItemLayout)
         val imageView: ImageView = itemView.findViewById(R.id.chatItemProfileImageView)

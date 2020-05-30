@@ -10,6 +10,9 @@ import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * This activity represents the GUI through which the user logs in.
+ */
 class LoginActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
@@ -58,6 +61,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * This method starts the application's main flow when the user logs in.
+     */
     private fun logInToApp() {
         val i = Intent(this, MainActivity::class.java)
         i.putExtra(USER_EXTRA_NAME, auth.currentUser?.uid)
