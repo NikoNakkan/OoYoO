@@ -40,9 +40,13 @@ class ProfileActivity : AppCompatActivity() {
         val travelEvent = intent.getParcelableExtra<TravelEvent>(USER_PROFILE_EVENT_EXTRA_NAME)
 
 
-        if(otherUser.uid == "_" || currentUser.uid == "_" || travelEvent == null) {
+        if(otherUser.uid == "_" || currentUser.uid == "_") {
             toast("There was an error while opening this profile. Please try again.")
             finish()
+        }
+
+        if(travelEvent == null){
+            othersProfileSendRequest.isEnabled = false
         }
 
         if(currentUser.uid == otherUser.uid){
