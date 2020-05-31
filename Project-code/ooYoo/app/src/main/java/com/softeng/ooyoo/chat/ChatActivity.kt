@@ -10,6 +10,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.ChatDB
+import com.softeng.ooyoo.helpers.getTime
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.user.User
 import com.softeng.ooyoo.user.othersProfile.ProfileActivity
@@ -121,24 +122,5 @@ class ChatActivity : AppCompatActivity() {
             }
         }
         return false
-    }
-
-    /**
-     * Gets the time from a server to ensure that the messages' order will not be impacted by the
-     * time differences in the devices.
-     */
-    @Throws(Exception::class)
-    private fun getTime(): Long {
-        val url = "https://time.is/Unix_time_now"
-        val doc: Document = Jsoup.parse(URL(url).openStream(), "UTF-8", url)
-        val tags = arrayOf(
-            "div[id=time_section]",
-            "div[id=clock0_bg]"
-        )
-        var elements: Elements = doc.select(tags[0])
-        for (i in tags.indices) {
-            elements = elements.select(tags[i])
-        }
-        return (elements.text().toString() + "000").toLong()
     }
 }

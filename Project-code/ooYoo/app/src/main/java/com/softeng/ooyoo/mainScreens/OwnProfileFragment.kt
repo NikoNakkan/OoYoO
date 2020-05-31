@@ -18,14 +18,9 @@ import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.HostingDB
 import com.softeng.ooyoo.databases.TripPlansDB
 import com.softeng.ooyoo.databases.UserDB
-import com.softeng.ooyoo.helpers.longToast
-import com.softeng.ooyoo.helpers.toast
+import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.signUpLogIn.LoginActivity
 import com.softeng.ooyoo.user.*
-
-const val TRIP_PLANS = 0
-const val HOSTINGS = 1
-const val CARPOOLINGS = 2
 
 
 /**
@@ -38,7 +33,7 @@ class OwnProfileFragment : Fragment(), PassUser {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_own_profile, container, false)
 
-        val nameTextView = view.findViewById<TextView>(R.id.activity_profile_name)
+        val nameTextView = view.findViewById<TextView>(R.id.activityProfileName)
         val deleteButton = view.findViewById<TextView>(R.id.own_profile_delete_account)
         val tripsHostsButton = view.findViewById<TextView>(R.id.own_profile_edit_trips_and_hosts_button)
         val editInfoButton = view.findViewById<TextView>(R.id.own_profile_edit_info_and_bio)
@@ -60,13 +55,13 @@ class OwnProfileFragment : Fragment(), PassUser {
         tripsHostsButton.setOnClickListener {
             pickCategory { category ->
                 when(category){
-                    TRIP_PLANS -> {
+                    TRIP_PLAN_CAT -> {
                         editMyTripList()
                     }
-                    HOSTINGS -> {
+                    HOSTINGS_CAT -> {
                         editMyHostingList()
                     }
-                    CARPOOLINGS -> {
+                    CARPOOLINGS_CAT -> {
                         editMyCarpoolingList()
                     }
                 }

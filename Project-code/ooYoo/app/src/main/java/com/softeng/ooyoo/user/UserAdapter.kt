@@ -12,13 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.dateMapToString
-import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
-import com.softeng.ooyoo.user.othersProfile.ProfileActivity
-import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
-import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
+import com.softeng.ooyoo.user.othersProfile.*
 
 /**
  * An adapter used to better manage the list of users.
@@ -59,8 +56,11 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
 
         holder.userListLayout.setOnClickListener {
             val intent = Intent(context, ProfileActivity::class.java)
+
+            intent.putExtra(USER_PROFILE_EVENT_EXTRA_NAME, list[position].travelEvent)
             intent.putExtra(USER_PROFILE_CURRENT_EXTRA_NAME, user)
             intent.putExtra(USER_PROFILE_OTHER_EXTRA_NAME, list[position].user)
+
             context.startActivity(intent)
         }
     }
@@ -79,7 +79,6 @@ class UserAdapter(private val context: Context, private val list: ArrayList<User
         val userFromValuesTextView: TextView = itemView.findViewById(R.id.userFromValues)
         val userToTextView: TextView = itemView.findViewById(R.id.userTo)
         val userToValuesTextView: TextView = itemView.findViewById(R.id.userToValues)
-
     }
 
 }

@@ -34,7 +34,7 @@
 
         tools:srcCompat="@tools:sample/avatars" />
     <TextView
-        android:id="@+id/activity_profile_name"
+        android:id="@+id/activityProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,7 +68,7 @@ android:id="@+id/frame_about_user"
     >
 
     <TextView
-        android:id="@+id/others_profile_reputation_button"
+        android:id="@+id/othersProfileReputationButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/buttontemplate"
@@ -86,7 +86,7 @@ android:paddingTop="4dp"
     >
 
     <TextView
-        android:id="@+id/others_profile_send_message_button"
+        android:id="@+id/othersProfileSendMessageButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/buttontemplate"
@@ -103,7 +103,7 @@ android:paddingTop="4dp"
         >
 
         <TextView
-            android:id="@+id/others_profile_see_info_and_bio_button"
+            android:id="@+id/othersProfileSeeInfoAndBioButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/buttontemplate"
@@ -120,7 +120,7 @@ android:paddingTop="4dp"
         >
 
         <TextView
-            android:id="@+id/others_profile_send_request"
+            android:id="@+id/othersProfileSendRequest"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/buttontemplate"
@@ -139,7 +139,7 @@ android:paddingBottom="20dp"
     >
 
     <TextView
-        android:id="@+id/others_profile_block_button"
+        android:id="@+id/othersProfileBlockButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/buttontemplate"

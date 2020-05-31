@@ -9,6 +9,10 @@ import com.softeng.ooyoo.travel.TravelEvent
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.user.User
 import com.ybs.countrypicker.CountryPicker
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import java.net.URL
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
@@ -19,6 +23,9 @@ import kotlin.math.abs
  * This is done for convenience and re-usability.
  */
 
+const val TRIP_PLAN_CAT = 0
+const val HOSTINGS_CAT = 1
+const val CARPOOLINGS_CAT = 2
 const val THREE_DAYS_IN_MILLIS = 259200000
 
 /**
@@ -143,4 +150,23 @@ fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): Array
     }
 
     return list
+}
+
+/**
+ * Gets the time from a server to ensure that the messages' order will not be impacted by the
+ * time differences in the devices.
+ */
+@Throws(Exception::class)
+fun getTime(): Long {
+    val url = "https://time.is/Unix_time_now"
+    val doc: Document = Jsoup.parse(URL(url).openStream(), "UTF-8", url)
+    val tags = arrayOf(
+        "div[id=time_section]",
+        "div[id=clock0_bg]"
+    )
+    var elements: Elements = doc.select(tags[0])
+    for (i in tags.indices) {
+        elements = elements.select(tags[i])
+    }
+    return (elements.text().toString() + "000").toLong()
 }
