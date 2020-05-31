@@ -176,13 +176,11 @@ class OwnProfileFragment : Fragment(), PassUser {
      */
     private fun editMyCarpoolingList(){
         context?.toast("This feature is not implemented yet.")
-        TODO("Not implemented yet.")
     }
 
 
     private fun editBioActivityClicked(){
         context?.toast("This feature is not implemented yet.")
-        TODO("Not implemented yet.")
     }
 
     /**

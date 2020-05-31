@@ -34,10 +34,13 @@ class MyReputationActivity : AppCompatActivity() {
 
         reputationNameTextView.text = user.fullName
 
-        val ratings = user.userRating
 
-        reputationRating.text = (ratings.map { it.stars }.reduce { acc, rating -> acc + rating } / ratings.size).toString()
-        reputationRating.append("/5.0")
+        val ratings = user.userRating
+        if(ratings.size > 0) {
+            reputationRating.text = (ratings.map { it.stars }
+                .reduce { acc, rating -> acc + rating } / ratings.size).toString()
+            reputationRating.append("/5.0")
+        }
 
         reputationReviewRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MyReputationActivity)
