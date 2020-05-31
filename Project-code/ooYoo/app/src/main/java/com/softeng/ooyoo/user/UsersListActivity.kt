@@ -29,7 +29,7 @@ class UsersListActivity : AppCompatActivity() {
         val hosts = intent.getParcelableArrayListExtra<User>(HOSTS_EXTRA_NAME)
         val user = intent.getParcelableExtra<User>(USER_EXTRA_NAME)
 
-        if(travelers == null || tripPlans == null || hosts == null || hostings == null || user == null || user.username == ""){
+        if((travelers == null && hosts == null) || (tripPlans == null && hostings == null) || user == null || user.username == ""){
             toast("Unfortunately an error occurred, please try again.")
             finish()
             return

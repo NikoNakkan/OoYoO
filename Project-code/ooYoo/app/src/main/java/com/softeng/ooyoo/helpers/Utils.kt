@@ -122,8 +122,12 @@ fun dateMapToMillis(date: MutableMap<String, Int>): Long{
  * This gets 2 array lists, 1 of users and 1 of travelEvents,
  * and returns 1 array list of UserAndTravelEvent (merging the objects of the other 2)
  */
-fun <T> mergeLists(users: ArrayList<User>, travelEventList: ArrayList<T>): ArrayList<UserAndTravelEvent>{
+fun <T> mergeLists(users: ArrayList<User>?, travelEventList: ArrayList<T>?): ArrayList<UserAndTravelEvent>{
     val list = arrayListOf<UserAndTravelEvent>()
+
+    if(users == null || travelEventList == null){
+        return list
+    }
 
     val userMap = mutableMapOf<String, User>()
     val tripMap = mutableMapOf<String, T>()

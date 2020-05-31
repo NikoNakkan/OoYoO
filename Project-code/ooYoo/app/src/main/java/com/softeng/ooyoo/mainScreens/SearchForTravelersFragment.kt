@@ -3,6 +3,7 @@ package com.softeng.ooyoo.mainScreens
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,8 @@ class SearchForTravelersFragment : Fragment(), PassUser {
     private val place = Place()
     private var user = User()
     private val s = Semaphore(2, true)
-    private var queriesFailed = false
+    private var queriesFailed = 0
+    private var noUsers = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -87,16 +89,27 @@ class SearchForTravelersFragment : Fragment(), PassUser {
 
                 s.drainPermits()
 
+                val currentActivity = activity
+
                 AsyncTask.execute(kotlinx.coroutines.Runnable {
                     (activity as MainActivity).disableBottomNavigationView()
                     findTravelersAndHosts(intent)
 
+                    Log.d(SearchForTravelersFragment::class.java.simpleName, queriesFailed.toString())
+
                     s.acquire(2)
-                    if (!queriesFailed) {
+                    if (queriesFailed < 2) {
                         startActivity(intent)
+                        queriesFailed = 0
                     }
                     else{
-                        queriesFailed = false
+                        queriesFailed = 0
+                        if (noUsers){
+                            currentActivity?.longToast("Unfortunately there are no users for destination.")
+                        }
+                        else {
+                            currentActivity?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+                        }
                     }
                     (activity as MainActivity).enableBottomNavigationView()
                 })
@@ -160,15 +173,8 @@ class SearchForTravelersFragment : Fragment(), PassUser {
      * This method show an error message if searching for other users fail.
      */
     private fun onFailure(noUsers: Boolean){
-        queriesFailed = true
-
-        if (noUsers){
-            activity?.longToast("Unfortunately there are no users for destination ")
-        }
-        else {
-            activity?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
-        }
-
+        queriesFailed++
+        this.noUsers = noUsers
         s.release()
     }
 
