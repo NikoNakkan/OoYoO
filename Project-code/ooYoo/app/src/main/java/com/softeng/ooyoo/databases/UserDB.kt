@@ -158,7 +158,7 @@ class UserDB: Database(USERS) {
     /**
      * This method listens for changes in a specific user and
      */
-    public fun userListener(uid: String, onSuccess: (User?) -> Unit){
+    public fun addUserListener(uid: String, onSuccess: (User?) -> Unit){
         userListener = dbCollection
             .document(uid)
             .addSnapshotListener { snapshot: DocumentSnapshot?, e: FirebaseFirestoreException? ->

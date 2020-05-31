@@ -20,6 +20,7 @@ import com.softeng.ooyoo.user.User
 class BecomeFragment : Fragment(),PassUser {
 
     private lateinit var user: User
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?    ): View? {
         val view = inflater.inflate(R.layout.fragment_become, container, false)
 

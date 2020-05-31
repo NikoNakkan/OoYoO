@@ -3,17 +3,10 @@ package com.softeng.ooyoo.mainScreens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.*
 import com.softeng.ooyoo.R
-import com.softeng.ooyoo.chat.Chat
-import com.softeng.ooyoo.chat.Message
-import com.softeng.ooyoo.databases.CHATS
-import com.softeng.ooyoo.databases.ChatDB
-import com.softeng.ooyoo.databases.USERS
 import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.signUpLogIn.*
@@ -30,11 +23,11 @@ import kotlinx.android.synthetic.main.activity_main.*
  * OwnProfileFragment
  */
 class MainActivity : AppCompatActivity() {
-    var myUserId : String = ""
     private var user: User? = null
     private var uid: String = ""
     private var selectedFragment: Fragment? = null
     private var bottomNavigationIsEnabled = true
+    private val userDB = UserDB()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         if(intent != null){
             uid = intent.getStringExtra(USER_EXTRA_NAME) ?: ""
-            myUserId = intent.getStringExtra(USER_EXTRA_NAME) ?: ""
         }
 
 
@@ -93,12 +85,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (user != null) {
+            userDB.detachListener(user!!.uid)
+        }
+    }
+
     /**
      * This method gets the user detail from the database.
      */
     private fun getUser(){
-        val userDB = UserDB()
-
         userDB.retrieveSearchedUser(
             uid,
             onSuccess = { users ->
@@ -114,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
-        userDB.userListener(uid){ newUser ->
+        userDB.addUserListener(uid){ newUser ->
             if(newUser != null){
                 user = newUser
             }

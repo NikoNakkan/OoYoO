@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
         googleSignInButton.setOnClickListener {
             toast("This feature is not ready yet.")
         }

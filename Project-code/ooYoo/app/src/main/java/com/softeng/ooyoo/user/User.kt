@@ -50,4 +50,16 @@ open class User(
         TODO("Not implemented yet.")
     }
 
+    public fun makeTripPlanChanges(tripPlan: TripPlan){
+        TODO("Not implemented yet.")
+    }
+
+    public fun makeHostingChanges(hosting: Hosting){
+        TODO("Not implemented yet.")
+    }
+
+    public fun makeCarPoolingChanges(carpooling: Carpooling){
+        TODO("Not implemented yet.")
+    }
+
 }

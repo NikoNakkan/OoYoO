@@ -17,10 +17,6 @@ import com.softeng.ooyoo.user.othersProfile.ProfileActivity
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_CURRENT_EXTRA_NAME
 import com.softeng.ooyoo.user.othersProfile.USER_PROFILE_OTHER_EXTRA_NAME
 import kotlinx.android.synthetic.main.activity_chat.*
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
-import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -68,7 +64,7 @@ class ChatActivity : AppCompatActivity() {
         chatActivityRecyclerView.adapter = messageAdapter
         chatActivityRecyclerView.scrollToPosition(messageAdapter.itemCount-1)
 
-        chatDB.messageListener(uid){ newChat ->
+        chatDB.addMessageListener(uid){ newChat ->
             val messages = newChat.messages
 
             for (message in messages){

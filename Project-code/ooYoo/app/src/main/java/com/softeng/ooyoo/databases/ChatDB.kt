@@ -50,7 +50,7 @@ class ChatDB: Database(CHATS) {
     /**
      * A listener for new messages in the database.
      */
-    public fun messageListener(uid: String, onSuccess: (Chat) -> Unit){
+    public fun addMessageListener(uid: String, onSuccess: (Chat) -> Unit){
         chatListener = dbCollection
             .whereArrayContains("uids", uid)
             .addSnapshotListener { querySnapshot, e ->
@@ -92,7 +92,7 @@ class ChatDB: Database(CHATS) {
      * A method to start a new chat between 2 users if it doesn't exist
      * or to access it if it already exists.
      */
-    public fun startOrAccessChat(uid0: String, uid1: String, onCreateChat: (Chat) -> Unit, onAlreadyExists: (Chat) -> Unit, onFailure: () -> Unit){
+    public fun retrieveChatData(uid0: String, uid1: String, onCreateChat: (Chat) -> Unit, onAlreadyExists: (Chat) -> Unit, onFailure: () -> Unit){
         dbCollection
             .whereArrayContains("uids", uid0)
             .get()
@@ -129,4 +129,5 @@ class ChatDB: Database(CHATS) {
     public fun detachListener(){
         chatListener.remove()
     }
+
 }

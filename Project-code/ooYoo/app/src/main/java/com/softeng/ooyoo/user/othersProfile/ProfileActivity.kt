@@ -75,7 +75,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         othersProfileSendMessageButton.setOnClickListener {
-            chatDB.startOrAccessChat(currentUser.uid, otherUser.uid,
+            chatDB.retrieveChatData(currentUser.uid, otherUser.uid,
                 onCreateChat = ::openChat,
                 onAlreadyExists = ::openChat,
                 onFailure = {
@@ -117,16 +117,14 @@ class ProfileActivity : AppCompatActivity() {
 
                 val message = Message(currentUser.uid, otherUser.uid, text, Timestamp(date))
 
-                chatDB.startOrAccessChat(
+                chatDB.retrieveChatData(
                     currentUser.uid ,
                     otherUser.uid,
                     onAlreadyExists = {chat ->
                         sendRequest(chat.getChatId(), message)
-//                        chatDB.sendMessage(chat.getChatId(), message)
                     },
                     onCreateChat = {chat ->
                         sendRequest(chat.getChatId(), message)
-                        chatDB.sendMessage(chat.getChatId(), message)
                     },
                     onFailure = {
                         toast("There was a problem sending this request. Please try again.")

@@ -78,13 +78,13 @@ class ChatFragment : Fragment(), PassUser {
      */
     private fun listenForMessages(){
 
-        chatDB.messageListener(user.uid){ newChat ->
+        chatDB.addMessageListener(user.uid){ newChat ->
 
             if(!chats.containsChat(newChat)){
                 chats.add(newChat)
 
                 val otherUid = newChat.getTheOtherUid(user.uid)
-                    ?: return@messageListener
+                    ?: return@addMessageListener
 
                 userDB.retrieveSearchedUser(
                     otherUid,
