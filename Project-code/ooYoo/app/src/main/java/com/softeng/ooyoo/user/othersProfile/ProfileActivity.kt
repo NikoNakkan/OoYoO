@@ -96,7 +96,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         othersProfileSendRequest.setOnClickListener{
-            AsyncTask.execute(Runnable {
+            AsyncTask.execute {
                 val date = Date(getTime())
 
                 val country = travelEvent!!.place.name
@@ -129,7 +129,7 @@ class ProfileActivity : AppCompatActivity() {
                     onFailure = {
                         toast("There was a problem sending this request. Please try again.")
                     })
-            })
+            }
         }
 
         othersProfileBlockButton.setOnClickListener {

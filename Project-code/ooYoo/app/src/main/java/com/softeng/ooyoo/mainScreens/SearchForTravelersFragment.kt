@@ -3,6 +3,8 @@ package com.softeng.ooyoo.mainScreens
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -105,10 +107,10 @@ class SearchForTravelersFragment : Fragment(), PassUser {
                     else{
                         queriesFailed = 0
                         if (noUsers){
-                            currentActivity?.longToast("Unfortunately there are no users for destination.")
+                            errorMessage("Unfortunately there are no users for destination.")
                         }
                         else {
-                            currentActivity?.longToast("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+                            errorMessage("An error occurred while retrieving your data. Please check your Internet connection and try again.")
                         }
                     }
                     (activity as MainActivity).enableBottomNavigationView()
@@ -178,5 +180,12 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         s.release()
     }
 
+    private fun errorMessage(message: String){
+        val mainHandler = Handler(Looper.getMainLooper())
+        val runnable = Runnable {
+            requireActivity().longToast(message)
+        }
+        mainHandler.post(runnable)
+    }
 
 }
