@@ -2,46 +2,38 @@ package com.softeng.ooyoo.host
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.*
 import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.travel.Dates
-import kotlinx.android.synthetic.main.activity_become_host.*
+import kotlinx.android.synthetic.main.activity_host_form.*
 
 /**
  * This activity represents the GUI from which the user adds details (place, dates) about a hosting.
  */
-class BecomeHostActivity : AppCompatActivity() {
+class HostFormActivity : AppCompatActivity() {
     private val dates = Dates()
     private val place = Place()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_become_host)
+        setContentView(R.layout.activity_host_form)
 
         val uid = FirebaseAuth.getInstance().uid
 
         becomeHostWhere.setOnClickListener {
-            addLocation(supportFragmentManager) { country ->
-                becomeHostWhereTextView.text = country
-                place.name = country
-            }
+            addLocation(becomeHostWhereTextView)
         }
 
         becomeHostWhenFrom.setOnClickListener {
-            addDate(this) { date ->
-                becomeHostWhenFromTextView.text = dateMapToString(date)
-                dates.startDate = date
-            }
+            addDate(true, becomeHostWhenFromTextView)
         }
 
         becomeHostWhenTo.setOnClickListener {
-            addDate(this){ date ->
-                becomeHostWhenToTextView.text = dateMapToString(date)
-                dates.endDate = date
-            }
+            addDate(false, becomeHostWhenToTextView)
         }
 
         addHomeInfo.setOnClickListener{
@@ -64,6 +56,31 @@ class BecomeHostActivity : AppCompatActivity() {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
                 finish()
+            }
+        }
+    }
+
+    /**
+     * This method is used to select a location.
+     */
+    private fun addLocation(countryTextView: TextView){
+        addLocation(this.supportFragmentManager){ country ->
+            countryTextView.text = country
+            place.name = country
+        }
+    }
+
+    /**
+     * This method is used to select a date.
+     */
+    private fun addDate(startEnd: Boolean, dateTextView: TextView){
+        addDate(this) { date ->
+            dateTextView.text = dateMapToString(date)
+            if(startEnd) {
+                dates.startDate = date
+            }
+            else{
+                dates.endDate = date
             }
         }
     }

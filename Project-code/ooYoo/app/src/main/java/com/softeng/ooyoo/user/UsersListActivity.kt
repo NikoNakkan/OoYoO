@@ -13,6 +13,7 @@ import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.UserAndTravelEvent
 import com.softeng.ooyoo.trip.TripPlan
 import kotlinx.android.synthetic.main.activity_users_list.*
+import kotlinx.android.synthetic.main.fragment_become.*
 
 /**
  * This activity represents the GUI from which the user can see a list of other users..
@@ -35,8 +36,21 @@ class UsersListActivity : AppCompatActivity() {
             return
         }
 
-        val tripList = mergeLists<TripPlan>(travelers, tripPlans)
-        val hostList = mergeLists<Hosting>(hosts, hostings)
+        showUsers(travelers, tripPlans, hosts, hostings, user)
+    }
+
+    /**
+     * This method is used to show the users in a list.
+     */
+    private fun showUsers(
+        travelers: ArrayList<User>?,
+        tripPlans: ArrayList<TripPlan>?,
+        hosts: ArrayList<User>?,
+        hostings: ArrayList<Hosting>?,
+        user: User){
+
+        val tripList = mergeLists(travelers, tripPlans)
+        val hostList = mergeLists(hosts, hostings)
 
         val list = arrayListOf<UserAndTravelEvent>()
         list.addAll(tripList)
@@ -47,8 +61,7 @@ class UsersListActivity : AppCompatActivity() {
         }
 
         usersRecyclerView.layoutManager = LinearLayoutManager(this)
-        usersRecyclerView.adapter =
-            UserAdapter(this, list, user)
-
+        usersRecyclerView.setHasFixedSize(true)
+        usersRecyclerView.adapter = UserAdapter(this, list, user)
     }
 }

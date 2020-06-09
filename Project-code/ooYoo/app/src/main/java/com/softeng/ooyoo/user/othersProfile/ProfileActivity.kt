@@ -62,84 +62,109 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-        Glide.with(this).load("").placeholder(R.drawable.logo).circleCrop().into(otherUserProfileImageView)
-
-        activityProfileName.text = otherUser.username
+        showProfile(category)
 
 
         othersProfileReputationButton.setOnClickListener {
-            val intent = Intent(this, OthersReputationActivity::class.java)
-            intent.putExtra(USER_REPUTATION_CURRENT_EXTRA_NAME, currentUser)
-            intent.putExtra(USER_REPUTATION_OTHER_EXTRA_NAME, otherUser)
-            startActivity(intent)
+            chooseToRate()
         }
 
         othersProfileSendMessageButton.setOnClickListener {
-            chatDB.retrieveChatData(currentUser.uid, otherUser.uid,
-                onCreateChat = ::openChat,
-                onAlreadyExists = ::openChat,
-                onFailure = {
-                    toast("An error occurred while opening this chat")
-                }
-            )
+            startChat()
         }
 
         othersProfileSeeInfoAndBioButton.setOnClickListener {
-            toast("This feature is not implemented yet")
-        }
-
-
-        when(category){
-            TRIP_PLAN_CAT -> othersProfileSendRequest.text = "Send Travel Request"
-            HOSTINGS_CAT -> othersProfileSendRequest.text = "Send Hosting Request"
-            CARPOOLINGS_CAT -> othersProfileSendRequest.text = "Send Carpooling Request"
+            selectInfo()
         }
 
         othersProfileSendRequest.setOnClickListener{
-            AsyncTask.execute {
-                val date = Date(getTime())
-
-                val country = travelEvent!!.place.name
-                val startDate = dateMapToString(travelEvent.dates.startDate)
-                val endDate = dateMapToString(travelEvent.dates.endDate)
-
-                val text = when(travelEvent){
-                    is Hosting -> {
-                        "Hey, I'll be at $country from $startDate to $endDate!\nCould you host me?"
-                    }
-                    is Carpooling -> {
-                        "Hey, I'll be going to $country at $startDate!\nCould you drive me there?"
-                    }
-                    else -> {
-                        "Hey, I'll be going to $country from $startDate to $endDate!\nDo you want to meet there?"
-                    }
-                }
-
-                val message = Message(currentUser.uid, otherUser.uid, text, Timestamp(date))
-
-                chatDB.retrieveChatData(
-                    currentUser.uid ,
-                    otherUser.uid,
-                    onAlreadyExists = {chat ->
-                        sendRequest(chat.getChatId(), message)
-                    },
-                    onCreateChat = {chat ->
-                        sendRequest(chat.getChatId(), message)
-                    },
-                    onFailure = {
-                        toast("There was a problem sending this request. Please try again.")
-                    })
-            }
+            sendRequestMessage(travelEvent!!)
         }
 
         othersProfileBlockButton.setOnClickListener {
-            toast("This feature is not implemented yet.")
+            chooseToBlockOrReport()
         }
 
         profileActivityBackButton.setOnClickListener {
             onBackPressed()
         }
 
+    }
+
+    /**
+     * This method shows the user's information in the profile screen.
+     */
+    private fun showProfile(category: Int){
+        activityProfileName.text = otherUser.username
+        Glide.with(this).load("").placeholder(R.drawable.logo).circleCrop().into(otherUserProfileImageView)
+        when(category){
+            TRIP_PLAN_CAT -> othersProfileSendRequest.text = "Send Travel Request"
+            HOSTINGS_CAT -> othersProfileSendRequest.text = "Send Hosting Request"
+            CARPOOLINGS_CAT -> othersProfileSendRequest.text = "Send Carpooling Request"
+        }
+    }
+
+    /**
+     * This method is used to start the rating process.
+     */
+    private fun chooseToRate(){
+        val intent = Intent(this, OthersReputationActivity::class.java)
+        intent.putExtra(USER_REPUTATION_CURRENT_EXTRA_NAME, currentUser)
+        intent.putExtra(USER_REPUTATION_OTHER_EXTRA_NAME, otherUser)
+        startActivity(intent)
+    }
+
+    /**
+     * This method sends a request via chat to a user for a TripPlan, a Hosting or a Carpooling experience.
+     */
+    private fun sendRequestMessage(travelEvent: TravelEvent){
+        AsyncTask.execute {
+            val date = Date(getTime())
+
+            val country = travelEvent.place.name
+            val startDate = dateMapToString(travelEvent.dates.startDate)
+            val endDate = dateMapToString(travelEvent.dates.endDate)
+
+            val text = when(travelEvent){
+                is Hosting -> {
+                    "Hey, I'll be at $country from $startDate to $endDate!\nCould you host me?"
+                }
+                is Carpooling -> {
+                    "Hey, I'll be going to $country at $startDate!\nCould you drive me there?"
+                }
+                else -> {
+                    "Hey, I'll be going to $country from $startDate to $endDate!\nDo you want to meet there?"
+                }
+            }
+
+            val message = Message(currentUser.uid, otherUser.uid, text, Timestamp(date))
+
+            chatDB.retrieveChatData(
+                currentUser.uid ,
+                otherUser.uid,
+                onAlreadyExists = {chat ->
+                    sendRequest(chat.getChatId(), message)
+                },
+                onCreateChat = {chat ->
+                    sendRequest(chat.getChatId(), message)
+                },
+                onFailure = {
+                    toast("There was a problem sending this request. Please try again.")
+                })
+        }
+    }
+
+    /**
+     * This method is used to start a chat between 2 users.
+     */
+    private fun startChat(){
+        chatDB.retrieveChatData(currentUser.uid, otherUser.uid,
+            onCreateChat = ::openChat,
+            onAlreadyExists = ::openChat,
+            onFailure = {
+                toast("An error occurred while opening this chat")
+            }
+        )
     }
 
     /**
@@ -167,6 +192,20 @@ class ProfileActivity : AppCompatActivity() {
         chatDB.sendMessage(chatId, message)
         toast("Your request was sent successfully!")
         finish()
+    }
+
+    /**
+     * This is a method to initiate the blocking/reporting process.
+     */
+    private fun chooseToBlockOrReport(){
+        toast("This feature is not implemented yet.")
+    }
+
+    /**
+     * This is a method to see the user's information.
+     */
+    private fun selectInfo(){
+        toast("This feature is not implemented yet")
     }
 }
 

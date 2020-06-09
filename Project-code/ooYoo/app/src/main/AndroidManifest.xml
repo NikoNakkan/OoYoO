@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".host.BecomeHostActivity" />
+        <activity android:name=".host.HostFormActivity" />
         <activity android:name=".host.AddHomeInfoActivity" />
         <activity android:name=".user.othersProfile.OthersReputationActivity" />
         <activity android:name=".user.othersProfile.MakeAReviewActivity" />

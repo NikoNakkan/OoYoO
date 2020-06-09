@@ -56,16 +56,22 @@ class ChatListAdapter(
         }
 
         holder.chatLayout.setOnClickListener {
-            val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra(CHAT_SENDER_EXTRA_NAME, currentUser)
-            intent.putExtra(USER_CHAT_EXTRA_NAME, userMap[receiverId])
-            intent.putExtra(CHAT_EXTRA_NAME, chats[position])
-            context.startActivity(intent)
+            displayChatRoom(receiverId, position)
         }
     }
 
     override fun getItemCount(): Int = chats.size
 
+    /**
+     * This method is used to open a specific chat.
+     */
+    private fun displayChatRoom(receiverId: String, position: Int){
+        val intent = Intent(context, ChatActivity::class.java)
+        intent.putExtra(CHAT_SENDER_EXTRA_NAME, currentUser)
+        intent.putExtra(USER_CHAT_EXTRA_NAME, userMap[receiverId])
+        intent.putExtra(CHAT_EXTRA_NAME, chats[position])
+        context.startActivity(intent)
+    }
 
     /**
      * A view holder to increase adapter's performance.

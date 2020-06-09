@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.user.UsersListActivity
@@ -16,7 +17,7 @@ import com.softeng.ooyoo.place.Place
 import com.softeng.ooyoo.signUpLogIn.USER_EXTRA_NAME
 import com.softeng.ooyoo.travel.Dates
 import com.softeng.ooyoo.user.User
-import kotlinx.android.synthetic.main.activity_become_traveller.*
+import kotlinx.android.synthetic.main.activity_traveler_form.*
 import java.util.concurrent.Semaphore
 
 const val BECOME_USER_EXTRA_NAME = "become user extra name"
@@ -34,30 +35,21 @@ class BecomeTravellerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_become_traveller)
+        setContentView(R.layout.activity_traveler_form)
 
         val uid = FirebaseAuth.getInstance().uid
         user = intent.getParcelableExtra(BECOME_USER_EXTRA_NAME) ?: User(uid = "_")
 
         becomeTravellerWhere.setOnClickListener {
-            addLocation(supportFragmentManager) { country ->
-                becomeTravellerWhereTextView.text = country
-                place.name = country
-            }
+            addLocation(becomeTravellerWhereTextView)
         }
 
         becomeTravellerWhenFrom.setOnClickListener {
-            addDate(this) { date ->
-                becomeTravellerWhenFromTextView.text = dateMapToString(date)
-                dates.startDate = date
-            }
+            addDate(true, becomeTravellerWhenFromTextView)
         }
 
         becomeTravellerWhenTo.setOnClickListener {
-            addDate(this){ date ->
-                becomeTravellerWhenToTextView.text = dateMapToString(date)
-                dates.endDate = date
-            }
+            addDate(false, becomeTravellerWhenToTextView)
         }
 
 
@@ -81,21 +73,7 @@ class BecomeTravellerActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Are you sure you want to register this trip?")
                     .setPositiveButton("Yes!") { _: DialogInterface, _: Int ->
-
-                        val tripPlansDB = TripPlansDB()
-
-                        tripPlansDB.tripRegistration(this, trip) { id ->
-                            val userDB = UserDB()
-                            userDB.uploadTripOnDatabase(uid, id)
-
-                            if(user.uid != "_") {
-                                openUserList()
-                            }
-                            else{
-                                finish()
-                            }
-                        }
-
+                        travelerRegistration(uid, trip)
                     }
                     .setNegativeButton("No") { _: DialogInterface, _: Int ->
                         declineRegistration()
@@ -111,6 +89,53 @@ class BecomeTravellerActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * This method is used to select a location.
+     */
+    private fun addLocation(countryTextView: TextView){
+        addLocation(this.supportFragmentManager){ country ->
+            countryTextView.text = country
+            place.name = country
+        }
+    }
+
+    /**
+     * This method is used to select a date.
+     */
+    private fun addDate(startEnd: Boolean, dateTextView: TextView){
+        addDate(this) { date ->
+            dateTextView.text = dateMapToString(date)
+            if(startEnd) {
+                dates.startDate = date
+            }
+            else{
+                dates.endDate = date
+            }
+        }
+    }
+
+    /**
+     * This is method is used to register a TripPlan
+     */
+    private fun travelerRegistration(uid: String, trip: TripPlan){
+        val tripPlansDB = TripPlansDB()
+
+        tripPlansDB.tripRegistration(this, trip) { id ->
+            val userDB = UserDB()
+            userDB.uploadTripOnDatabase(uid, id)
+
+            if(user.uid != "_") {
+                openUserList()
+            }
+            else{
+                finish()
+            }
+        }
+    }
+
+    /**
+     * This method is used to decline a registration.
+     */
     private fun declineRegistration(){
         finish()
     }

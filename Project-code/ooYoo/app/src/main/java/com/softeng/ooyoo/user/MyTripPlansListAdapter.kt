@@ -37,7 +37,7 @@ class MyTripPlansListAdapter(private val context: Context, private var tripPlans
         }
 
         holder.myTripListLayout.setOnClickListener {
-            context.toast("This feature is not implemented yet.")
+            listItemClick()
         }
     }
 
@@ -73,6 +73,13 @@ class MyTripPlansListAdapter(private val context: Context, private var tripPlans
         list1.addAll(list2)
 
         return list1
+    }
+
+    /**
+     * This method takes the user to an activity from which he can edit his TripPlan.
+     */
+    private fun listItemClick(){
+        context.toast("This feature is not implemented yet.")
     }
 
     /**

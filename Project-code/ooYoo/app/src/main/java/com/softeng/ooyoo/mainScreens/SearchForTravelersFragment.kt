@@ -56,24 +56,15 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         }
 
         searchWhere.setOnClickListener {
-            addLocation(requireActivity().supportFragmentManager){ country ->
-                searchWhereTextView.text = country
-                place.name = country
-            }
+            addLocation(searchWhereTextView)
         }
 
         searchWhenFrom.setOnClickListener {
-            addDate(requireContext()) { date ->
-                searchWhenFromTextView.text = dateMapToString(date)
-                dates.startDate = date
-            }
+            addDate(true, searchWhenFromTextView)
         }
 
         searchWhenTo.setOnClickListener {
-            addDate(requireContext()) { date ->
-                searchWhenToTextView.text = dateMapToString(date)
-                dates.endDate = date
-            }
+            addDate(false, searchWhenToTextView)
         }
 
         searchTravelerButton.setOnClickListener {
@@ -87,35 +78,7 @@ class SearchForTravelersFragment : Fragment(), PassUser {
                 context?.toast("The date you selected has already passed. Please select a future date.")
             }
             else {
-                val intent = Intent(context, UsersListActivity::class.java)
-
-                s.drainPermits()
-
-                val currentActivity = activity
-
-                AsyncTask.execute(kotlinx.coroutines.Runnable {
-                    (activity as MainActivity).disableBottomNavigationView()
-                    findTravelersAndHosts(intent)
-
-                    Log.d(SearchForTravelersFragment::class.java.simpleName, queriesFailed.toString())
-
-                    s.acquire(2)
-                    if (queriesFailed < 2) {
-                        startActivity(intent)
-                        queriesFailed = 0
-                    }
-                    else{
-                        queriesFailed = 0
-                        if (noUsers){
-                            errorMessage("Unfortunately there are no users for destination.")
-                        }
-                        else {
-                            errorMessage("An error occurred while retrieving your data. Please check your Internet connection and try again.")
-                        }
-                    }
-                    (activity as MainActivity).enableBottomNavigationView()
-                })
-
+                searchForUsers()
             }
 
         }
@@ -125,6 +88,63 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         }
 
         return view
+    }
+
+    /**
+     * This method is used to select a location.
+     */
+    private fun addLocation(countryTextView: TextView){
+        addLocation(requireActivity().supportFragmentManager){ country ->
+            countryTextView.text = country
+            place.name = country
+        }
+    }
+
+    /**
+     * This method is used to select a date.
+     */
+    private fun addDate(startEnd: Boolean, dateTextView: TextView){
+        addDate(requireContext()) { date ->
+            dateTextView.text = dateMapToString(date)
+            if(startEnd) {
+                dates.startDate = date
+            }
+            else{
+                dates.endDate = date
+            }
+        }
+    }
+
+    /**
+     * This method is used to search for users to travel with or to host the current user.
+     */
+    private fun searchForUsers(){
+        val intent = Intent(context, UsersListActivity::class.java)
+
+        s.drainPermits()
+
+        AsyncTask.execute(kotlinx.coroutines.Runnable {
+            (activity as MainActivity).disableBottomNavigationView()
+            findTravelersAndHosts(intent)
+
+            Log.d(SearchForTravelersFragment::class.java.simpleName, queriesFailed.toString())
+
+            s.acquire(2)
+            if (queriesFailed < 2) {
+                startActivity(intent)
+                queriesFailed = 0
+            }
+            else{
+                queriesFailed = 0
+                if (noUsers){
+                    errorMessage("Unfortunately there are no users for destination.")
+                }
+                else {
+                    errorMessage("An error occurred while retrieving your data. Please check your Internet connection and try again.")
+                }
+            }
+            (activity as MainActivity).enableBottomNavigationView()
+        })
     }
 
     /**
@@ -180,6 +200,9 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         s.release()
     }
 
+    /**
+     * This method shows an error toast in the main thread.
+     */
     private fun errorMessage(message: String){
         val mainHandler = Handler(Looper.getMainLooper())
         val runnable = Runnable {
@@ -187,5 +210,4 @@ class SearchForTravelersFragment : Fragment(), PassUser {
         }
         mainHandler.post(runnable)
     }
-
 }

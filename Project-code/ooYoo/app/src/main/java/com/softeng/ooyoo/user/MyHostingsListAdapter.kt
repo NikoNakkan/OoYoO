@@ -36,7 +36,7 @@ class MyHostingsListAdapter(private val context: Context, private var hostings: 
         }
 
         holder.myHostListLayout.setOnClickListener {
-            context.toast("This feature is not implemented yet.")
+            listItemClick()
         }
     }
 
@@ -72,6 +72,13 @@ class MyHostingsListAdapter(private val context: Context, private var hostings: 
         list1.addAll(list2)
 
         return list1
+    }
+
+    /**
+     * This method takes the user to an activity from which he can edit his Hostings.
+     */
+    private fun listItemClick(){
+        context.toast("This feature is not implemented yet.")
     }
 
     /**

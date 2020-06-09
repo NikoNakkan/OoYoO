@@ -1,25 +1,29 @@
 package com.softeng.ooyoo.mainScreens
 
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.auth.FirebaseUser
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.databases.HostingDB
 import com.softeng.ooyoo.databases.TripPlansDB
 import com.softeng.ooyoo.databases.UserDB
 import com.softeng.ooyoo.helpers.*
+import com.softeng.ooyoo.host.Hosting
 import com.softeng.ooyoo.signUpLogIn.LoginActivity
+import com.softeng.ooyoo.trip.TripPlan
 import com.softeng.ooyoo.user.*
 
 
@@ -73,7 +77,10 @@ class OwnProfileFragment : Fragment(), PassUser {
         }
 
         deleteButton.setOnClickListener {
-            deleteAccount()
+            val firebaseUser = FirebaseAuth.getInstance().currentUser
+            val uid = user.uid
+
+            deleteDialogClicked(firebaseUser, uid)
         }
 
         return view
@@ -84,43 +91,6 @@ class OwnProfileFragment : Fragment(), PassUser {
      */
     override fun setUser(user: User){
         this.user = user
-    }
-
-    /**
-     * This method deletes the current user's account.
-     */
-    private fun deleteAccount(){
-        val firebaseUser = FirebaseAuth.getInstance().currentUser
-        val uid = user.uid
-
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle("Are you sure you want to delete your account?")
-            .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
-
-                firebaseUser?.delete()
-                    ?.addOnCompleteListener { task ->
-
-                        if (task.isSuccessful) {
-                            Log.d(OwnProfileFragment::class.java.simpleName, "User account delete")
-
-                            val userDB = UserDB()
-                            userDB.deleteAccount(uid)
-
-                            val intent = Intent(context, LoginActivity::class.java)
-                            startActivity(intent)
-
-                        }
-                        else {
-                            Log.d(OwnProfileFragment::class.java.simpleName,"Deleting user account failed")
-                            context?.longToast("There was an error while deleting your account. Please try again.")
-                        }
-                    }
-                    ?: context?.longToast("There was an error while deleting your account. Please try again.")
-            }
-            .setNegativeButton("No"){ _: DialogInterface, _: Int ->
-
-            }
-        builder.create().show()
     }
 
     /**
@@ -137,37 +107,47 @@ class OwnProfileFragment : Fragment(), PassUser {
     }
 
     /**
-     * This method opens a list of the current user's trip plans.
+     * This method retrieves the user's TripPlans.
      */
     private fun editMyTripList(){
         val tripPlansDB = TripPlansDB()
         tripPlansDB.getMyTripList(
             user.uid,
-            onSuccess = { tripPlanList ->
-                val intent = Intent(activity, MyTripPlansListActivity::class.java)
-                intent.putParcelableArrayListExtra(TRIPS_LIST_EXTRA_NAME, tripPlanList)
-                startActivity(intent)
-            },
+            onSuccess = ::returnTrips,
             onFailure = {
                 context?.longToast("There was an error, while retrieving your trips. Pleas try again.")
             })
     }
 
     /**
-     * This method opens a list of the current user's hostings.
+     * This method opens a list with the user's TripPlans.
+     */
+    private fun returnTrips(tripPlanList: ArrayList<TripPlan>){
+        val intent = Intent(activity, MyTripPlansListActivity::class.java)
+        intent.putParcelableArrayListExtra(TRIPS_LIST_EXTRA_NAME, tripPlanList)
+        startActivity(intent)
+    }
+
+    /**
+     * This method retrieves the user's Hostings.
      */
     private fun editMyHostingList(){
         val hostingDB = HostingDB()
         hostingDB.getMyHostList(
             user.uid,
-            onSuccess = { hostingList ->
-                val intent = Intent(activity, MyHostingsListActivity::class.java)
-                intent.putParcelableArrayListExtra(HOSTS_LIST_EXTRA_NAME, hostingList)
-                startActivity(intent)
-            },
+            onSuccess = ::returnHostings,
             onFailure = {
                 context?.longToast("There was an error, while retrieving your hosts. Pleas try again.")
             })
+    }
+
+    /**
+     * This method opens a list with the user's Hostings.
+     */
+    private fun returnHostings(hostingList: ArrayList<Hosting>){
+        val intent = Intent(activity, MyHostingsListActivity::class.java)
+        intent.putParcelableArrayListExtra(HOSTS_LIST_EXTRA_NAME, hostingList)
+        startActivity(intent)
     }
 
     /**
@@ -190,6 +170,54 @@ class OwnProfileFragment : Fragment(), PassUser {
         val intent = Intent(context, MyReputationActivity::class.java)
         intent.putExtra(REPUTATION_USER_EXTRA_NAME, user)
         context?.startActivity(intent)
+    }
+
+    /**
+     * This method opens a dialog to delete the current account.
+     */
+    private fun deleteDialogClicked(firebaseUser: FirebaseUser?, uid: String){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Are you sure you want to delete your account?")
+            .setPositiveButton("Yes") { _: DialogInterface, _: Int ->
+                deleteAccount(firebaseUser, uid)
+            }
+            .setNegativeButton("No"){ _: DialogInterface, _: Int ->
+
+            }
+        builder.create().show()
+    }
+
+    /**
+     * This method deletes the user's account
+     */
+    private fun deleteAccount(firebaseUser: FirebaseUser?, uid: String){
+        firebaseUser?.delete()
+            ?.addOnCompleteListener { task ->
+
+                if (task.isSuccessful) {
+                    Log.d(OwnProfileFragment::class.java.simpleName, "User account delete")
+
+                    val userDB = UserDB()
+                    userDB.deleteAccount(uid)
+
+                    signupRedirect()
+
+                }
+                else {
+                    Log.d(OwnProfileFragment::class.java.simpleName,"Deleting user account failed")
+                    context?.longToast("There was an error while deleting your account. Please try again.")
+                }
+            }
+            ?: context?.longToast("There was an error while deleting your account. Please try again.")
+
+    }
+
+    /**
+     * This method redirects the user to the sign up activity when his account is deleted.
+     */
+    private fun signupRedirect(){
+        val intent = Intent(context, LoginActivity::class.java)
+        startActivity(intent)
     }
 
 }

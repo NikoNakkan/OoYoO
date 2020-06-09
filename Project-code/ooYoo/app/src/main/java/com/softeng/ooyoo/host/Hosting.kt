@@ -21,7 +21,7 @@ class Hosting (
     val house: House = House(),
     var startDateInMillis: Long = 0,
     var endDateInMillis: Long = 0,
-    val addHomeReq: String = ""
+    val homeReq: String = ""
 ): TravelEvent(uid, place, dates), Parcelable{
 
     init {

@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import com.softeng.ooyoo.R
 import com.softeng.ooyoo.helpers.toast
 import com.softeng.ooyoo.trip.BecomeTravellerActivity
-import com.softeng.ooyoo.host.BecomeHostActivity
+import com.softeng.ooyoo.host.HostFormActivity
 import com.softeng.ooyoo.user.User
 
 /**
@@ -38,11 +38,18 @@ class BecomeFragment : Fragment(),PassUser {
         }
 
         hostButton.setOnClickListener{
-            val intent = Intent(context, BecomeHostActivity::class.java)
-            startActivity(intent)
+            createHostForm()
         }
 
         return view
+    }
+
+    /**
+     * This method is used to create a hosting form.
+     */
+    private fun createHostForm(){
+        val intent = Intent(context, HostFormActivity::class.java)
+        startActivity(intent)
     }
 
     /**
